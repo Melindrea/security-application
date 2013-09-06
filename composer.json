@@ -1,0 +1,54 @@
+{
+    "name": "Melindrea/security-application",
+    "version": "0.0.0",
+    "description": "This is a project to showcase implementation of security measures in web applications",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Marie Hogebrandt",
+            "email": "iam@mariehogebrandt.se",
+            "homepage": "http://mariehogebrandt.se",
+            "role": "Developer"
+        }
+    ],
+    "license": "MIT",
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "squizlabs/php_codesniffer": "1.*"
+    },
+    "config": {
+        "vendor-dir": "composer_components",
+        "bin-dir": "composer_components/bin",
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "4.0.*",
+        "michelf/php-markdown": "1.3.*@dev",
+        "mews/purifier": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "app/commands",
+            "app/controllers",
+            "app/models",
+            "app/database/migrations",
+            "app/database/seeds",
+            "test/TestCase.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan optimize"
+        ],
+        "pre-update-cmd": [
+            "php artisan clear-compiled"
+        ],
+        "post-update-cmd": [
+            "php artisan optimize"
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ]
+    }
+}

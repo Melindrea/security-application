@@ -1,0 +1,19 @@
+{
+  "name": "security-application",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~2.0",
+    "selectivizr": "~1.0.2",
+    "typeplate": "latest",
+    "chai": "~1.7.2",
+    "mocha": "~1.12.0",
+    "sinon-chai": "~2.4.0",
+    "sinon": "~1.7.3"
+  },
+  "devDependencies": {
+    "golden-grid-system": "*",
+    "showdown": "~0.3.1"
+  }
+}

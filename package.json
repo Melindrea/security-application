@@ -1,0 +1,45 @@
+{
+    "name": "security-application",
+    "version": "0.0.0",
+    "description": "This is a project to showcase implementation of security measures in web applications",
+    "private": true,
+    "author": "Marie Hogebrandt <iam@mariehogebrandt.se> (http://mariehogebrandt.se)",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Melindrea/security-application.git"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-copy": "~0.4.1",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-uglify": "~0.2.0",
+        "grunt-contrib-compass": "~0.5.0",
+        "grunt-contrib-jshint": "~0.6.3",
+        "grunt-contrib-cssmin": "~0.6.0",
+        "grunt-contrib-connect": "0.3.0",
+        "grunt-contrib-clean": "0.5.0",
+        "grunt-contrib-imagemin": "0.2.0",
+        "grunt-contrib-watch": "~0.5.2",
+        "grunt-usemin": "~0.1.10",
+        "grunt-mocha": "~0.4.0",
+        "grunt-open": "~0.2.0",
+        "grunt-modernizr": "~0.3.0",
+        "grunt-jsvalidate": "~0.2.1",
+        "grunt-svgmin": "~0.2.0",
+        "grunt-concurrent": "~0.3.0",
+        "grunt-rev": "~0.1.0",
+        "load-grunt-tasks": "~0.1.0",
+        "connect-livereload": "~0.2.0",
+        "time-grunt": "~0.1.1",
+        "gateway": "~0.1.1",
+        "grunt-phplint": "~0.0.5",
+        "grunt-phpunit": "~0.3.0",
+        "grunt-csscss": "~0.6.0",
+        "assemble": "~0.4.4",
+        "bas": "~0.0.20"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    }
+}

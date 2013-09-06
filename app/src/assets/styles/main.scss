@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+// App Config - this is where most of your magic will happen
+// -----------------------------------------------------------------------------
+@import "config";
+
+// Gems from Ruby
+// -----------------------------------------------------------------------------
+@import "compass";
+@import "breakpoint";
+
+// Using normalize and any resets
+// -----------------------------------------------------------------------------
+@import "normalize";
+
+// Libraries that are bower components
+// -----------------------------------------------------------------------------
+@import "typeplate/scss/typeplate";
+
+// Libraries that are not bower components
+// -----------------------------------------------------------------------------
+// @import "vendor/**/*";
+
+// This where you start building your own styles.
+// -----------------------------------------------------------------------------
+// @import "typography";
+// @import "forms";
+// @import "buttons";
+// @import "design";
+// @import "ui_patterns/**/*";    // glob manifest files
+// @import "modules/**/*";        // glob manifest files
+// @import "layouts/*";           // glob manifest files
+
+
+// "Shameful" styles; for quick-and-dirty fixes
+// -----------------------------------------------------------------------------
+// @import "shame";

@@ -49,4 +49,5 @@ composer_components
 COMMANDS.md
 dist
 app/**/*.html
-*storage
+storage
+

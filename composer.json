@@ -14,7 +14,8 @@
     "license": "MIT",
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
-        "squizlabs/php_codesniffer": "1.*"
+        "squizlabs/php_codesniffer": "1.*",
+        "sensiolabs/security-checker": "dev-master"
     },
     "config": {
         "vendor-dir": "composer_components",

@@ -13,7 +13,7 @@ return array(
     |
     */
 
-    'name' => '<%= name %>',
+    'name' => 'Marie Hogebrandt',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,6 +26,6 @@ return array(
     |
     */
 
-    'email' => '<%= email %>',
+    'email' => 'iam@mariehogebrandt.se',
 
 );

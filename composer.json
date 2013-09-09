@@ -33,6 +33,7 @@
             "app/commands",
             "app/controllers",
             "app/models",
+            "app/libraries",
             "app/database/migrations",
             "app/database/seeds",
             "test/TestCase.php"

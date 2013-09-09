@@ -19,6 +19,8 @@ class Home extends Base
 
     public function index()
     {
-        return \View::make('home');
+        $bodyClasses = \Library\Html\Helpers::bodyClasses('index');
+        return \View::make('home')
+        ->with('bodyClasses', $bodyClasses);
     }
 }

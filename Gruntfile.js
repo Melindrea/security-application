@@ -351,11 +351,11 @@ module.exports = function (grunt) {
         },
         phpunit: {
             classes: {
-                dir: 'tests'
+                dir: 'test'
             },
             options: {
-                bin: '<%= yeoman.php %>/bin/phpunit',
-                bootstrap: '',
+                bin: 'composer_components/bin/phpunit',
+                bootstrap: 'bootstrap/autoload.php',
                 staticBackup: false,
                 colors: true,
                 noGlobalsBackup: false

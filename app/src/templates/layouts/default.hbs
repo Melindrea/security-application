@@ -12,8 +12,8 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.min.css -->
         <link rel="stylesheet" href="assets/styles/main.css">
+        <link rel="stylesheet" href="bower_components/magnific-popup/dist/magnific-popup.css">
         <!-- endbuild -->
-        <script src="bower_components/jquery/jquery.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -26,8 +26,10 @@
         </script>
         <!-- build:js scripts/head.min.js -->
         <script src="bower_components/modernizr/modernizr.dev.js"></script>
+        <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/selectivizr/selectivizr.js"></script>
         <!-- endbuild -->
+
     </head>
     <body>
         {{> outdated-warning}}
@@ -38,6 +40,7 @@
 
 
         <!-- build:js scripts/main.min.js -->
+        <script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
         <script src="assets/scripts/main.js"></script>
         <!-- endbuild -->
 </body>

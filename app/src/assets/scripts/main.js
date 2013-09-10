@@ -1,1 +1,6 @@
-console.log('Hello from JavaScript!');
+$(function () {
+    'use strict';
+    $('.js-popup').magnificPopup({
+        type: 'ajax'
+    });
+});

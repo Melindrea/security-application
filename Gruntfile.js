@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     var yeomanConfig = {
         app: 'app/src',
         dist: 'public/assets',
-        php: 'public'
+        php: 'app'
 
     };
 
@@ -345,7 +345,7 @@ module.exports = function (grunt) {
             options: {
                 bin: 'composer_components/bin/phpcs',
                 standard: 'PSR2',
-                ignore: '',
+                ignore: 'database',
                 extensions: 'php'
             }
         },
@@ -382,7 +382,8 @@ module.exports = function (grunt) {
         'clean:server',
         'concurrent:test',
         'connect:test',
-        'mocha'
+        'mocha',
+        'phpunit'
     ]);
 
     grunt.registerTask('build', [
@@ -407,7 +408,8 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', [
         'jshint',
         'jsvalidate',
-        'phplint'
+        'phplint',
+        'phpcs'
     ]);
 
     grunt.registerTask('default', [

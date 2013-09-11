@@ -191,7 +191,8 @@ module.exports = function (grunt) {
         assemble: {
             options: {
                 flatten: true,
-                layout: '<%= yeoman.app %>/templates/layouts/default.hbs',
+                layout: 'default.hbs',
+                layoutdir: '<%= yeoman.app %>/templates/layouts',
                 partials: ['<%= yeoman.app %>/templates/partials/*.hbs'],
             },
             pages: {
@@ -205,6 +206,14 @@ module.exports = function (grunt) {
             index: {
                 files: {
                     '<%= yeoman.app %>/': ['<%= yeoman.app %>/templates/pages/index.hbs']
+                }
+            },
+            reports: {
+                options: {
+                  layout: 'report.hbs'
+                },
+                files: {
+                    '<%= yeoman.php %>/docs/': ['<%= yeoman.app %>/templates/docs/*.hbs']
                 }
             }
         },

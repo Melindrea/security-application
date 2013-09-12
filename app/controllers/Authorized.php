@@ -3,7 +3,14 @@ namespace Controller;
 
 class Authorized extends Base
 {
+    /**
+     * Let's whitelist all the methods we want to allow guests to visit!
+     *
+     * @access   protected
+     * @var      array
+     */
     protected $whitelist = array(); // Actions for guests
+
     /**
      * Initializer.
      *

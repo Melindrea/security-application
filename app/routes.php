@@ -21,15 +21,12 @@
 Route::get('/', 'Controller\Home@index');
 
 Route::group(
-    array('prefix' => 'admin'),
-    function() {
-
-        Route::get(
-            'user',
-            function() {
-                return "I am admin/user!";
-            }
-        );
+    array('prefix' => 'users'),
+    function () {
+        Route::get('login', 'Controller\Users@getLogin');
     }
 );
+
+Route::resource('users', 'Controller\Users');
+
 

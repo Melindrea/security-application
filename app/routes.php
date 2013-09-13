@@ -19,3 +19,14 @@
 // );
 
 Route::get('/', 'Controller\Home@index');
+
+Route::group(
+    array('prefix' => 'users'),
+    function () {
+        Route::get('login', 'Controller\Users@getLogin');
+    }
+);
+
+Route::resource('users', 'Controller\Users');
+
+

@@ -15,7 +15,8 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
         "squizlabs/php_codesniffer": "1.*",
-        "sensiolabs/security-checker": "dev-master"
+        "sensiolabs/security-checker": "dev-master",
+        "way/generators": "dev-master"
     },
     "config": {
         "vendor-dir": "composer_components",

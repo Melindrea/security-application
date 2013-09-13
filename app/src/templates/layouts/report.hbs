@@ -30,7 +30,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               {{#each pages}}
-                <li><a href="#">{{data.title}} - {{pagename}}</a></li>
+                <li><a href="/{{pagename}}"{{#is ../page.dest this.dest}} class="active"{{/is}}>{{data.title}}</a></li>
               {{/each}}
             </ul>
           </div><!--/.nav-collapse -->

@@ -16,7 +16,8 @@
         "phpunit/phpunit": "3.7.*",
         "squizlabs/php_codesniffer": "1.*",
         "sensiolabs/security-checker": "dev-master",
-        "way/generators": "dev-master"
+        "way/generators": "dev-master",
+        "phpdocumentor/phpdocumentor": "*"
     },
     "config": {
         "vendor-dir": "composer_components",

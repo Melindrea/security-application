@@ -6,3 +6,9 @@
 * /users/create - registration page, email, password (cleartext), display name. JavaScript to validate the password rules and supplement email type. Security question (free text field) + answer. Blurb about protecting email, not sharing email, securing the password (and note about how it's partly to put them into good habits!), and that after registration they're recommended to fill out their profile a bit more thoroughly.
 * /users - list of users, showing their gravatar (default before filled out), display name and link to profile
 * /users/view - Singular user,
+
+php composer_components/bin/phpdoc.php -d app/controllers,app/library,app/models -t documentation/php
+
+sudo apt-get install graphviz
+
+TODO: Fix phpDocumentator so it doesn't have a seizure on lack of vendor-directory...

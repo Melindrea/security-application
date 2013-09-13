@@ -1,0 +1,13 @@
+---
+title: Workflow for report
+---
+
+1. Generate the file to be transformed somewhere (ex `.tmp/pdf-name.html`)
+2. Run `phantomjs` and generate the PDF from the file above
+
+## What's needed?
+* Footer
+* Header
+* Find out appropriate margins (can they be different?) Yes! margin: [left: '1.2cm', right: '2.5cm', top: '1.2cm', bottom: '2.2cm']
+* Does a link to an id work in PDFs? No, so no clickable index
+

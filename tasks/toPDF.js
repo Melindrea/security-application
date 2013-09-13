@@ -11,11 +11,12 @@ if (system.args.length < 3 || system.args.length > 5) {
     output = system.args[2];
     page.viewportSize = { width: 600, height: 600 };
     page.paperSize = {
-      format: 'A4', orientation: 'portrait', margin: '1cm',
+      format: 'A4', orientation: 'portrait',
+      margin: {left: '1.2cm', right: '2.5cm', top: '1.2cm', bottom: '2.2cm'},
       header: {
         height: '1.2cm',
         contents: phantom.callback(function(pageNum, numPages) {
-          return 'Fluff!';
+            return pageNum + '/' + numPages;
         })
       },
       footer: {
@@ -51,3 +52,4 @@ if (system.args.length < 3 || system.args.length > 5) {
 // http://stackoverflow.com/questions/16505981/adjust-pdf-options-for-phantomjs
 // http://stackoverflow.com/questions/17125955/generate-pdf-files-phantomjs-repeating-header
 // http://assemble.io/docs/Pages-Collections.html
+//http://tmanstwobits.com/convert-your-web-pages-to-pdf-files-using-phantomjs.html

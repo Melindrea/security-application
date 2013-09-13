@@ -41,9 +41,11 @@
         <div class="container">
         {{> outdated-warning}}
         {{#each pages}}
-            {{#markdown}}
-                {{{page}}}
-            {{/markdown}}
+                {{#markdown}}
+                    {{{page}}}
+                {{/markdown}}
+            <div style="page-break-before:always">
+            </div>
         {{/each}}
         </div> <!-- /container -->
 </body>

@@ -44,7 +44,7 @@ module.exports = function (grunt) {
             },
             templates: {
                 files: ['<%= yeoman.app %>/templates/{,*/}*.hbs'],
-                tasks: ['assemble']
+                tasks: ['assemble:pages']
             },
             livereload: {
                 options: {
@@ -198,22 +198,32 @@ module.exports = function (grunt) {
             pages: {
                 files: {
                     '<%= yeoman.app %>/': [
-                        '<%= yeoman.app %>/templates/pages/*.hbs',
-                        '!<%= yeoman.app %>/templates/pages/index.hbs'
+                        '<%= yeoman.app %>/templates/pages/*.hbs'
                     ]
                 }
             },
-            index: {
-                files: {
-                    '<%= yeoman.app %>/': ['<%= yeoman.app %>/templates/pages/index.hbs']
-                }
-            },
-            reports: {
+            report: {
                 options: {
                   layout: 'report.hbs'
                 },
                 files: {
-                    '<%= yeoman.php %>/docs/': ['<%= yeoman.app %>/templates/docs/*.hbs']
+                    '.tmp/docs/': ['<%= yeoman.app %>/templates/docs/*.hbs']
+                }
+            },
+            resume: {
+                options: {
+                  layout: 'resume.hbs'
+                },
+                files: {
+                    '<%= yeoman.app %>/src/assets/resume/': ['<%= yeoman.app %>/templates/resumes/*.hbs']
+                }
+            },
+            personalLetter: {
+                options: {
+                  layout: 'personal-letter.hbs'
+                },
+                files: {
+                    '<%= yeoman.app %>/src/assets/personal-letters/': ['<%= yeoman.app %>/templates/personal-letters/*.hbs']
                 }
             }
         },
@@ -378,7 +388,7 @@ module.exports = function (grunt) {
         }
 
         grunt.task.run([
-            'assemble',
+            'assemble:pages',
             'clean:server',
             'concurrent:server',
             'connect:livereload',
@@ -396,7 +406,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('build', [
-        'assemble',
+        'assemble:pages',
         'modernizr',
         'clean:dist',
         'useminPrepare',

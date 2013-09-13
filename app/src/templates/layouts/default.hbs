@@ -32,6 +32,11 @@
 
     </head>
     <body>
+        <ul>
+            {{#each pages}}
+                <li><a href="{{pagename}}">{{data.title}}</a></li>
+              {{/each}}
+        </ul>
         {{> outdated-warning}}
 
 

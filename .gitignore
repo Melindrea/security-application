@@ -4,6 +4,7 @@
 !.bowerrc
 !.editorconfig
 !.travis.yml
+!.gitattributes
 *~
 .DS_Store
 .AppleDouble

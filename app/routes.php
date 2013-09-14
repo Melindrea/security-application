@@ -28,5 +28,3 @@ Route::group(
 );
 
 Route::resource('users', 'Controller\Users');
-
-

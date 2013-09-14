@@ -1,6 +1,15 @@
 <?php
 namespace Controller;
 
+/**
+ * Authorized Controller.
+ *
+ * Base for protected controllers, inherits Base, no direct routes.
+ *
+ * @author Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright Copyright (c) 2013, Marie Hogebrandt
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 class Authorized extends Base
 {
     /**
@@ -12,9 +21,9 @@ class Authorized extends Base
     protected $whitelist = array(); // Actions for guests
 
     /**
-     * Initializer.
+     * Initializer: Runs the Auth-filter before actions not whitelisted
+     * Runs the CSRF-filter on action "post"
      *
-     * @access   public
      * @return \Controller\Authorized
      */
     public function __construct()

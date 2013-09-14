@@ -29,6 +29,11 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        shell: {                                // Task
+            phpdocs: {                      // Target
+                command: 'php composer_components/bin/phpdoc.php'
+            }
+        },
         watch: {
             js: {
                 files: ['<%= yeoman.app %>/assets/scripts/{,*/}*.js'],
@@ -422,6 +427,10 @@ module.exports = function (grunt) {
         'jshint',
         'jsvalidate',
         'modernizr'
+    ]);
+
+    grunt.registerTask('phpdocs', [
+        'shell:phpdocs'
     ]);
 
     grunt.registerTask('lint', [

@@ -9,6 +9,6 @@
 
 php composer_components/bin/phpdoc.php -d app/controllers,app/library,app/models -t documentation/php
 
-sudo apt-get install graphviz
+sudo apt-get install graphviz php5-xsl
 
 TODO: Fix phpDocumentator so it doesn't have a seizure on lack of vendor-directory...

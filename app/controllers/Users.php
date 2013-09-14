@@ -1,6 +1,15 @@
 <?php
 namespace Controller;
 
+/**
+ * Users Controller.
+ *
+ * A REST-ful resource, alongside routes with the base of users.
+ *
+ * @author Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright Copyright (c) 2013, Marie Hogebrandt
+ * @license http://opensource.org/licenses/MIT MIT
+ */
 class Users extends Base
 {
     /**
@@ -94,7 +103,7 @@ class Users extends Base
     }
 
     /**
-     * Login.
+     * Login. Route: users/login
      *
      * @return Response
      */

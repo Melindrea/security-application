@@ -6,6 +6,7 @@ namespace Controller;
  *
  * The base for all the controllers, no direct routes.
  *
+ * @package  SecurityApplication
  * @author Marie Hogebrandt <iam@mariehogebrandt.se>
  * @copyright Copyright (c) 2013, Marie Hogebrandt
  * @license http://opensource.org/licenses/MIT MIT

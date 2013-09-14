@@ -6,6 +6,7 @@ namespace Controller;
  *
  * Base for protected controllers, inherits Base, no direct routes.
  *
+ * @package  SecurityApplication
  * @author Marie Hogebrandt <iam@mariehogebrandt.se>
  * @copyright Copyright (c) 2013, Marie Hogebrandt
  * @license http://opensource.org/licenses/MIT MIT
@@ -21,8 +22,10 @@ class Authorized extends Base
     protected $whitelist = array(); // Actions for guests
 
     /**
-     * Initializer: Runs the Auth-filter before actions not whitelisted
-     * Runs the CSRF-filter on action "post"
+     * Initializer.
+     *
+     * Runs the Auth-filter before actions not whitelisted,
+     * Runs the CSRF-filter on action "post".
      *
      * @return \Controller\Authorized
      */

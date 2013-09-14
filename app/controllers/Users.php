@@ -10,7 +10,7 @@ namespace Controller;
  * @copyright Copyright (c) 2013, Marie Hogebrandt
  * @license http://opensource.org/licenses/MIT MIT
  */
-class Users extends Base
+class Users extends Authorized
 {
     /**
      * Let's whitelist all the methods we want to allow guests to visit!

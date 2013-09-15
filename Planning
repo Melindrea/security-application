@@ -20,7 +20,16 @@ Output: Purifier, Markdown, SmartyPants
 * If the application waits for numerical input, consider verifying data with ctype_digit(), or silently change its type using settype(), or use its numeric representation by sprintf().
 *Check if the given input has the expected data type. PHP has a wide range of input validating functions, from the simplest ones found in Variable Functions and in Character Type Functions (e.g. is_numeric(), ctype_digit() respectively) and onwards to the Perl compatible Regular Expressions support.
 *http://www.php.net/manual/en/pdo.prepared-statements.php
+* SQL injection should be dealt with on input (no explicit needed, Laravel deals with it), XSS on output - htmlspecialcharacters if no HTML, helper toHtml if HTML
 
 
-
-
+1. Injection: SQL protected in Laravel by default
+2. Broken Authentication and Session Management: ?
+3. XSS: htmlspecialcharacters if no expected HTML, toHtml if expected HTML
+4. Insecure Direct Object Reference: Ensure all things require right permission
+5. Security Misconfiguration: Can't do much...
+6. Sensitive Data Exposure: Protecting e-mail with encryption, figuring out how to send any uses of e-mail (login/etc) through https
+7. Missing Function Level Access Control: Not a problem, using auth filter for non-public routes
+8. CSRF: Using CSRF-filter on post actions
+9. Using components with known vulnerabilities: Using a security-check on composer, not found anything on frontend components
+10. Unvalidated Redirects and Forwards: If it is relevant, will check

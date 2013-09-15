@@ -14,7 +14,13 @@ sudo apt-get install graphviz php5-xsl
 TODO: Fix phpDocumentator so it doesn't have a seizure on lack of vendor-directory...
 
 Input: Purifier to clean
-Output: Markdown, SmartyPants
+Output: Purifier, Markdown, SmartyPants
 
-- doesn't allow <pre>
-- doesn't allow <code>
+* Never connect to the database as a superuser or as the database owner. Use always customized users with very limited privileges
+* If the application waits for numerical input, consider verifying data with ctype_digit(), or silently change its type using settype(), or use its numeric representation by sprintf().
+*Check if the given input has the expected data type. PHP has a wide range of input validating functions, from the simplest ones found in Variable Functions and in Character Type Functions (e.g. is_numeric(), ctype_digit() respectively) and onwards to the Perl compatible Regular Expressions support.
+*http://www.php.net/manual/en/pdo.prepared-statements.php
+
+
+
+

@@ -39,6 +39,10 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/assets/scripts/{,*/}*.js'],
                 tasks: ['js']
             },
+            php: {
+                files: ['<%= yeoman.php %>/{,*/}*.php'],
+                tasks: ['php']
+            },
             compass: {
                 files: ['<%= yeoman.app %>/assets/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'modernizr']
@@ -209,7 +213,7 @@ module.exports = function (grunt) {
             },
             report: {
                 options: {
-                  layout: 'report.hbs'
+                    layout: 'report.hbs'
                 },
                 files: {
                     '.tmp/docs/': ['<%= yeoman.app %>/templates/docs/*.hbs']
@@ -217,7 +221,7 @@ module.exports = function (grunt) {
             },
             resume: {
                 options: {
-                  layout: 'resume.hbs'
+                    layout: 'resume.hbs'
                 },
                 files: {
                     '<%= yeoman.app %>/src/assets/resume/': ['<%= yeoman.app %>/templates/resumes/*.hbs']
@@ -225,7 +229,7 @@ module.exports = function (grunt) {
             },
             personalLetter: {
                 options: {
-                  layout: 'personal-letter.hbs'
+                    layout: 'personal-letter.hbs'
                 },
                 files: {
                     '<%= yeoman.app %>/src/assets/personal-letters/': ['<%= yeoman.app %>/templates/personal-letters/*.hbs']
@@ -429,6 +433,11 @@ module.exports = function (grunt) {
         'modernizr'
     ]);
 
+    grunt.registerTask('php', [
+        'phplint',
+        'phpcs'
+    ]);
+
     grunt.registerTask('phpdocs', [
         'shell:phpdocs'
     ]);
@@ -436,8 +445,7 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', [
         'jshint',
         'jsvalidate',
-        'phplint',
-        'phpcs'
+        'php'
     ]);
 
     grunt.registerTask('default', [

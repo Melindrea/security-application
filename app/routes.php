@@ -11,19 +11,26 @@
 |
 */
 
-// Route::get(
-//     '/',
-//     function () {
-//         return View::make('hello');
-//     }
-// );
-
-Route::get('/', 'Controller\Home@index');
+Route::get(
+    '/',
+    array(
+        'as' => 'home',
+        'uses' => 'Controller\Home@index',
+    )
+);
 
 Route::group(
     array('prefix' => 'users'),
     function () {
-        Route::get('login', 'Controller\Users@getLogin');
+        Route::get(
+            'login',
+            array(
+                'as' => 'login',
+                'uses' => 'Controller\Users@getLogin',
+            )
+        )->before('guest');
+
+        Route::post('login', 'Controller\Users@postLogin');
     }
 );
 

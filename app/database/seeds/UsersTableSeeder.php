@@ -8,11 +8,20 @@ class UsersTableSeeder extends Seeder {
 		// DB::table('users')->truncate();
 
 		$users = array(
-
+            array(
+                'display_name' => 'Marie',
+                'password' => Hash::make('my_pass'),
+                'email' => Crypt::encrypt('iam@mariehogebrandt.se'),
+            ),
+            array(
+                'display_name' => 'Test',
+                'password' => Hash::make('my_pass'),
+                'email' => Crypt::encrypt('test@test.net'),
+            ),
 		);
 
 		// Uncomment the below to run the seeder
-		// DB::table('users')->insert($users);
+		DB::table('users')->insert($users);
 	}
 
 }

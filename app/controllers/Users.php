@@ -20,7 +20,6 @@ class Users extends Authorized
      */
     protected $whitelist = array(
         'create',
-        'show',
         'getLogin',
         'postLogin',
     );
@@ -43,7 +42,8 @@ class Users extends Authorized
     public function create()
     {
         //
-        echo "users/create";
+        echo 'users/create<br>'.PHP_EOL;
+        echo \Route::currentRouteName();
     }
 
     /**
@@ -109,6 +109,17 @@ class Users extends Authorized
      */
     public function getLogin()
     {
-        echo 'users/login (get)';
+        echo 'users/login (get)<br>'.PHP_EOL;
+        echo \Route::currentRouteName();
+    }
+
+/**
+     * Login. No route
+     *
+     * @return Response
+     */
+    public function postLogin()
+    {
+        // Things to deal with login here
     }
 }

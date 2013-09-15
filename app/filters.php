@@ -39,7 +39,8 @@ Route::filter(
     'auth',
     function () {
         if (Auth::guest()) {
-            return Redirect::guest('users/login');
+            return Redirect::guest('users/login')
+            ->with('flash_warning', trans('messages.need_logged_in'));
         }
     }
 );
@@ -67,7 +68,8 @@ Route::filter(
     'guest',
     function () {
         if (Auth::check()) {
-            return Redirect::to('/');
+            return Redirect::to('/')
+            ->with('flash_notice', trans('messages.already_logged_in'));
         }
     }
 );

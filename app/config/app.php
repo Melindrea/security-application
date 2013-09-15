@@ -114,6 +114,7 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
+        'Mews\Purifier\PurifierServiceProvider',
 
     ),
 
@@ -180,6 +181,7 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
         'Markdown'        => 'Michelf\Markdown',
+        'Typography'      => 'PHPTypography\PHPTypography',
+        'Purifier'        => 'Mews\Purifier\Facades\Purifier',
     ),
-
 );

@@ -12,3 +12,9 @@ php composer_components/bin/phpdoc.php -d app/controllers,app/library,app/models
 sudo apt-get install graphviz php5-xsl
 
 TODO: Fix phpDocumentator so it doesn't have a seizure on lack of vendor-directory...
+
+Input: Purifier to clean
+Output: Markdown, SmartyPants
+
+- doesn't allow <pre>
+- doesn't allow <code>

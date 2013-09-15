@@ -109,11 +109,11 @@ class Users extends Authorized
      */
     public function getLogin()
     {
-        echo 'users/login (get)<br>'.PHP_EOL;
-        echo \Route::currentRouteName();
+        return \View::make('users.login')
+        ->with('bodyClasses', $this->bodyClasses);
     }
 
-/**
+    /**
      * Login. No route
      *
      * @return Response

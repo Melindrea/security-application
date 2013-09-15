@@ -27,6 +27,6 @@ class Base extends \Controller
     public function __construct()
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
-        $this->bodyClasses = \Library\Html\Helpers::bodyClasses(\Route::currentRouteName());
+        $this->bodyClasses = \Library\Html\Helpers::bodyClasses();
     }
 }

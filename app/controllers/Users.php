@@ -41,9 +41,8 @@ class Users extends Authorized
      */
     public function create()
     {
-        //
-        echo 'users/create<br>'.PHP_EOL;
-        echo \Route::currentRouteName();
+        return \View::make('users.create')
+        ->with('bodyClasses', $this->bodyClasses);
     }
 
     /**

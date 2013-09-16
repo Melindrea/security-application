@@ -84,3 +84,14 @@ App::down(
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require The Macros File
+|--------------------------------------------------------------------------
+|
+| This is the file that keeps all the form/HTML macros
+|
+*/
+
+require app_path().'/macros.php';

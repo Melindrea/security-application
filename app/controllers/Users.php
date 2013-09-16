@@ -41,8 +41,7 @@ class Users extends Authorized
      */
     public function create()
     {
-        return \View::make('users.create')
-        ->with('bodyClasses', $this->bodyClasses);
+        return \View::make('users.create');
     }
 
     /**
@@ -108,8 +107,7 @@ class Users extends Authorized
      */
     public function getLogin()
     {
-        return \View::make('users.login')
-        ->with('bodyClasses', $this->bodyClasses);
+        return \View::make('users.login');
     }
 
     /**

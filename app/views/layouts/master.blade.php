@@ -10,7 +10,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="/assets/styles/main.min.css">
+        {{ HTML::stylesheet('/assets/styles/main.min.css') }}
+
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -23,11 +24,7 @@
 
         <script src="/assets/scripts/head.min.js"></script>
     </head>
-    @if (isset($bodyClasses))
-        <body class="{{ $bodyClasses }}">
-    @else
-        <body>
-    @endif
+        <body class="{{ HTML::bodyClasses() }}">
         <!-- check for flash notification message -->
         @if(Session::has('flash_notice'))
             <div id="flash_notice">{{ Session::get('flash_notice') }}</div>
@@ -38,6 +35,7 @@
 
         @yield('content')
 
+        {{ HTML::script('/assets/scripts/main.min.js') }}
         <script src="/assets/scripts/main.min.js"></script>
     </body>
 </html>

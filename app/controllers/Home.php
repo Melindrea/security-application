@@ -22,7 +22,6 @@ class Home extends Base
      */
     public function index()
     {
-        return \View::make('home')
-        ->with('bodyClasses', $this->bodyClasses);
+        return \View::make('home');
     }
 }

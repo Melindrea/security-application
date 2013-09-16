@@ -17,19 +17,4 @@ class Helpers
 
         return join(' ', $bodyClasses);
     }
-
-    public static function typographyTransform($text)
-    {
-        $typo = new \Typography();
-        $transformed = $typo->process($text);
-        return $transformed;
-    }
-
-    public static function toHtml($text)
-    {
-        $cleaned = \Purifier::clean($text);
-        $markdown = \Markdown::defaultTransform($cleaned);
-        $typographed = self::typographyTransform($markdown);
-        return $typographed;
-    }
 }

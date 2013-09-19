@@ -11,12 +11,12 @@ class UsersTableSeeder extends Seeder {
             array(
                 'display_name' => 'Marie',
                 'password' => Hash::make('my_pass'),
-                'email' => Crypt::encrypt('iam@mariehogebrandt.se'),
+                'email' => 'iam@mariehogebrandt.se',
             ),
             array(
                 'display_name' => 'Test',
                 'password' => Hash::make('my_pass'),
-                'email' => Crypt::encrypt('test@test.net'),
+                'email' => 'test@test.net',
             ),
 		);
 

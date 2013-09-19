@@ -13,7 +13,7 @@ namespace Controller;
 class Users extends Authorized
 {
     /**
-     * Let's whitelist all the methods we want to allow guests to visit!
+     * Let's whitelnputst all the methods we want to allow guests to visit!
      *
      * @access   protected
      * @var      array
@@ -117,6 +117,43 @@ class Users extends Authorized
      */
     public function postLogin()
     {
-        // Things to deal with login here
+        $data = array();
+        // $errors = new \MessageBag();
+        // if ($old = \Input::old('errors'))  {
+        //     $errors = $old;
+        // }
+        // $data = [
+        //     'errors' => $errors
+        // ];
+
+        $validator = \Validator::make(\Input::all(), [
+            'email' => 'required',
+            'password' => 'required:email',
+        ]);
+
+
+        if ($validator->passes()) {
+            $credentials = [
+                'email' => \Input::get('email'),
+                'password' => \Input::get('password')
+            ];
+
+            $rememberMe = (\Input::get('remember-me')) ? true : false;
+            if (\Auth::attempt($credentials, $rememberMe)) {
+                // TODO: Reroute to profile
+                return \Redirect::intended('/');
+            }
+        }
+
+        // $data['errors'] = new \MessageBag([
+        //     'password' => [
+        //         trans('forms.password.error')
+        //     ]
+        // ]);
+
+        $data['email'] = \Input::get('email');
+
+        // return \Redirect::route('login')
+        //   ->withInput($data);
     }
 }

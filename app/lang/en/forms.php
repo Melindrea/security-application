@@ -37,6 +37,7 @@ return array(
             you are required to use 10 characters, at least one capital letter,
             one lowercase letter and one number. You are recommended to use a
             special character as well',
+        'error' => 'Password and/or e-mail is wrong',
     ),
 
     'remember_me' => array(
@@ -44,5 +45,15 @@ return array(
         'hint' => 'Do not check this if you are on a shared/public computer.
             It uses a cookie which will be valid for up to 14 days',
     ),
+
+    'register' => array(
+        'label' => 'Register',
+    ),
+
+    'login' => array(
+        'label' => 'Login',
+    ),
+
+    'required_fields' => 'Required Fields',
 
 );

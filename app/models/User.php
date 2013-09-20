@@ -1,10 +1,10 @@
 <?php
-namespace Model\User;
+namespace Model;
 
 use \Illuminate\Auth\UserInterface;
 use \Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface
+class User extends \Eloquent implements UserInterface, RemindableInterface
 {
 
     /**
@@ -28,7 +28,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function getAuthIdentifier()
     {
-        return $this->getKey();
+        return $this->email;
     }
 
     /**
@@ -48,6 +48,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function getReminderEmail()
     {
-        return Crypt::decrypt($this->email);
+        return $this->email;
+    }
+
+    /**
+     * Set the password.
+     *
+     * @return void
+     */
+    public function setPasswordAttribute()
+    {
+        $this->password = Hash::make($this->password);
     }
 }

@@ -22,7 +22,7 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-        <script src="/assets/scripts/head.min.js"></script>
+        {{ HTML::script('/assets/scripts/head.min.js') }}
     </head>
         <body class="{{ HTML::bodyClasses() }}">
         <!-- check for flash notification message -->
@@ -36,6 +36,5 @@
         @yield('content')
 
         {{ HTML::script('/assets/scripts/main.min.js') }}
-        <script src="/assets/scripts/main.min.js"></script>
     </body>
 </html>

@@ -2,8 +2,27 @@
 title: Login
 ---
 
-
-
-<div id="login-form">
-LOL, I has content!
-</div>
+<form action="" method="get" id="login-form">
+    <input type="hidden" name="_token" value="dashaskd">
+        <dl class="lining">
+            <dt>
+                <label for="email">E-mail</label>
+            </dt>
+            <dd>
+                <input type="email" id="email" name="email" placeholder="your@name.com" required="required">
+            </dd>
+            <dt>
+                <label for="password">Password</label>
+            </dt>
+            <dd>
+                <input type="text" id="password" name="password" placeholder="Secure Password" required="required">
+            <dt>
+                <label for="remember_me">Keep me logged in</label>
+                <small>Do not check this if you are on a shared/public computer. It uses a cookie which will be valid for up to 14 days.</small>
+            </dt>
+            <dd>
+                <input type="checkbox" id="remember_me" name="remember_me" value="yes">
+            </dd>
+        </dl>
+    <button type="submit" name="login" value="login">Login</button>
+</form>

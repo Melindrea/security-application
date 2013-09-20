@@ -3,7 +3,7 @@
 @section('content')
     {{ Form::open(array('route' => 'users.create')) }}
         <fieldset>
-            <legend>Required Fields</legend>
+            <legend>{{ trans('forms.required_fields') }}</legend>
             <dl class="lining">
                 <dt>
                     {{ Form::label('display_name', trans('forms.display_name.label')) }}
@@ -38,6 +38,6 @@
 
         {{ Form::honeypot('username', 'username_time') }}
 
-        {{ Form::button('Register', array('type' => 'submit', 'name' => 'register', 'value' => 'register')) }}
+        {{ Form::button(trans('forms.register.label'), array('type' => 'submit', 'name' => 'register', 'value' => 'register')) }}
     {{ Form::close() }}
 @stop

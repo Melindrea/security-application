@@ -128,9 +128,8 @@ class Users extends Authorized
 
         $validator = \Validator::make(\Input::all(), [
             'email' => 'required',
-            'password' => 'required:email',
+            'password' => 'required',
         ]);
-
 
         if ($validator->passes()) {
             $credentials = [
@@ -138,10 +137,11 @@ class Users extends Authorized
                 'password' => \Input::get('password')
             ];
 
-            $rememberMe = (\Input::get('remember-me')) ? true : false;
-            if (\Auth::attempt($credentials, $rememberMe)) {
+            $rememberMe = (\Input::get('remember-me') == 'yes') ? true : false;
+            if (\Auth::attempt($credentials)) {
                 // TODO: Reroute to profile
-                return \Redirect::intended('/');
+                // return \Redirect::intended('/');
+                return \Redirect::to('/');
             }
         }
 
@@ -152,7 +152,11 @@ class Users extends Authorized
         // ]);
 
         $data['email'] = \Input::get('email');
-
+        if (\Auth::check()) {
+            echo "Yay!";
+        } else {
+            echo "nope...";
+        }
         // return \Redirect::route('login')
         //   ->withInput($data);
     }

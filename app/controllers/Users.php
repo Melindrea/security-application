@@ -22,6 +22,19 @@ class Users extends Authorized
         'create',
         'getLogin',
         'postLogin',
+        'getLogout',
+    );
+
+    /**
+     * List the methods that require a user to be guest
+     *
+     * @access   protected
+     * @var      array
+     */
+    protected $guestlist = array(
+        'create',
+        'getLogin',
+        'postLogin',
     );
 
     /**

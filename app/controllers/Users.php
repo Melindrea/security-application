@@ -117,47 +117,41 @@ class Users extends Authorized
      */
     public function postLogin()
     {
-        $data = array();
-        // $errors = new \MessageBag();
-        // if ($old = \Input::old('errors'))  {
-        //     $errors = $old;
-        // }
-        // $data = [
-        //     'errors' => $errors
-        // ];
-
         $validator = \Validator::make(\Input::all(), [
-            'email' => 'required',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
         if ($validator->passes()) {
             $credentials = [
-                'email' => \Input::get('email'),
+                'username' => \Input::get('username'),
                 'password' => \Input::get('password')
             ];
 
             $rememberMe = (\Input::get('remember-me') == 'yes') ? true : false;
             if (\Auth::attempt($credentials)) {
                 // TODO: Reroute to profile
-                // return \Redirect::intended('/');
-                return \Redirect::to('/');
+                return \Redirect::intended('home')
+                    ->with('flash_notice', trans('messages.login.successful'));
             }
         }
 
-        // $data['errors'] = new \MessageBag([
-        //     'password' => [
-        //         trans('forms.password.error')
-        //     ]
-        // ]);
+        $data['username'] = \Input::get('username');
+        return \Redirect::route('login')
+          ->withInput($data)
+          ->with('flash_warning', trans('messages.login.failed'));
+    }
 
-        $data['email'] = \Input::get('email');
-        if (\Auth::check()) {
-            echo "Yay!";
-        } else {
-            echo "nope...";
-        }
-        // return \Redirect::route('login')
-        //   ->withInput($data);
+    /**
+     * Logout. Route: users/logout
+     *
+     * @return Response
+     */
+    public function getLogout()
+    {
+        \Auth::logout();
+
+        return \Redirect::route('home')
+            ->with('flash_notice', trans('messages.logout.successful'));
     }
 }

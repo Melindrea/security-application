@@ -4,10 +4,10 @@
     {{ Form::open(array('route' => 'login')) }}
         <dl class="lining">
             <dt>
-                {{ Form::label('email', trans('forms.email.label')) }}
+                {{ Form::label('username', trans('forms.username.label')) }}
             </dt>
             <dd>
-                {{ Form::email('email', null, array('required' => 'required', 'placeholder' => trans('forms.email.placeholder'))) }}
+                {{ Form::text('username', null, array('required' => 'required', 'placeholder' => trans('forms.username.placeholder'))) }}
             </dd>
             <dt>
                 {{ Form::label('password', trans('forms.password.label')) }}

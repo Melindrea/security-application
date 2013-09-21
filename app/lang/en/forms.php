@@ -21,6 +21,13 @@ return array(
         'hint' => 'This will be displayed as your public identity',
     ),
 
+    'username' => array(
+        'label' => 'Username',
+        'placeholder' => 'yourname',
+        'hint' => 'This is only used to identify you when logging in and is not
+            visible',
+    ),
+
     'email' => array(
         'label' => 'E-mail',
         'placeholder' => 'you@name.com',
@@ -37,7 +44,6 @@ return array(
             you are required to use 10 characters, at least one capital letter,
             one lowercase letter and one number. You are recommended to use a
             special character as well',
-        'error' => 'Password and/or e-mail is wrong',
     ),
 
     'remember_me' => array(

@@ -11,7 +11,16 @@ return array(
     |
     */
 
-    'already_logged_in' => 'You are already logged in',
-    'need_logged_in' => 'Login to view that page',
+    'login' => array(
+        'already' => 'You are already logged in',
+        'need' => 'Login to view that page',
+        'successful' => 'You are successfully logged into the system',
+        'failed' => 'Password and/or username is wrong',
+    ),
+
+    'logout' => array(
+        'successful' => 'You are successfully logged out of the system',
+    ),
+
 
 );

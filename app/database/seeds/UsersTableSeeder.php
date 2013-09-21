@@ -10,13 +10,15 @@ class UsersTableSeeder extends Seeder {
 		$users = array(
             array(
                 'display_name' => 'Marie',
+                'username' => 'marie',
                 'password' => Hash::make('my_pass'),
-                'email' => 'iam@mariehogebrandt.se',
+                'email' => Crypt::encrypt('iam@mariehogebrandt.se'),
             ),
             array(
                 'display_name' => 'Test',
+                'username' => 'test',
                 'password' => Hash::make('my_pass'),
-                'email' => 'test@test.net',
+                'email' => Crypt::encrypt('test@test.net'),
             ),
 		);
 

@@ -31,6 +31,14 @@ Route::group(
         )->before('guest');
 
         Route::post('login', 'Controller\Users@postLogin');
+
+        Route::get(
+            'logout',
+            array(
+                'as' => 'logout',
+                'uses' => 'Controller\Users@getLogout',
+            )
+        );
     }
 );
 

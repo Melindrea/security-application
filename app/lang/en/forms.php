@@ -32,8 +32,9 @@ return array(
         'label' => 'E-mail',
         'placeholder' => 'you@name.com',
         'hint' => 'Your e-mail will not be shared with third part or displayed,
-            but will be used for authenticating yourself, as well as (limited
+            but will be used for password reminders, as well as (limited
             and optional) communication and (optional) gravatar',
+        'confirmation' => 'Your E-mail again',
     ),
 
     'password' => array(
@@ -41,9 +42,8 @@ return array(
         'placeholder' => 'Secure Password',
         'hint' => 'This will be shown in clear text while registering (but no
             where else) so ensure no one else can see it. For a secure password
-            you are required to use 10 characters, at least one capital letter,
-            one lowercase letter and one number. You are recommended to use a
-            special character as well',
+            you are required to use 10 characters, and are recommended to mix
+            up the characters used',
     ),
 
     'remember_me' => array(
@@ -61,5 +61,10 @@ return array(
     ),
 
     'required_fields' => 'Required Fields',
+
+    'validation' => array(
+        'header' => 'Validation Errors',
+        'body' => 'The following error was found|The following errors were found',
+    ),
 
 );

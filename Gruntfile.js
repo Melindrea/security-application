@@ -32,6 +32,12 @@ module.exports = function (grunt) {
         shell: {                                // Task
             phpdocs: {                      // Target
                 command: 'php composer_components/bin/phpdoc.php'
+            },
+            artisan: {
+                options: {
+                    stdout: true
+                },
+                command: 'php artisan serve --port=<%= connect.options.port %> --host=<%= connect.options.host %>'
             }
         },
         watch: {
@@ -348,6 +354,10 @@ module.exports = function (grunt) {
                 'compass',
                 'copy:styles'
             ],
+            php: [
+                'shell:artisan',
+                'watch'
+            ],
             test: [
                 'copy:styles'
             ],
@@ -394,6 +404,8 @@ module.exports = function (grunt) {
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+        } else if (target === 'php') {
+            return grunt.task.run(['open', 'shell:artisan']);
         }
 
         grunt.task.run([
@@ -428,14 +440,14 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('js', [
-        'jshint',
-        'jsvalidate',
+        'newer:jshint',
+        'newer:jsvalidate',
         'modernizr'
     ]);
 
     grunt.registerTask('php', [
-        'phplint',
-        'phpcs'
+        'newer:phplint',
+        'newer:phpcs'
     ]);
 
     grunt.registerTask('phpdocs', [
@@ -443,8 +455,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('lint', [
-        'jshint',
-        'jsvalidate',
+        'newer:jshint',
+        'newer:jsvalidate',
         'php'
     ]);
 

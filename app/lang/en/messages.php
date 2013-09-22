@@ -22,5 +22,10 @@ return array(
         'successful' => 'You are successfully logged out of the system',
     ),
 
+    'register' => array(
+        'failed' => 'The registration failed, please contact an administrator',
+        'successful' => 'You have been successfully registered',
+    ),
+
 
 );

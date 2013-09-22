@@ -68,7 +68,8 @@ return array(
     ),
     "unique"           => "The :attribute has already been taken.",
     "url"              => "The :attribute format is invalid.",
-
+    "honeypot"         => "There was an unknown error.",
+    "honeytime"         => "There was an unknown error.",
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -80,7 +81,11 @@ return array(
     |
     */
 
-    'custom' => array(),
+    'custom' => array(
+        'agree_terms' => array(
+            'required' => 'You need to accept the terms to proceed',
+        ),
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,6 +98,9 @@ return array(
     |
     */
 
-    'attributes' => array(),
+    'attributes' => array(
+        'un_field' => 'username',
+        'email' => 'e-mail',
+    ),
 
 );

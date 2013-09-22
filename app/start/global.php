@@ -95,3 +95,15 @@ require app_path().'/filters.php';
 */
 
 require app_path().'/macros.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require The Validators File
+|--------------------------------------------------------------------------
+|
+| This is the file that keeps all the validators (for now, unless I want
+| something more advanced)
+|
+*/
+
+require app_path().'/validators.php';

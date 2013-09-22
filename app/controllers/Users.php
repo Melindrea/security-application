@@ -23,6 +23,7 @@ class Users extends Authorized
         'getLogin',
         'postLogin',
         'getLogout',
+        'store',
     );
 
     /**
@@ -44,7 +45,12 @@ class Users extends Authorized
      */
     public function index()
     {
-        echo "users/index";
+        $users = \Model\User::all();
+
+        foreach ($users as $user) {
+            echo $user->display_name.'<br>';
+            echo \Crypt::decrypt($user->email).'<br>';
+        }
     }
 
     /**
@@ -64,7 +70,38 @@ class Users extends Authorized
      */
     public function store()
     {
-        //No view
+        $honeypot = \Validator::make(
+            \Input::all(),
+            array(
+                'username' => 'honeypot',
+                'username_time' => 'honeytime:5',
+            )
+        );
+
+        if (!$honeypot->passes()) {
+            // Most likely bot
+            return \Redirect::route('home')
+            ->with('flash_warning', trans('messages.register.failed'));
+        }
+
+        $input =\Input::all();
+        $validation =\Model\User::validate($input);
+        if ($validation->passes()) {
+            \Model\User::create(
+                array(
+                    'display_name'=> \Input::get('display_name'),
+                    'username'=> \Input::get('un_field'),
+                    'email'=>     \Crypt::encrypt(\Input::get('email')),
+                    'password'=>  \Hash::make(\Input::get('password')),
+                )
+            );
+
+            return \Redirect::route('home')
+            ->with('flash_notice', trans('messages.register.successful'));
+        } else {
+            return \Redirect::to('users/create')
+            ->withErrors($validation->messages()->all());
+        }
     }
 
     /**
@@ -130,10 +167,13 @@ class Users extends Authorized
      */
     public function postLogin()
     {
-        $validator = \Validator::make(\Input::all(), [
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+        $validator = \Validator::make(
+            \Input::all(),
+            array(
+                'username' => 'required',
+                'password' => 'required',
+            )
+        );
 
         if ($validator->passes()) {
             $credentials = [

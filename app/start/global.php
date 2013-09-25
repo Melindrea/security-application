@@ -107,3 +107,35 @@ require app_path().'/macros.php';
 */
 
 require app_path().'/validators.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require Directory Function
+|--------------------------------------------------------------------------
+|
+| Function to require all files in a given directory
+|
+*/
+function requireDir($directory = null)
+{
+    if ($handle = opendir($directory)) {
+        while (false !== ($entry = readdir($handle))) {
+            if (!is_dir($entry)) {
+                require $directory.'/'.$entry;
+            }
+        }
+        closedir($handle);
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Require The Event Listeners
+|--------------------------------------------------------------------------
+|
+| This is the file that keeps all the validators (for now, unless I want
+| something more advanced)
+|
+*/
+
+requireDir(app_path().'/events');

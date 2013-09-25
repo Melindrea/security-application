@@ -84,23 +84,33 @@ class Users extends Authorized
             ->with('flash_warning', trans('messages.register.failed'));
         }
 
-        $input =\Input::all();
-        $validation =\Model\User::validate($input);
-        if ($validation->passes()) {
-            \Model\User::create(
-                array(
-                    'display_name'=> \Input::get('display_name'),
-                    'username'=> \Input::get('un_field'),
-                    'email'=>     \Crypt::encrypt(\Input::get('email')),
-                    'password'=>  \Hash::make(\Input::get('password')),
-                )
-            );
+        // $input =\Input::all();
+        // $validation =\Model\User::validate($input);
+        // if ($validation->passes()) {
+        //     \Model\User::create(
+        //         array(
+        //             'display_name'=> \Input::get('display_name'),
+        //             'username'=> \Input::get('un_field'),
+        //             'email'=>     \Crypt::encrypt(\Input::get('email')),
+        //             'password'=>  \Hash::make(\Input::get('password')),
+        //         )
+        //     );
 
+        //     return \Redirect::route('home')
+        //     ->with('flash_notice', trans('messages.register.successful'));
+        // } else {
+        //     return \Redirect::to('users/create')
+        //     ->withErrors($validation->messages()->all());
+        // }
+        // https://tutsplus.com/lesson/validating-with-models-and-event-listeners/
+        $user = new \Model\User(\Input::all());
+
+        if ($user->save()) {
             return \Redirect::route('home')
             ->with('flash_notice', trans('messages.register.successful'));
         } else {
-            return \Redirect::to('users/create')
-            ->withErrors($validation->messages()->all());
+            Event::fire('user.login.failed', array($user));
+            return \Redirect::back()->withInput()->withErrors($user->errors);
         }
     }
 
@@ -157,6 +167,9 @@ class Users extends Authorized
      */
     public function getLogin()
     {
+        // http://forums.laravel.io/viewtopic.php?id=1652
+        // http://www.karlvalentin.de/1903/write-your-own-auth-driver-for-laravel-4.html
+        // http://firmanw.com/writing-a-custom-authentication-driver-for-laravel/
         return \View::make('users.login');
     }
 

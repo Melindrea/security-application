@@ -460,6 +460,11 @@ module.exports = function (grunt) {
         'php'
     ]);
 
+    grunt.registerTask('commit', [
+        'lint',
+        'test'
+    ]);
+
     grunt.registerTask('default', [
         'lint',
         'test',

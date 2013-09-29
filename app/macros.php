@@ -56,7 +56,11 @@ HTML::macro(
 
         $bodyClasses = array_merge($bodyClasses, $customClasses);
 
-        $bodyClasses[] =\Route::currentRouteName();
+        $bodyClasses[] = \Route::currentRouteName();
+
+        if (\Auth::check()) {
+            $bodyClasses[] = 'logged-in';
+        }
 
         return join(' ', $bodyClasses);
     }
@@ -73,6 +77,7 @@ HTML::macro(
 HTML::macro(
     'stylesheet',
     function ($url, $attributes = array('type' => null, 'media' => null)) {
+        $url = Config::get('app.assets.style').$url;
         return HTML::style($url, $attributes);
     }
 );

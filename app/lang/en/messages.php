@@ -16,6 +16,7 @@ return array(
         'need' => 'Login to view that page',
         'successful' => 'You are successfully logged into the system',
         'failed' => 'Password and/or username is wrong',
+        'attempts' => 'Too many failed login attempts. Please try again in :time minutes.',
     ),
 
     'logout' => array(

@@ -197,7 +197,7 @@ class Users extends Authorized
             $rememberMe = (\Input::get('remember-me') == 'yes') ? true : false;
             if (\Auth::attempt($credentials)) {
                 // TODO: Reroute to profile
-                return \Redirect::intended('home')
+                return \Redirect::intended('/')
                     ->with('flash_notice', trans('messages.login.successful'));
             }
         }

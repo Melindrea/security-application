@@ -43,6 +43,22 @@ return array(
 
     'table' => 'users',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Allowed Authentication Attempts
+    |--------------------------------------------------------------------------
+    |
+    | The number of attempts allowed, and how long before they may try again
+    | (in minutes)
+    |
+    */
+
+    'attempt' => array(
+        'number' => 5,
+        'time' => 20, // Minutes
+    ),
+
     /*
     |--------------------------------------------------------------------------
     | Password Reminder Settings

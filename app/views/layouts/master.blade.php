@@ -10,31 +10,19 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        {{ HTML::stylesheet('/assets/styles/main.min.css') }}
+        {{ HTML::stylesheet('main.min.css') }}
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+        @include('partials.ga', array('ua' => 'UA-XXXXXX-X'))
 
-        {{ HTML::script('/assets/scripts/head.min.js') }}
+        @section('head')
+        {{ HTML::script(Config::get('app.assets.script').'head.min.js') }}
+        @show
     </head>
         <body class="{{ HTML::bodyClasses() }}">
-        <!-- check for flash notification message -->
-        @if(Session::has('flash_notice'))
-            <div id="flash_notice">{{ Session::get('flash_notice') }}</div>
-        @endif
-        @if(Session::has('flash_error'))
-            <div id="flash_error">{{ Session::get('flash_error') }}</div>
-        @endif
+        @include('partials.flash')
 
         @yield('content')
 
-        {{ HTML::script('/assets/scripts/main.min.js') }}
+        {{ HTML::script(Config::get('app.assets.script').'main.min.js') }}
     </body>
 </html>

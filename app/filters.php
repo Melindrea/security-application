@@ -40,7 +40,7 @@ Route::filter(
     function () {
         if (Auth::guest()) {
             return Redirect::guest('users/login')
-            ->with('flash_warning', trans('messages.login.need'));
+            ->with('flash_error', trans('messages.login.need'));
         }
     }
 );

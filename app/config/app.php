@@ -40,7 +40,7 @@ return array(
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://security-application.dev',
 
     /*
     |--------------------------------------------------------------------------

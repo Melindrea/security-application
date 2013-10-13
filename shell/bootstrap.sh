@@ -18,8 +18,11 @@ then
     ln -s /vagrant/public_html /var/www
 
     a2enmod rewrite
+    a2enmod ssl
 
-    sed -i '/AllowOverride None/c AllowOverride All' /etc/apache2/sites-available/default
+    mkdir /etc/apache2/ssl
+
+    openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=SE/ST=Denial/L=Katrineholm/O=Dis/CN=security-application.dev" -keyout /etc/apache2/ssl/apache.key  -out /etc/apache2/ssl/apache.crt
 
     if [ ! -f /etc/apache2/sites-available/security-application.dev ];
     then

@@ -1,36 +1,12 @@
+<IfModule mod_ssl.c>
 <VirtualHost *:80>
-	ServerAdmin webmaster@localhost
-	ServerName security-application.dev
-
-	DocumentRoot /var/www
-	<Directory /var/www/>
-		Options -Indexes FollowSymLinks MultiViews
-		AllowOverride All
-		Order allow,deny
-		allow from all
-	</Directory>
-
-	ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
-	<Directory "/usr/lib/cgi-bin">
-		AllowOverride None
-		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
-		Order allow,deny
-		Allow from all
-	</Directory>
-
-	ErrorLog ${APACHE_LOG_DIR}/error.log
-
-	# Possible values include: debug, info, notice, warn, error, crit,
-	# alert, emerg.
-	LogLevel warn
-
-	CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ServerName security-application.dev:80
+    Redirect permanent / https://security-application.dev/
 </VirtualHost>
 
-<IfModule mod_ssl.c>
 <VirtualHost *:443>
 	ServerAdmin webmaster@localhost
-	ServerName security-application.dev
+	ServerName security-application.dev:443
 
 	DocumentRoot /var/www
 	<Directory /var/www/>
@@ -65,8 +41,8 @@
 	#   /usr/share/doc/apache2.2-common/README.Debian.gz for more info.
 	#   If both key and certificate are stored in the same file, only the
 	#   SSLCertificateFile directive is needed.
-	SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
-	SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+	SSLCertificateFile /etc/apache2/ssl/apache.crt
+    SSLCertificateKeyFile /etc/apache2/ssl/apache.key
 
 	#   Server Certificate Chain:
 	#   Point SSLCertificateChainFile at a file containing the

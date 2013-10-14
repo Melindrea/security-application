@@ -24,5 +24,8 @@
         @yield('content')
 
         {{ HTML::script(Config::get('app.assets.script').'main.min.js') }}
+        @if (Auth::guest())
+        @include('partials.cookies')
+        @endif
     </body>
 </html>

@@ -20,6 +20,19 @@ Route::get(
 );
 
 Route::group(
+    array('prefix' => 'docs'),
+    function () {
+        Route::get(
+            'policies',
+            array(
+                'as' => 'policies',
+                'uses' => 'Controller\Home@getPolicies',
+            )
+        );
+    }
+);
+
+Route::group(
     array('prefix' => 'users'),
     function () {
         Route::get(

@@ -24,4 +24,14 @@ class Home extends Base
     {
         return \View::make('home');
     }
+
+    /**
+     * Route: docs/policies
+     *
+     * @return void
+     */
+    public function getPolicies()
+    {
+        return \View::make('documents.policies');
+    }
 }

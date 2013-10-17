@@ -58,6 +58,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # information on available options.
 
   config.vm.provision :shell, :path => "shell/bootstrap.sh"
+  config.vm.provision :shell, :path => "shell/install-yeoman.sh", privileged: false
+  config.vm.provision :shell, :path => "shell/install-ruby.sh", privileged: false
+  # TODO: Figure out why this doesn't want to play ball...
+  config.vm.provision :shell, :path => "shell/install-python.sh", privileged: false
+  config.vm.provision "shell", inline: "cd /vagrant && php /vagrant/composer.phar update",
+    privileged: false
+
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in

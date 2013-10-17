@@ -13,20 +13,18 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         {{ HTML::stylesheet('main.min.css') }}
 
-        @include('partials.ga', array('ua' => 'UA-XXXXXX-X'))
+        {{ HTML::ga('UA-XXXXXX-X') }}
 
         @section('head')
         {{ HTML::script(Config::get('app.assets.script').'head.min.js') }}
         @show
     </head>
         <body class="{{ HTML::bodyClasses() }}">
-        @include('partials.flash')
+        {{ HTML::flash() }}
 
         @yield('content')
 
         {{ HTML::script(Config::get('app.assets.script').'main.min.js') }}
-        @if (Auth::guest())
-        @include('partials.cookies')
-        @endif
+        {{ HTML::cookies() }}
     </body>
 </html>

@@ -81,3 +81,81 @@ HTML::macro(
         return HTML::style($url, $attributes);
     }
 );
+
+/*
+|--------------------------------------------------------------------------
+| Google Analytics macro
+|--------------------------------------------------------------------------
+|
+| Inserts the Universal GA to enable tracking
+|
+*/
+HTML::macro(
+    'ga',
+    function ($ua) { ?>
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create',{{ $ua }});ga('send','pageview');
+        </script>
+    <?php }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Flash macro
+|--------------------------------------------------------------------------
+|
+| Creates a message that will fade once it's been up for a few moments
+|
+*/
+HTML::macro(
+    'flash',
+    function () {
+        $flashTypes = array('notice', 'error');
+
+        foreach ($flashTypes as $flashType) {
+            if (Session::has('flash_'.$flashType)) {
+                return View::make('partials.flash')
+                ->with('classes', 'flash flash-'.$flashType)
+                ->with('content', Session::get('flash_'.$flashType));
+            }
+        }
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Cookie macro
+|--------------------------------------------------------------------------
+|
+| Creates a cookie message that needs to be clicked away
+|
+*/
+HTML::macro(
+    'cookies',
+    function () {
+        if (Auth::guest()) {
+            return HTML::notification('cookies', true);
+        }
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Notification macro
+|--------------------------------------------------------------------------
+|
+| Creates a message that needs to be clicked away
+|
+*/
+HTML::macro(
+    'notification',
+    function ($content, $save = false) {
+        return View::make('partials.notification')
+        ->with('content', View::make('partials.notifications.'.$content));
+    }
+);

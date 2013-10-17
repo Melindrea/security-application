@@ -27,6 +27,4 @@ return array(
         'failed' => 'The registration failed, please contact an administrator',
         'successful' => 'You have been successfully registered',
     ),
-
-
 );

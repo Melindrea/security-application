@@ -455,8 +455,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('lint', [
-        'newer:jshint',
         'newer:jsvalidate',
+        'newer:jshint',
         'php'
     ]);
 

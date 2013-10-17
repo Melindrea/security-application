@@ -90,7 +90,7 @@ class User extends Base implements UserInterface, RemindableInterface
      */
     public function getReminderEmail()
     {
-        return Crypt::decrypt($this->email);
+        return \Crypt::decrypt($this->email);
     }
 
     /**
@@ -100,24 +100,6 @@ class User extends Base implements UserInterface, RemindableInterface
      */
     public function setPasswordAttribute()
     {
-        $this->password = Hash::make($this->password);
+        $this->password = \Hash::make($this->password);
     }
-
-    /**
-     * Rules for validating the values for the model.
-     *
-     * @return boolean
-     */
-    // public static function validate($input)
-    // {
-    //     $rules = array(
-    //         'un_field' => 'required|min:3|max:128|unique:users,username',
-    //         'display_name' => 'required|min:3|max:128',
-    //         'email'     => 'required|between:3,64|email|confirmed',
-    //         'password'  =>'required|min:10',
-    //         'agree_terms' => 'required',
-    //     );
-
-    //     return \Validator::make($input, $rules);
-    // }
 }

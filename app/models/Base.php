@@ -47,7 +47,7 @@ class Base extends \Eloquent
      */
     public function validate()
     {
-        $validation = Validator::make($this->attributes, static::$rules);
+        $validation = \Validator::make($this->attributes, static::$rules);
 
 
         if ($validation->passes()) {

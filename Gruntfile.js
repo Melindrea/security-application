@@ -216,30 +216,6 @@ module.exports = function (grunt) {
                         '<%= yeoman.app %>/templates/pages/*.hbs'
                     ]
                 }
-            },
-            report: {
-                options: {
-                    layout: 'report.hbs'
-                },
-                files: {
-                    '.tmp/docs/': ['<%= yeoman.app %>/templates/docs/*.hbs']
-                }
-            },
-            resume: {
-                options: {
-                    layout: 'resume.hbs'
-                },
-                files: {
-                    '<%= yeoman.app %>/src/assets/resume/': ['<%= yeoman.app %>/templates/resumes/*.hbs']
-                }
-            },
-            personalLetter: {
-                options: {
-                    layout: 'personal-letter.hbs'
-                },
-                files: {
-                    '<%= yeoman.app %>/src/assets/personal-letters/': ['<%= yeoman.app %>/templates/personal-letters/*.hbs']
-                }
             }
         },
         useminPrepare: {
@@ -441,8 +417,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', [
         'newer:jsvalidate',
-        'newer:jshint',
-        'modernizr'
+        'newer:jshint'//,
+        // 'modernizr'
     ]);
 
     grunt.registerTask('php', [

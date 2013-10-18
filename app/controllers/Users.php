@@ -47,10 +47,8 @@ class Users extends Authorized
     {
         $users = \Model\User::all();
 
-        foreach ($users as $user) {
-            echo $user->display_name.'<br>';
-            echo \Crypt::decrypt($user->email).'<br>';
-        }
+        return \View::make('users.index')
+        ->with('users', $users);
     }
 
     /**
@@ -103,8 +101,7 @@ class Users extends Authorized
      */
     public function show($id)
     {
-        //
-        echo "users/1";
+        return \View::make('users.show');
     }
 
     /**
@@ -115,8 +112,7 @@ class Users extends Authorized
      */
     public function edit($id)
     {
-        //
-        echo "users/1/edit";
+        return \View::make('users.edit');
     }
 
     /**

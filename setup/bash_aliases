@@ -1,0 +1,2 @@
+alias composer='php composer.phar'
+alias artisan='php artisan'

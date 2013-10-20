@@ -34,6 +34,8 @@ then
     service apache2 restart
 
     cd /vagrant && php composer.phar install
+    mkdir -p /vagrant/app/storage
+    chmod -R 0777 /vagrant/app/storage
 fi
 
 if [ ! -f /var/log/databasesetup ];

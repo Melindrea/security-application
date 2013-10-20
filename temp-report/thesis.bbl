@@ -1,0 +1,81 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 1.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{Eriksson2001dsf}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Eriksson}{E.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{EM1}
+  \strng{fullhash}{EM1}
+  \field{sortinit}{E}
+  \field{number}{10}
+  \field{pages}{1905\bibrangedash 1914}
+  \field{title}{Dynamic Single Frequency Networks}
+  \field{volume}{19}
+  \field{journaltitle}{{IEEE} Journal on Selected Areas in Communication}
+  \field{year}{2001}
+\endentry
+
+\entry{Forsslund1969raf}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Forsslund}{F.}%
+     {L.}{L.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FL1}
+  \strng{fullhash}{FL1}
+  \field{sortinit}{F}
+  \field{number}{22}
+  \field{pages}{361\bibrangedash 363}
+  \field{title}{Rapportering av forskningsresultat -- ett
+  rationaliseringsobjekt}
+  \field{journaltitle}{Industriell teknik}
+  \field{year}{1969}
+\endentry
+
+\entry{Stromquist2000s}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Strömquist}{S.}%
+     {S.}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Gleerups}%
+  }
+  \strng{namehash}{SS1}
+  \strng{fullhash}{SS1}
+  \field{sortinit}{S}
+  \field{title}{Skrivboken}
+  \list{location}{1}{%
+    {Malmö}%
+  }
+  \field{year}{2000}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

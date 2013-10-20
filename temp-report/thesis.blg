@@ -1,0 +1,77 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: thesis.aux
+The style file: biblatex.bst
+A level-1 auxiliary file: abstract-sv.aux
+A level-1 auxiliary file: abstract-en.aux
+A level-1 auxiliary file: introduction.aux
+A level-1 auxiliary file: theory.aux
+A level-1 auxiliary file: methodology.aux
+A level-1 auxiliary file: implementation.aux
+A level-1 auxiliary file: results.aux
+A level-1 auxiliary file: analysis.aux
+A level-1 auxiliary file: discussion.aux
+A level-1 auxiliary file: sourcecode.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: thesis-blx.bib
+Database file #2: thesis.bib
+Warning--I didn't find a database entry for "Wikipedia2013"
+Warning--I didn't find a database entry for "Datatermgruppen"
+Warning--I didn't find a database entry for "Wikipedia2010h264"
+Warning--I didn't find a database entry for "Wikipedia2012at"
+Warning--I didn't find a database entry for "Wikipedia2011lf"
+Biblatex version: 1.7
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+You've used 4 entries,
+            6019 wiz_defined-function locations,
+            1162 strings with 8652 characters,
+and the built_in function-call counts, 9598 in all, are:
+= -- 393
+> -- 308
+< -- 88
++ -- 100
+- -- 96
+* -- 553
+:= -- 752
+add.period$ -- 0
+call.type$ -- 4
+change.case$ -- 44
+chr.to.int$ -- 34
+cite$ -- 6
+duplicate$ -- 981
+empty$ -- 1030
+format.name$ -- 146
+if$ -- 2203
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 0
+newline$ -- 80
+num.names$ -- 143
+pop$ -- 975
+preamble$ -- 1
+purify$ -- 47
+quote$ -- 0
+skip$ -- 593
+stack$ -- 0
+substring$ -- 285
+swap$ -- 316
+text.length$ -- 89
+text.prefix$ -- 3
+top$ -- 1
+type$ -- 140
+warning$ -- 0
+while$ -- 104
+width$ -- 0
+write$ -- 75
+(There were 5 warnings)

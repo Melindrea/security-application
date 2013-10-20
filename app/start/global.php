@@ -110,26 +110,6 @@ require app_path().'/validators.php';
 
 /*
 |--------------------------------------------------------------------------
-| Require Directory Function
-|--------------------------------------------------------------------------
-|
-| Function to require all files in a given directory
-|
-*/
-function requireDir($directory = null)
-{
-    if ($handle = opendir($directory)) {
-        while (false !== ($entry = readdir($handle))) {
-            if (!is_dir($entry)) {
-                require $directory.'/'.$entry;
-            }
-        }
-        closedir($handle);
-    }
-}
-
-/*
-|--------------------------------------------------------------------------
 | Require The Event Listeners
 |--------------------------------------------------------------------------
 |
@@ -138,4 +118,6 @@ function requireDir($directory = null)
 |
 */
 
-requireDir(app_path().'/events');
+// requireDir(app_path().'/events');
+require app_path().'/events/auth.php';
+require app_path().'/events/user.php';

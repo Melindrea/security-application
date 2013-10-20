@@ -32,6 +32,8 @@ then
         a2ensite security-application.dev
     fi
     service apache2 restart
+
+    cd /vagrant && php composer.phar install
 fi
 
 if [ ! -f /var/log/databasesetup ];

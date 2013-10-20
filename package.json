@@ -40,7 +40,9 @@
     "bas": "~0.0.20",
     "grunt-phpcs": "~0.2.0",
     "grunt-shell": "~0.3.1",
-    "grunt-newer": "~0.5.2"
+    "grunt-newer": "~0.5.2",
+    "wrench": "~1.5.4",
+    "grunt-latex": "~0.1.1"
   },
   "engines": {
     "node": ">=0.8.0"

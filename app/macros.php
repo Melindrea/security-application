@@ -101,7 +101,8 @@ HTML::macro(
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create',{{ $ua }});ga('send','pageview');
         </script>
-    <?php }
+    <?php
+    }
 );
 
 /*
@@ -159,3 +160,23 @@ HTML::macro(
         ->with('content', View::make('partials.notifications.'.$content));
     }
 );
+
+/*
+|--------------------------------------------------------------------------
+| Require Directory Function
+|--------------------------------------------------------------------------
+|
+| Function to require all files in a given directory
+|
+*/
+// function requireDir($directory = null)
+// {
+//     if ($handle = opendir($directory)) {
+//         while (false !== ($entry = readdir($handle))) {
+//             if (!is_dir($entry)) {
+//                 require $directory.'/'.$entry;
+//             }
+//         }
+//         closedir($handle);
+//     }
+// }

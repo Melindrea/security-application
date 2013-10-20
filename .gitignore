@@ -11,6 +11,7 @@
 .LSOverride
 Icon
 *.sublime-workspace
+build/
 
 # Thumbnails
 ._*

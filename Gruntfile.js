@@ -128,7 +128,8 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
-            server: '.tmp'
+            server: '.tmp',
+            report: 'build'
         },
         jshint: {
             options: {
@@ -184,6 +185,15 @@ module.exports = function (grunt) {
                 options: {
                     debugInfo: true
                 }
+            }
+        },
+        latex: {
+            options: {
+                haltOnError: true,
+                outputDirectory: 'build'
+            },
+            report: {
+                src: ['report/thesis.tex']
             }
         },
         // not used since Uglify task does concat,
@@ -417,8 +427,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', [
         'newer:jsvalidate',
-        'newer:jshint'//,
-        // 'modernizr'
+        'newer:jshint',
+        'modernizr'
     ]);
 
     grunt.registerTask('php', [
@@ -440,6 +450,11 @@ module.exports = function (grunt) {
     grunt.registerTask('commit', [
         'lint'//,
         //'test'
+    ]);
+
+    grunt.registerTask('report', [
+        'clean:report',
+        'latex:report'
     ]);
 
     grunt.registerTask('default', [

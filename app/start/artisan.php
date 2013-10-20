@@ -10,3 +10,4 @@
 | the console gets access to each of the command object instances.
 |
 */
+Artisan::add(new SensioLabs\Security\Command\SecurityCheckerCommand(new SensioLabs\Security\SecurityChecker));

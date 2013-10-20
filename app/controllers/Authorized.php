@@ -33,7 +33,7 @@ class Authorized extends Base
      * Initializer.
      *
      * Runs the Auth-filter before actions not whitelisted,
-     * Runs the CSRF-filter on action "post".
+     * Runs the Guest-filter before actions guestlisted.
      *
      * @return \Controller\Authorized
      */

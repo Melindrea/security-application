@@ -82,13 +82,18 @@ class Users extends Authorized
             ->with('flash_warning', trans('messages.register.failed'));
         }
 
-        $user = new \Model\User(\Input::all());
+        $post = \Input::all();
+        $post['username'] = $post['un_field'];
+        unset($post['username_time']);
+        unset($post['un_field']);
+        unset($post['register']);
+        $user = new \Model\User($post);
 
         if ($user->save()) {
             return \Redirect::route('home')
             ->with('flash_notice', trans('messages.register.successful'));
         } else {
-            Event::fire('user.login.failed', array($user));
+            \Event::fire('user.register.failed', array($user));
             return \Redirect::back()->withInput()->withErrors($user->errors);
         }
     }

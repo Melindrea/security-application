@@ -34,7 +34,7 @@ class User extends Base implements UserInterface, RemindableInterface
      * @var array
      */
     protected static $rules = array(
-        'un_field' => 'required|min:3|max:128|unique:users,username',
+        'username' => 'required|min:3|max:128|unique:users',
         'display_name' => 'required|min:3|max:128',
         'email'     => 'required|between:3,64|email|confirmed',
         'password'  =>'required|min:10',
@@ -50,11 +50,24 @@ class User extends Base implements UserInterface, RemindableInterface
     {
         parent::boot();
 
+        static::creating(
+            function ($user) {
+                $user->username = htmlspecialchars($user->username);
+                $user->display_name = htmlspecialchars($user->display_name);
+                $user->email = \Crypt::encrypt($user->email);
+                $user->password = \Hash::make($user->password);
+                unset($user->email_confirmation);
+                unset($user->agree_terms);
+                unset($user->remember_me);
+            }
+        );
+
         static::created(
             function ($user) {
                 // Send welcome e-mail
             }
         );
+
 
         static::created(
             function ($user) {
@@ -93,13 +106,13 @@ class User extends Base implements UserInterface, RemindableInterface
         return \Crypt::decrypt($this->email);
     }
 
-    /**
-     * Set the password.
-     *
-     * @return void
-     */
-    public function setPasswordAttribute()
-    {
-        $this->password = \Hash::make($this->password);
-    }
+    // /**
+    //  * Set the password.
+    //  *
+    //  * @return void
+    //  */
+    // public function setPasswordAttribute()
+    // {
+    //     $this->password = \Hash::make($this->password);
+    // }
 }

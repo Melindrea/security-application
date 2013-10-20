@@ -172,7 +172,7 @@ class Users extends Authorized
 
         if ($validator->passes()) {
             $credentials = [
-                'username' => \Input::get('username'),
+                'username' => strtolower(\Input::get('username')),
                 'password' => \Input::get('password')
             ];
 

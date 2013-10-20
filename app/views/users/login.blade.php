@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <p><a href="{{ URL::route('users.create') }}">Register</a></p>
     {{ Form::open(array('route' => 'login')) }}
         <dl class="lining">
             <dt>

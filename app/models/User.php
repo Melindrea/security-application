@@ -52,7 +52,7 @@ class User extends Base implements UserInterface, RemindableInterface
 
         static::creating(
             function ($user) {
-                $user->username = htmlspecialchars($user->username);
+                $user->username = strtolower(htmlspecialchars($user->username));
                 $user->display_name = htmlspecialchars($user->display_name);
                 $user->email = \Crypt::encrypt($user->email);
                 $user->password = \Hash::make($user->password);

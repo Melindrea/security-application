@@ -12,10 +12,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Contents}{v}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Figures}{vii}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of Tables}{ix}
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Bakgrund och problemmotivering}{1}
@@ -48,40 +44,30 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.4}K\IeC {\"a}llh\IeC {\"a}nvisningar och -f\IeC {\"o}rteckning}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Illustrationer}{7}
+\contentsline {chapter}{\chapternumberline {3}Implementation}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.6}Matematiska formler}{8}
+\contentsline {section}{\numberline {3.1}Vulnerabilities}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}Metod}{11}
+\contentsline {subsection}{A1-Injection}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Implementation}{13}
+\contentsline {subsection}{A2-Broken Authentication and Session Management}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Vulnerabilities}{13}
+\contentsline {subsection}{A3-Cross-Site Scripting (XSS)}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A1-Injection}{13}
+\contentsline {subsection}{A4-Insecure Direct Object References}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A2-Broken Authentication and Session Management}{13}
+\contentsline {subsection}{A5-Security Misconfiguration}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A3-Cross-Site Scripting (XSS)}{13}
+\contentsline {subsection}{A6-Sensitive Data Exposure}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A4-Insecure Direct Object References}{14}
+\contentsline {subsection}{A7-Missing Function Level Access Control}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A5-Security Misconfiguration}{14}
+\contentsline {subsection}{A8-Cross-Site Request Forgery (CSRF)}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A6-Sensitive Data Exposure}{14}
+\contentsline {subsection}{A9-Using Components with Known Vulnerabilities}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A7-Missing Function Level Access Control}{14}
+\contentsline {subsection}{A10-Unvalidated Redirects and Forwards}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A8-Cross-Site Request Forgery (CSRF)}{15}
+\contentsline {chapter}{\chapternumberline {4}Diskussion}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A9-Using Components with Known Vulnerabilities}{15}
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{A10-Unvalidated Redirects and Forwards}{15}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Resultat}{17}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {6}Analys}{19}
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {7}Diskussion}{21}
-\defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {A}K\IeC {\"a}llkod}{23}
+\contentsline {chapter}{Bibliography}{15}

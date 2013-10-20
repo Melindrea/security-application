@@ -6,12 +6,8 @@ A level-1 auxiliary file: abstract-sv.aux
 A level-1 auxiliary file: abstract-en.aux
 A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: theory.aux
-A level-1 auxiliary file: methodology.aux
 A level-1 auxiliary file: implementation.aux
-A level-1 auxiliary file: results.aux
-A level-1 auxiliary file: analysis.aux
 A level-1 auxiliary file: discussion.aux
-A level-1 auxiliary file: sourcecode.aux
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -25,53 +21,47 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: thesis-blx.bib
 Database file #2: thesis.bib
-Warning--I didn't find a database entry for "Wikipedia2013"
-Warning--I didn't find a database entry for "Datatermgruppen"
-Warning--I didn't find a database entry for "Wikipedia2010h264"
-Warning--I didn't find a database entry for "Wikipedia2012at"
-Warning--I didn't find a database entry for "Wikipedia2011lf"
 Biblatex version: 1.7
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-You've used 4 entries,
+You've used 8 entries,
             6019 wiz_defined-function locations,
-            1162 strings with 8652 characters,
-and the built_in function-call counts, 9598 in all, are:
-= -- 393
-> -- 308
-< -- 88
-+ -- 100
-- -- 96
-* -- 553
-:= -- 752
+            1162 strings with 8982 characters,
+and the built_in function-call counts, 18646 in all, are:
+= -- 645
+> -- 604
+< -- 176
++ -- 146
+- -- 208
+* -- 1075
+:= -- 1262
 add.period$ -- 0
-call.type$ -- 4
-change.case$ -- 44
+call.type$ -- 8
+change.case$ -- 56
 chr.to.int$ -- 34
-cite$ -- 6
-duplicate$ -- 981
-empty$ -- 1030
-format.name$ -- 146
-if$ -- 2203
+cite$ -- 14
+duplicate$ -- 2099
+empty$ -- 2117
+format.name$ -- 336
+if$ -- 4288
 int.to.chr$ -- 0
-int.to.str$ -- 8
+int.to.str$ -- 14
 missing$ -- 0
-newline$ -- 80
-num.names$ -- 143
-pop$ -- 975
+newline$ -- 149
+num.names$ -- 287
+pop$ -- 2270
 preamble$ -- 1
-purify$ -- 47
+purify$ -- 63
 quote$ -- 0
-skip$ -- 593
+skip$ -- 1173
 stack$ -- 0
-substring$ -- 285
-swap$ -- 316
-text.length$ -- 89
-text.prefix$ -- 3
+substring$ -- 217
+swap$ -- 604
+text.length$ -- 191
+text.prefix$ -- 7
 top$ -- 1
-type$ -- 140
+type$ -- 292
 warning$ -- 0
-while$ -- 104
+while$ -- 169
 width$ -- 0
-write$ -- 75
-(There were 5 warnings)
+write$ -- 140

@@ -1,0 +1,149 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 1.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{Gist2013bvh}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Barry vd. Heuvel}}{B.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{B1}
+  \strng{fullhash}{B1}
+  \field{sortinit}{B}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Symfony Security Checker in Laravel}}
+  \verb{url}
+  \verb https://gist.github.com/barryvdh/6696739
+  \endverb
+\endentry
+
+\entry{Sucuri2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Daniel Cid}}{D.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{D1}
+  \strng{fullhash}{D1}
+  \field{sortinit}{D}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Security Archive – Case Study: phpbb.com Compromised}}
+  \verb{url}
+  \verb http://blog.sucuri.net/2013/09/security-case-study-archive-phpbb-com.ht
+  \verb ml
+  \endverb
+\endentry
+
+\entry{Google2013cwili}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Google Groups User}}{G.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{G1}
+  \strng{fullhash}{G1}
+  \field{sortinit}{G}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Chrome is not deleting temporary cookies}}
+  \verb{url}
+  \verb https://productforums.google.com/d/msg/chrome/9l-gKYIUg50/HOvdZbPiuXAJ
+  \endverb
+\endentry
+
+\entry{Markdown2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{John Gruber}}{J.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{J1}
+  \strng{fullhash}{J1}
+  \field{sortinit}{J}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Daring Fireball: Markdown}}
+  \verb{url}
+  \verb http://daringfireball.net/projects/markdown/
+  \endverb
+\endentry
+
+\entry{Purifier2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{MeWebStudio}}{M.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{M1}
+  \strng{fullhash}{M1}
+  \field{sortinit}{M}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{HTML Purifier}}
+  \verb{url}
+  \verb http://htmlpurifier.org/
+  \endverb
+\endentry
+
+\entry{SecurityCheck2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{SensioLabs}}{S.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{S1}
+  \strng{fullhash}{S1}
+  \field{sortinit}{S}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Security Checker}}
+  \verb{url}
+  \verb https://packagist.org/packages/sensiolabs/security-checker
+  \endverb
+\endentry
+
+\entry{Wikipedia2013ma}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Wikipedia}}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{H.264/MPEG-4 AVC}}
+  \verb{url}
+  \verb http://en.wikipedia.org/wiki/Multitier_architecture
+  \endverb
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

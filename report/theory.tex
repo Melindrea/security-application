@@ -8,7 +8,7 @@ understand how to develop securely, efficiently and without repeating oneself. T
 \section{Separation of Concerns}
 \label{sec:architecture}
 \noindent
-Per \citep{Wikipedia2013} Multitier architecture is a ``client–server architecture in which presentation, application processing, and data management functions are logically separated''. In Web Development, that is most commonly generalized to three tiers:
+Per \citep{Wikipedia2013ma} Multitier architecture is a ``client–server architecture in which presentation, application processing, and data management functions are logically separated''. In Web Development, that is most commonly generalized to three tiers:
 
 \subsection{Frontend}
 \noindent
@@ -39,7 +39,7 @@ Första gången en \emph{förkortning} (förk.) används skrivs den inom parente
 efter dess förklaring, såsom exemplifieras i denna mening.
 
 Använd svenska termer så långt det är möjligt.
-Se Svenska datatermgruppens \citep{Datatermgruppen} rekommendationer på URL
+Se Svenska datatermgruppens rekommendationer på URL
 \begin{center}
 	\url{http://www.datatermgruppen.se/}.
 \end{center}
@@ -52,7 +52,6 @@ Du refererar när du sammanfattar eller återger en text med egna ord.
 Exempelvis:
 Forsslund förespråkar mer berättande rubriker i tekniska rapporter och menar 
 att man särskilt i underrubrikerna kan ge viktig information 
-\citep{Forsslund1969raf}.
 
 Du citerar när du ordagrant återger en fras, en mening eller ett stycke.
 I normalfallet refererar man istället för att citera källor.
@@ -63,8 +62,7 @@ auktoritet, eller när du vill visa att en författare har fel.
 
 Korta citat omges med citationstecken.
 Att citera Strömqvist kan vara en passande illustration i detta sammanhang:
-''Det må vara svårt att skriva, men det är roligt också.'' \citep[sidan 
-X]{Stromquist2000s}.
+''Det må vara svårt att skriva, men det är roligt också.'' 
 
 Långa citat kan återges i form av blockcitat.
 Textmassan placeras då på sidan utan citationstecken, men med indrag, det vill 
@@ -75,7 +73,7 @@ Källan anges i direkt anslutning till citatet.
 	rak vänstermarginal, inte nödvändigtvis rak högermarginal, och inga 
 	citationstecken.
 	Blockcitatet kan tillämpas vid mer än ungefär 50 ord.  Blockcitat avslutas 
-	alltid med källhänvisning. \citep[sidan X]{Stromquist2000s}
+	alltid med källhänvisning. 
 \end{quote}
 
 \subsection{Testing}
@@ -116,9 +114,9 @@ Enligt Vancouver-systemet ordnas källförteckningen i den ordning källorna
 inom hakparenteser, som i detta dokument.
 % De anges även i denna ordning i källförteckningen.
 Exempel på källhänvisning:
-Enligt \citet{Eriksson2001dsf} kan dynamiska SFN ge betydande prestandavinster.
+Enligt kan dynamiska SFN ge betydande prestandavinster.
 På liknande sätt refereras till källor på internet, exempelvis kan du se 
-\citet{Wikipedia2010h264} för att läsa om \emph{H.264}.
+för att läsa om \emph{H.264}.
 
 Eftersom information på webben kan revideras ofta, och eftersom webblänkar kan 
 upphöra att fungera, måste datum anges då du själv hämtade information från 
@@ -126,120 +124,3 @@ webbsidan.
 Vid webbaserade källor krävs ibland anvisningar för hur källan kan hittas. Tänk 
 på att kvaliteten på materialet på internet varierar.
 
-
-\section{Illustrationer}
-\label{sec:illustrations}
-\noindent
-Samtliga illustrationer (bilder, figurer, diagram, tabeller) i rapporten ska 
-vara numrerade och försedda med en kort figur- eller tabelltext.
-Därtill ska i anslutning till texten anges källhänvisning varifrån 
-illustrationen är hämtad, om den inte är av egen produktion.
-Se \prettyref{fig:automata} för ett exempel.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=7cm]{automata.eps} % for latex(1)
-	% \includegraphics[width=7cm]{automata.pdf} % for pdflatex(1)
-	\caption[Ett exempel på en automat.]{Ett exempel på en automat 
-	\citep{Wikipedia2012at}.}
-	\label{fig:automata}
-\end{figure}
-
-Samtliga illustrationer ska vara kopplade till rapporten genom hänvisning i den 
-löpande texten.
-Hänvisningarna skrivs på svenska med begynnande gemen, likt den ovan.
-På svenska skrivs figur alltid med inledande gemen då de förekommer i löpande 
-text.
-
-\begin{table}
-	\centering\small
-  \begin{tabular}{r|cccccccccc}
-    \hline\hline
-    \(\alpha\) & a & b & c & d & e & f & g & h & i & j \\
-    \(P_E(\alpha)\) & 8.2  & 1.5 & 2.8 & 4.3 & 12.7 & 2.2 & 2.0 &
-    6.1 & 7.0 & 0.2 \\
-    \(P_S(\alpha)\) & 9.3  & 1.3 & 1.3 & 4.5 & 9.9 & 2.0 & 3.3 &
-    2.1 & 5.1 & 0.7 \\
-    \hline\hline
-    \(\alpha\) & k & l & m & n & o & p & q & r & s & t \\
-    \(P_E(\alpha)\) & 0.8 & 4.0 & 2.4 & 6.7 & 7.5 & 1.9 & 0.1 & 6.0 & 6.3 &
-    9.1 \\
-    %\(P_S(\alpha)\) & 3.5 & 8.8 & 4.1 & 1.7 & 0.007 & 8.3 & 6.3 & 8.7 &
-    \(P_S(\alpha)\) & 3.2 & 5.2 & 3.5 & 8.8 & 4.1 & 1.7 & 0.0 & 8.3 & 6.3 &
-    8.7 \\
-    \hline\hline
-    \(\alpha\) & u & v & w & x & y & z & å & ä & ö \\
-    \(P_E(\alpha)\) & 2.8 & 1.0 & 2.4 & 0.2 & 2.0 & 0.1 & 0.0 & 0.0 & 0.0 \\
-    \(P_S(\alpha)\) & 1.8 & 2.4 & 0.03 & 0.1 & 0.6 & 0.02 & 1.6 & 2.1 &
-    1.5 \\
-    \hline\hline
-  \end{tabular}
-	\caption[Tabell av sannolikhetsfunktionen för bokstäver i det engelska 
-	respektive svenska språket.]
-	{Tabell av sannolikhetsfunktionen för bokstäver i det engelska och det 
-	svenska språket, \(P_E\) respektive \(P_S\), angiven i procent med en 
-	decimals noggrannhet \citep{Wikipedia2011lf}.}
-  \label{tbl:freq}
-\end{table}
-
-Se \prettyref{tbl:freq} för ett exempel på en tabell.
-Automatisk numrering fungerar på samma sätt som för figurer, titeln kommer dock 
-automatiskt att vara tabell istället för figur.
-Att Referera till tabeller i texten följer samma regler som för figurer och 
-utförs på samma sätt.
-
-
-\section{Matematiska formler}
-\label{sec:maths}
-\noindent
-Ett exempel på hur matematik bör formuleras i skrift ges i följande meningar.
-Låt \(a\) och \(n\) vara heltal sådana att \(\gcd(a,n) = 1\), det vill säga att 
-\(a\) och \(m\) är relativt prima.
-Då har vi att
-\begin{equation}
-	\label{eq:fermat-euler}
-	a^{\varphi(n)} \equiv 1 \pmod n,
-\end{equation}
-där \(\varphi\) är Eulers \(\varphi\)-funktion.
-Resultatet i \prettyref{eq:fermat-euler} är känt som Fermat-Eulers sats.
-
-Ytterligare ett exempel:
-Den effekt \(P_{i,j}\) som överförs från en basstation \(i\) till mobiltelefon 
-\(j\) modelleras enligt
-\begin{equation}
-	\label{eq:power}
-	P_{i,j} = C\cdot \frac{P_i G_{i,j}}{d^\alpha_{i,j}},
-\end{equation}
-där \(P_i\) är basstationens sändareffekt; \(d_{i,j}\) är avståndet mellan 
-basstationen och mobiltelefonen; \(\alpha\) är en utbredningsexponent som är 
-\(2\) i fri rymd och cirka \(3\) till \(4\) i stadsbebyggelse; \(C\) är en 
-faktor som beror av antennförstärkning, kanalfrekvens och antennhöjd; samt 
-\(G_{i,j}\) är en stokastisk variabel som återspeglar fädningens inverkan.
-Utifrån \prettyref{eq:power} inses att den mottagna effekten är proportionerlig 
-mot sändareffekten.
-
-Ibland kan en ekvation eller härledning behövas delas upp på flera rader, likt 
-ekvationerna \eqref{eq:basecase} och \eqref{eq:recursion}.
-\begin{quotation}
-	When the message-blocks \(M_i\) are processed, it is done accordingly:
-	\begin{eqnarray}
-		\label{eq:basecase}
-		H_0 &=& G, \\
-		\label{eq:recursion}
-		H_{j+1} &=& E(H_j, T_j, M_j),
-	\end{eqnarray}
-	where \(T_j\) is the tweak-value with the bit-fields set correctly for the
-	\(j\)th block. When all blocks are processed, the final \(H\) is the result 
-	of the UBI chaining mode.
-	This means that each block is processed uniquely, they all depend on each 
-	other and the original message has now been compressed to a single 
-	block-sized result.
-\end{quotation}
-
-Det är dock inte alltid nödvändigt att numrera ekvationerna, exempelvis om vi 
-bara nämner summan mellan \(1\) och \(100\),
-\begin{equation}
-	\nonumber
-	\sum^{100}_{i=1} i,
-\end{equation}
-utan att senare referera till den behövs ingen numrering.

@@ -11,8 +11,18 @@ namespace Controller;
  * @copyright Copyright (c) 2013, Marie Hogebrandt
  * @license http://opensource.org/licenses/MIT MIT
  */
-class Messages extends Base
+class Messages extends Authorized
 {
+
+    /**
+     * Let's whitelist all the methods we want to allow guests to visit!
+     *
+     * @access   protected
+     * @var      array
+     */
+    protected $whitelist = array(
+        'index',
+    );
 
     /**
      * Display a listing of the resource.
@@ -21,17 +31,9 @@ class Messages extends Base
      */
     public function index()
     {
-        return \View::make('messages.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return \View::make('messages.create');
+        $messages = \Model\Message::all();
+        return \View::make('messages.index')
+        ->with('messages', $messages);
     }
 
     /**
@@ -41,50 +43,32 @@ class Messages extends Base
      */
     public function store()
     {
-        //
-    }
+        $honeypot = \Validator::make(
+            \Input::all(),
+            array(
+                'username' => 'honeypot',
+                'username_time' => 'honeytime:5',
+            )
+        );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return \View::make('messages.show');
-    }
+        if (!$honeypot->passes()) {
+            // Most likely bot
+            return \Redirect::route('messages.index')
+            ->with('flash_warning', trans('messages.post.failed'));
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return \View::make('messages.edit');
-    }
+        $post['subject'] = htmlspecialchars(\Input::get('subject'));
+        $post['content'] = \Input::get('content');
+        $post['type_id'] = 1; //TODO: Make message types matter
+        $post['user_id'] = \Auth::user()->id;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
+        $message = new \Model\Message($post);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        if ($message->save()) {
+            return \Redirect::route('messages.index')
+            ->with('flash_notice', trans('messages.message.successful'));
+        } else {
+            return \Redirect::back()->withInput()->withErrors($message->errors);
+        }
     }
 }

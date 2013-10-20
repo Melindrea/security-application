@@ -15,6 +15,15 @@ return array(
         'label' => 'Leave this empty',
     ),
 
+    'content' => array(
+        'label' => 'Message',
+    ),
+
+    'subject' => array(
+        'label' => 'Subject',
+        'placeholder' => 'What do you want to say?',
+    ),
+
     'display_name' => array(
         'label' => 'Display Name',
         'placeholder' => 'Online handle',
@@ -54,6 +63,10 @@ return array(
 
     'register' => array(
         'label' => 'Register',
+    ),
+
+    'message' => array(
+        'label' => 'Post message',
     ),
 
     'login' => array(

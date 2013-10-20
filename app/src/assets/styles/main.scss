@@ -35,3 +35,13 @@
 // "Shameful" styles; for quick-and-dirty fixes
 // -----------------------------------------------------------------------------
 // @import "shame";
+
+body {
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+#{headers()} {
+    font-family: Quattrocento Sans, sans-serif;
+}

@@ -106,13 +106,8 @@ class User extends Base implements UserInterface, RemindableInterface
         return \Crypt::decrypt($this->email);
     }
 
-    // /**
-    //  * Set the password.
-    //  *
-    //  * @return void
-    //  */
-    // public function setPasswordAttribute()
-    // {
-    //     $this->password = \Hash::make($this->password);
-    // }
+    public function messages()
+    {
+        return $this->hasMany('Model\Message');
+    }
 }

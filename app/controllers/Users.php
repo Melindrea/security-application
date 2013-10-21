@@ -197,9 +197,18 @@ class Users extends Authorized
      */
     public function getLogout()
     {
-        \Auth::logout();
+        $sid = \Input::get('s');
 
-        return \Redirect::route('home')
+        if ($sid == csrf_token()) {
+            \Auth::logout();
+            // \Session::flush();
+            // session_destroy();
+
+            return \Redirect::route('home')
             ->with('flash_notice', trans('messages.logout.successful'));
+        } else {
+            return \Redirect::route('home')
+            ->with('flash_warning', trans('messages.logout.failed'));
+        }
     }
 }

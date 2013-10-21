@@ -27,11 +27,11 @@ Where the middle processing technologies generate the frontend consumed by the b
 \section{oWasp top-10 Vulnerabilities 2013}
 \label{sec:owasp2013}
 \noindent
-oWasp.org \citep{oWasp2013t10} details the 10 most common and/or dangerous vulnerabilities. Most of these require a dynamic system, but having a static HTML site does not remove all the need to think in security. 
+oWasp.org \citep{oWasp2013t10} details the 10 most common and/or dangerous vulnerabilities. Most of these require a dynamic system, but having a static HTML site does not remove all the need to think in security.
 
 \subsection{A1-Injection}
 \noindent
-Injection is still one of the most common vulnerabilities despite the ease with which one can harden ones' system against that kind of intrusion. The most common case is that a system is too trusting, so it allows users to input data without ensuring that it is the right type, or has likely values. A humorous take on the issues comes from this old (in)famous comic \citep{XKCDBobbyTables}, where the mother has named her son ``Robert'); DROP TABLES Students;--'', which led to a school losing its' student table. 
+Injection is still one of the most common vulnerabilities despite the ease with which one can harden ones' system against that kind of intrusion. The most common case is that a system is too trusting, so it allows users to input data without ensuring that it is the right type, or has likely values. A humorous take on the issues comes from this old (in)famous comic \citep{XKCDBobbyTables}, where the mother has named her son ``Robert'); DROP TABLES Students;--'', which led to a school losing its' student table.
 
 When it comes to protecting against SQL injection in particular, the best way is to parametrise the connection and not put data into the database without ensuring that it can at least do no harm.
 
@@ -65,7 +65,7 @@ Generally, this is a failure in the middle and backend. The server shouldn't all
 
 \subsection{A5-Security Misconfiguration}
 \noindent
-Security misconfiguration comes in two large areas, where one is easier to deal with than the other, depending on your skill and to a certain extent budget. 
+Security misconfiguration comes in two large areas, where one is easier to deal with than the other, depending on your skill and to a certain extent budget.
 
 \begin{itemize}
 \item Framework/Middle configurations are the easiest ones for a web developer to secure. You should always have access to the newest versions of the components you use, and the ability to update them. Ensure that you understand the various options.
@@ -74,45 +74,35 @@ Security misconfiguration comes in two large areas, where one is easier to deal 
 
 \subsection{A6-Sensitive Data Exposure}
 \noindent
-Many web applications do not properly protect sensitive data, such as credit cards, tax IDs, and authentication credentials. Attackers may steal or modify such weakly protected data to conduct credit card fraud, identity theft, or other crimes. Sensitive data deserves extra protection such as encryption at rest or in transit, as well as special precautions when exchanged with the browser.
+Any data that is sensitive needs to be protected, both through ensuring that the network can't be sniffed while its' in transit, and ensure that it's at least difficult to use any information stolen through other means, such as by getting a dump of the database.
 
 \subsection{A7-Missing Function Level Access Control}
 \noindent
-Most web applications verify function level access rights before making that functionality visible in the UI. However, applications need to perform the same access control checks on the server when each function is accessed. If requests are not verified, attackers will be able to forge requests in order to access functionality without proper authorization.
+This can be generalised out a bit more than just Access Control, as the same misunderstanding can lead to other problems. The general idea of the misunderstanding is often two-folded:
+
+\begin{enumerate}
+\item All users use JavaScript
+\item The only way an URL can be found is through a link on the site
+\end{enumerate}
+
+Examples of the first leads to, for instance, only validating data using JavaScript, with the assumption that the data will now be correctly validated. Examples of the second leads to admin areas where as long as they know the URL, they can do anything. The better way, obviously, is to validate both clientside and serverside, and to have fail-safes that redirects the user back (or reports a 404) if they're straying.
 
 \subsection{A8-Cross-Site Request Forgery (CSRF)}
 \noindent
-A CSRF attack forces a logged-on victim’s browser to send a forged HTTP request, including the victim’s session cookie and any other automatically included authentication information, to a vulnerable web application. This allows the attacker to force the victim’s browser to generate requests the vulnerable application thinks are legitimate requests from the victim.
+A CSRF attack is one where the user's browser is tricked/forced into taking an action using its' credentials. As an example, a user posting an image with the source of an URL. As the browser fetches the page, it will also fetch that URL.
+
+The most common -- and quite easy to implement -- is to use a so-called CSRF-token: a unique value sent along with a form submission so that it in the backend can be verified that it is a legitimate request.
 
 \subsection{A9-Using Components with Known Vulnerabilities}
 \noindent
-Components, such as libraries, frameworks, and other software modules, almost always run with full privileges. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications using components with known vulnerabilities may undermine application defenses and enable a range of possible attacks and impacts.
+A good example of a component with known vulnerabilities -- and a good case on why you should know what you're using! -- is the plugin Timthumb for WordPress (the vulnerability is fixed in the latest versions, but it's important to be aware of this). Back in late 2011, Mark Maunder \citep{MarMaunder2011} had his blog hacked. The short of it is that `Timthumb.php` allows site visitors to load images, and a caching mechanism to not need to re-process images. It will fetch a remote file and put it in a publicly accessible directory, where it was supposed to limit which domains one could fetch images from, but that was part of what was broken.
+
+So, this was 2011. I've already mentioned that it's been fixed, why mention it more? Because there are still themes -- free and paid for -- that includes `timthumb.php` and have not been update. I have personally dealt with a site that was hacked using an inactive theme \emph{with that particular file}.
 
 \subsection{A10-Unvalidated Redirects and Forwards}
 \noindent
-Web applications frequently redirect and forward users to other pages and websites, and use untrusted data to determine the destination pages. Without proper validation, attackers can redirect victims to phishing or malware sites, or use forwards to access unauthorized pages.
+The usecase I have found on unvalidated redirects and forwards is generally related to various affiliate sites, such as wanting all links to Amazon from your blog to go through a particular page for analytics reasons, and then spammers/phishers find the page and use it for their own nefarious purposes.
 
-
-
-\section{Technologies}
-\label{sec:technologies}
-\noindent
-
-Termer och förkortningar som är viktiga för läsarens förståelse av den 
-fortsatta framställningen förklaras i detta kapitel.
-Första gången du i den löpande texten använder ett begrepp eller en förkortning 
-ska du förklara det, även om det dessutom finns definierat i ett 
-terminologiavsnitt.
-När begrepp introduceras skrivs de med emfas.
-
-Första gången en \emph{förkortning} (förk.) används skrivs den inom parentes 
-efter dess förklaring, såsom exemplifieras i denna mening.
-
-Använd svenska termer så långt det är möjligt.
-Se Svenska datatermgruppens rekommendationer på URL
-\begin{center}
-	\url{http://www.datatermgruppen.se/}.
-\end{center}
-
+A better way to deal with that usecase is to either whitelist which domains are redirected to, or write a system where the url takes parameters that in the backend gets rewritten to the appropriate url.
 
 

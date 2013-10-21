@@ -2,25 +2,60 @@
 \chapter{Implementation}
 \label{ch:implementation}
 
+\section{Technology Stack}
+\label{sec:technologies}
+
+\subsection{Frontend}
+
+\subsubsection{CSS}
+\noindent
+The base typographic styles comes from Typeplate\citep{Typeplate2013}, with headings in Quattrocento Sans and the body type being Libre Baskerville. The intention is to create a more pleasing design as a future step, but it is functional with a max-width of 600px.
+
+The CSS is pre-processed using Sass and Compass, as well as the gem Breakpoint.
+
+\subsubsection{JavaScript}
+\noindent
+Very little JavaScript is required in this prototype. Modernizr, jQuery and Selectivizr are all concatenated and minified into the head script. The footer script has Magnific, a lightbox script that will be implemented to allow login on the same page.
+
+\subsubsection{HTML}
+\noindent
+There are two different templating engines in play on the site. The prototype of frontend functionality is built using Assemble.io and Handlebars templates, and Laravel serves Blade templates.
+
+\subsubsection{Grunt}
+\noindent
+GruntJS is a taskrunner like Make, Rake and similar ones, written in JS. It has several different tasks used for raising the quality of both code and the finished product.
+
+\begin{itemize}
+    \item JavaScript tasks: Validates and JShints to ensure that the code style is fulfilled and that there are no syntax errors. Modernizr builds a lean, mean feature detecting machine.
+    \item PHP tasks: Lints, sniffs the code and tests using PHPUnit
+    \item Build tasks: Assembles pages, concatenates and minifies JS and CSS
+    \item Test tasks: Runs Mocha and PHPUnit tests on both the frontend and middle
+\end{itemize}
+
+\subsubsection{Bower}
+\noindent
+Bower is a package manager written in NodeJS, fetching components for the frontend, such as jQuery, Modernizr (for development, not production), Typeplate and Magnific.
+
+\subsection{Middle and backend}
+\noindent
+The site is written in Laravel, a \enquote{PHP Framework for Web Artisans}\citep{Laravel4}, using a MySQL database.
+
+
 \section{Vulnerabilities}
 \subsection{A1-Injection}
+\noindent
+The Database layer uses Eloquent, the default ORM in Laravel. One of the large advantages to how Laravel is built is that it allows to change what kind of database is used. This system uses MySQL, but it is easy to change it to using SQLite or other drivers. This is doable because it uses PDO and prepared statements. Because it uses those, it is by default more secure against SQL Injection, since the prepared statements will only accept the proper arguments.
 
-The Database layer uses Eloquent, the default ORM in Laravel. One of the large advantages to how Laravel is built is that it allows to change what kind of database is used. This system uses MySQL, but it is easy to
-change it to using SQLite or other drivers. This is doable because it uses PDO and prepared statements. Because it uses those, it is by default more secure against SQL Injection, since the prepared statements
-will only accept the proper arguments.
-
-For instance, if the \texttt{username} column in a table is a string, and the data supplied from the user is ``test); DROP TABLE users'', that is exactly what the username column will recieve. It will not be
-interpreted as a command.
+For instance, if the \texttt{username} column in a table is a string, and the data supplied from the user is ``test); DROP TABLE users'', that is exactly what the username column will recieve. It will not be interpreted as a command.
 
 \subsection{A2-Broken Authentication and Session Management}
-
-As the system is implemented (using Laravel default session management), the session expires when the browser is closed. It will also close the session if the user goes to the route \texttt{users/logout}, after which the user will be redirected back to the main page. However, it is important to know that there is a
-known feature/bug (per \citep{Google2013cwili} in Chrome where if you have the  setting ``on startup'' set to ``continue where I left off'', the session \emph{will not} be destroyed.
+\noindent
+As the system is implemented (using Laravel default session management), the session expires when the browser is closed. It will also close the session if the user goes to the route \texttt{users/logout}, after which the user will be redirected back to the main page. However, it is important to know that there is a known feature/bug (per \citep{Google2013cwili} in Chrome where if you have the  setting ``on startup'' set to ``continue where I left off'', the session \emph{will not} be destroyed.
 
 The sessions are stored in the database, in a table called \texttt{sessions}, created by Laravel.
 
 \subsection{A3-Cross-Site Scripting (XSS)}
-
+\noindent
 There are two different routes that the system takes to protect against XSS. Fields that should not contain HTML (and which won't be hashed/encrypted) get \texttt{htmlspecialchars} used on them, whereas fields that are expected to contain HTML are stored as-is in the database.
 
 Fields that are expected to contain a certain amount of HTML are then treated right before they're outputted. I have defined an HTML macro (a functionality of Laravel) called \texttt{markdown} to clean and transform the specified string. The macro is called in the blade
@@ -41,20 +76,20 @@ The following steps are taken to protect against XSS:
 \end{enumerate}
 
 \subsection{A4-Insecure Direct Object References}
-
+\noindent
 At current there are few places where this would be a concern. The system does not use the traditional definition of directories (being an MVC framework), with the exception of the \texttt{assets} directory. However, all directories are protected using Apache2 from being listed.
 
 In a future implementation, there will be files that can be accessed, but they will all be stored above the public folder and served using routes to protect them from being exposed to the public.
 
 \subsection{A5-Security Misconfiguration}
-
+\noindent
 The weakest link at the moment is this one. Laravel supports setting up different configs depending on environment, which will be done before the system goes live but is not yet. One of the key components is that
 rather than showing an error trace in production, it will log the errors and report more cleaned-up ones to the user.
 
 The beginnings of ensuring a repeatable development/deployment/testing/production environment has been set up using Vagrant and shell recipes, but not finalized.
 
 \subsection{A6-Sensitive Data Exposure}
-
+\noindent
 In this system, the e-mail is protected by being encrypted in the database, and using SSL throughout the more sensitive areas. The e-mail is considered ``sensitive'' as it is the only way to really identify the user, as any other personal information is limited and opt-in only. Another reason can be found in an article by Daniel Cid \citep{Sucuri2013} from 2013 which revisits a hack of PHPBB.com in the beginning of 2009.
 
 The hacker revealed several things, but the key for why I want the e-mails can be found in the following quote:
@@ -63,22 +98,23 @@ So I login and see what I can come across, wow 400,000 registered emails, I’m 
 \end{quote}
 
 \subsection{A7-Missing Function Level Access Control}
-
+\noindent
 The current iteration of the system does not have more granulated user roles than logged in/guest, but the principles that are applied currently will apply once it does.
 
-The controller \texttt{Authorized} uses filters defined in Laravel (the details of individual filters can be found in \texttt{app/filters.php}) to determine whether a request should be let through or not. Controllers
-inheriting \texttt{Authorized} (for instance the \texttt{Users} controller) defines a whitelist of actions that \emph{does not} require a user to be logged in, and may optionally define a guestlist of actions that requires the user to \emph{not} be logged in. 
+The controller \texttt{Authorized} uses filters defined in Laravel (the details of individual filters can be found in \texttt{app/filters.php}) to determine whether a request should be let through or not. Controllers inheriting \texttt{Authorized} (for instance the \texttt{Users} controller) defines a whitelist of actions that \emph{does not} require a user to be logged in, and may optionally define a guestlist of actions that requires the user to \emph{not} be logged in.
 
 That is, unless a specified action is in the array of whitelisted actions, before the HTTP-request is served, Laravel checks whether the person is logged in. If they are not, they will be redirected to the \texttt{login} route. Once they've logged in, the system will attempt to return them to the page they originally attempted to reach. Examples of whitelisted routes are \texttt{login} and \texttt{users.create}.
 
 On the other hand, if the action is whitelisted and in the guestlist, the system will check that they are not logged in before giving them access to it. After all, why should someone access the login route when they are already logged in?
 
 \subsection{A8-Cross-Site Request Forgery (CSRF)}
-
+\noindent
 Another of Laravel's builtin filters is a CSRF-token that is made automatically on each form created using Laravel HTML functions. The \texttt{Base} controller runs a similar filter to the \texttt{Authorized} controller, but where \texttt{Authorized} checks the user capabilities, \texttt{Base} runs the \texttt{csrf} filter on all post-actions. If the token does not match, it throws a TokenMismatchException.
 
-\subsection{A9-Using Components with Known Vulnerabilities}
+The CSRF-token is also used in the logout process, where the logout links are appended with the token, which is then checked against the value of the user.
 
+\subsection{A9-Using Components with Known Vulnerabilities}
+\noindent
 To make it easier to keep track of which components are used where and to in the extension be able to write tasks to check everything against at least the more comprehensive databases, all components in PHP use
 Composer, and all frontend components use Bower.
 
@@ -89,7 +125,7 @@ components against Sensiolabs database, run \texttt{php artisan security:check}.
 Obviously, running automated checks may not catch all vulnerabilities, but they're a good, automated tool to supplement occasional manual checks, and as all components are documented in either \texttt{composer.json} or \texttt{bower.json}, it is easier to track them. There is no mentioning of \texttt{package.json}, as the NPM modules are only used in development, not in a production environment.
 
 \subsection{A10-Unvalidated Redirects and Forwards}
-
+\noindent
 Not applicable, as no redirects use data supplied from the user to indicate destination.
 
 

@@ -5,6 +5,7 @@
 !.editorconfig
 !.travis.yml
 !.gitattributes
+!.htaccess
 *~
 .DS_Store
 .AppleDouble

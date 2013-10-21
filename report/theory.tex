@@ -24,6 +24,76 @@ using the framework Laravel.
 \noindent
 Where the middle processing technologies generate the frontend consumed by the browser, in most dynamic systems it gets its' information -- data -- from the backend database or data store, whether through a MySQL database, a NoSQL MongoDB or any other kind of system, the backend provides access to the data, and should be properly secured.
 
+\section{oWasp top-10 Vulnerabilities 2013}
+\label{sec:owasp2013}
+\noindent
+oWasp.org \citep{oWasp2013t10} details the 10 most common and/or dangerous vulnerabilities. Most of these require a dynamic system, but having a static HTML site does not remove all the need to think in security. 
+
+\subsection{A1-Injection}
+\noindent
+Injection is still one of the most common vulnerabilities despite the ease with which one can harden ones' system against that kind of intrusion. The most common case is that a system is too trusting, so it allows users to input data without ensuring that it is the right type, or has likely values. A humorous take on the issues comes from this old (in)famous comic \citep{XKCDBobbyTables}, where the mother has named her son ``Robert'); DROP TABLES Students;--'', which led to a school losing its' student table. 
+
+When it comes to protecting against SQL injection in particular, the best way is to parametrise the connection and not put data into the database without ensuring that it can at least do no harm.
+
+Injection is mainly protected against in the middle and backend.
+
+\subsection{A2-Broken Authentication and Session Management}
+\noindent
+The best example I can use here is a site I have worked with on occasion. It is written in PHP and MySQL and is going on ten years by now. Sessions are using only the native PHP drivers, and all the information on the user is sent from page to page in a combination of global variables, session variables and hidden form input(!). To my knowledge, there were at least three bugs related to these, where one I solved, the other two are too closely merged with the rest of the system.
+
+\begin{enumerate}
+\item There were two different login systems sharing the same space. One was for admin abilities, the other for basic user abilities. The variable \texttt{\$username} was used in both but different values, so if one logged in as basic user and then did a particular admin action, the \texttt{\$username} was overwritten.
+\item Sessions times out at regular intervals, and as the system does not take that into account, whatever was being worked on ended up lost
+\item By using FireBug or something similar to change the values on one of the login pages, a person could easily hijack another person's session and items just through manipulating the hidden form input.
+\end{enumerate}
+
+Depending on how the authentication and session management is handled, this needs to be dealt with either in the frontend or middle. Most traditional web applications covers this in the middle layer, but if the application is written with a large focus on client side -- IE. EmberJS --, as much care needs to be taken on the frontend.
+
+\subsection{A3-Cross-Site Scripting (XSS)}
+\noindent
+In a way, XSS is a frontend variant of SQL-injection, as the base problem is the same: An application is too trusting of whatever data it is being supplied, and because of this an attacker might be able to execute scripts on that page that will hijack users in various ways. A very common way is to exploit a comment system, where a very recent instance was with two of the most common cache plugins on WordPress, W3 Total Cache and WP Super Cache \citep{Acunetix2013} and the way they interact with the \texttt{mfunc} function. If the blog allowed HTML in the comment system, it would by default also allow PHP.
+
+\subsection{A4-Insecure Direct Object References}
+\noindent
+To quote oWASP:
+
+\begin{quote}
+A direct object reference occurs when a developer exposes a reference to an internal implementation object, such as a file, directory, or database key.
+\end{quote}
+
+Generally, this is a failure in the middle and backend. The server shouldn't allow for directories to be browsed (at the very least, ensure that there is an index.html file in each directory), and configuration should not be accessible publicly. Several very common systems -- PHPBB, MediaWiki, to name two -- by default stores their config file in the root of the \texttt{public_html} folder, that is: the same folder that can be accessed through any browser. Of course, assuming that the config files does not echo anything out, it isn't necessarily that big a risk, unless a misconfiguration of the server leaves the site not recognizing the format, and thus prompting a download.
+
+\subsection{A5-Security Misconfiguration}
+\noindent
+Security misconfiguration comes in two large areas, where one is easier to deal with than the other, depending on your skill and to a certain extent budget. 
+
+\begin{itemize}
+\item Framework/Middle configurations are the easiest ones for a web developer to secure. You should always have access to the newest versions of the components you use, and the ability to update them. Ensure that you understand the various options.
+\item Server/backend security misconfigurations are reasonably easy to use \emph{if this is your server, or a server you have full access and rights to update software}. If this is shared hosting, you may end up being hit by a vulnerability in the system, such as this recent Ruby on Rails vulnerability\citep{RoR2013Vuln}.
+\end{itemize}
+
+\subsection{A6-Sensitive Data Exposure}
+\noindent
+Many web applications do not properly protect sensitive data, such as credit cards, tax IDs, and authentication credentials. Attackers may steal or modify such weakly protected data to conduct credit card fraud, identity theft, or other crimes. Sensitive data deserves extra protection such as encryption at rest or in transit, as well as special precautions when exchanged with the browser.
+
+\subsection{A7-Missing Function Level Access Control}
+\noindent
+Most web applications verify function level access rights before making that functionality visible in the UI. However, applications need to perform the same access control checks on the server when each function is accessed. If requests are not verified, attackers will be able to forge requests in order to access functionality without proper authorization.
+
+\subsection{A8-Cross-Site Request Forgery (CSRF)}
+\noindent
+A CSRF attack forces a logged-on victim’s browser to send a forged HTTP request, including the victim’s session cookie and any other automatically included authentication information, to a vulnerable web application. This allows the attacker to force the victim’s browser to generate requests the vulnerable application thinks are legitimate requests from the victim.
+
+\subsection{A9-Using Components with Known Vulnerabilities}
+\noindent
+Components, such as libraries, frameworks, and other software modules, almost always run with full privileges. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications using components with known vulnerabilities may undermine application defenses and enable a range of possible attacks and impacts.
+
+\subsection{A10-Unvalidated Redirects and Forwards}
+\noindent
+Web applications frequently redirect and forward users to other pages and websites, and use untrusted data to determine the destination pages. Without proper validation, attackers can redirect victims to phishing or malware sites, or use forwards to access unauthorized pages.
+
+
+
 \section{Technologies}
 \label{sec:technologies}
 \noindent
@@ -45,82 +115,4 @@ Se Svenska datatermgruppens rekommendationer på URL
 \end{center}
 
 
-\section{Att referera eller citera}
-\label{sec:ref}
-\noindent
-Du refererar när du sammanfattar eller återger en text med egna ord.
-Exempelvis:
-Forsslund förespråkar mer berättande rubriker i tekniska rapporter och menar 
-att man särskilt i underrubrikerna kan ge viktig information 
-
-Du citerar när du ordagrant återger en fras, en mening eller ett stycke.
-I normalfallet refererar man istället för att citera källor.
-Du kan använda direkta citat om du har speciella skäl, till exempel om du vill 
-återge vedertagna definitioner av begrepp, när du tycker att en författare 
-formulerat sig på ett särskilt träffande sätt, när du behöver stöd av en 
-auktoritet, eller när du vill visa att en författare har fel.
-
-Korta citat omges med citationstecken.
-Att citera Strömqvist kan vara en passande illustration i detta sammanhang:
-''Det må vara svårt att skriva, men det är roligt också.'' 
-
-Långa citat kan återges i form av blockcitat.
-Textmassan placeras då på sidan utan citationstecken, men med indrag, det vill 
-säga något förskjutet åt höger, och med mindre teckenstorlek.
-Källan anges i direkt anslutning till citatet.
-\begin{quote}
-	Det här är ett blockcitat vilket innebär indragning, mindre teckenstorlek, 
-	rak vänstermarginal, inte nödvändigtvis rak högermarginal, och inga 
-	citationstecken.
-	Blockcitatet kan tillämpas vid mer än ungefär 50 ord.  Blockcitat avslutas 
-	alltid med källhänvisning. 
-\end{quote}
-
-\subsection{Testing}
-\noindent
-\dots
-Se \prettyref{sec:aim} \dots
-Se också \prettyref{ch:introduction} \dots
-
-
-\section{Källhänvisningar och -förteckning}
-\label{sec:references}
-\noindent
-Att kopiera in en text utan att ange dess källa betraktas som plagiat och 
-därmed allvarligt fusk.
-
-En källförteckning (lista över referenser) upprättas i slutet av rapporten för 
-att ge läsaren en samlad upplysning om samtliga källor som du refererar, 
-citerar eller av annat skäl hänvisar till i den löpande texten.
-Källor ska anges så noggrant att läsaren ska kunna kontrollera dem, om de finns 
-tillgängliga via bibliotek eller på internet.
-Det förekommer även att muntliga källor och annan korrespondens inkluderas 
-i källförteckningen, men det är ovanligt i tekniska rapporter.
-
-Använd vederhäftiga källor, gärna författade av auktoriteter på området.
-Privata hemsidor och studentuppsatser har låg tillförlitlighet som källor, 
-i synnerhet om studentuppsatsen har lägre nivå (A, B, C eller D) än det egna 
-arbetet.
-Var källkritisk, särskilt mot kommersiella försäljningsargument.
-
-Ta endast med källor i förteckningen som du refererar eller citerar i den 
-löpande texten, detta sker automatiskt i \LaTeX och Bib\TeX.
-Samtliga källor som tas upp i källförteckningen ska vara kopplade till 
-rapporten genom hänvisning i den löpande texten, enligt Vancouver-systemet, som 
-är vanligt förekommande i rapporter i tekniska ämnen.
-
-Enligt Vancouver-systemet ordnas källförteckningen i den ordning källorna 
-återges i den löpande texten, och källhänvisningen anges i texten med en siffra 
-inom hakparenteser, som i detta dokument.
-% De anges även i denna ordning i källförteckningen.
-Exempel på källhänvisning:
-Enligt kan dynamiska SFN ge betydande prestandavinster.
-På liknande sätt refereras till källor på internet, exempelvis kan du se 
-för att läsa om \emph{H.264}.
-
-Eftersom information på webben kan revideras ofta, och eftersom webblänkar kan 
-upphöra att fungera, måste datum anges då du själv hämtade information från 
-webbsidan.
-Vid webbaserade källor krävs ibland anvisningar för hur källan kan hittas. Tänk 
-på att kvaliteten på materialet på internet varierar.
 

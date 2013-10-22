@@ -34,6 +34,45 @@
   \endverb
 \endentry
 
+\entry{RoR2013Vuln}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Bogdan Calin}}{B.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{B2}
+  \strng{fullhash}{B2}
+  \field{sortinit}{B}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Hackers exploit Ruby on Rails vulnerability to compromise
+  servers, create botnet}}
+  \verb{url}
+  \verb http://www.pcworld.com/article/2040062/hackers-exploit-ruby-on-rails-vu
+  \verb lnerability-to-compromise-servers-create-botnet.html
+  \endverb
+\endentry
+
+\entry{Acunetix2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Bogdan Calin}}{B.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{B2}
+  \strng{fullhash}{B2}
+  \field{sortinit}{B}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{WordPress Caching Plugins Remote PHP Code Execution}}
+  \verb{url}
+  \verb http://www.acunetix.com/blog/web-security-zone/wp-plugins-remote-code-e
+  \verb xecution/
+  \endverb
+\endentry
+
 \entry{Sucuri2013}{misc}{}
   \name{author}{1}{}{%
     {{}%
@@ -53,6 +92,24 @@
   \endverb
 \endentry
 
+\entry{Git}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Git Community}}{G.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{G1}
+  \strng{fullhash}{G1}
+  \field{sortinit}{G}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Git --distributed-even-if-your-workflow-isnt}}
+  \verb{url}
+  \verb http://git-scm.com/
+  \endverb
+\endentry
+
 \entry{Google2013cwili}{misc}{}
   \name{author}{1}{}{%
     {{}%
@@ -61,8 +118,8 @@
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{G1}
-  \strng{fullhash}{G1}
+  \strng{namehash}{G2}
+  \strng{fullhash}{G2}
   \field{sortinit}{G}
   \field{note}{Fetched the 19 October 2013.}
   \field{title}{{Chrome is not deleting temporary cookies}}
@@ -89,10 +146,10 @@
   \endverb
 \endentry
 
-\entry{Purifier2013}{misc}{}
+\entry{MarkMaunder2011}{misc}{}
   \name{author}{1}{}{%
     {{}%
-     {{MeWebStudio}}{M.}%
+     {{Mark Maunder}}{M.}%
      {}{}%
      {}{}%
      {}{}}%
@@ -101,9 +158,83 @@
   \strng{fullhash}{M1}
   \field{sortinit}{M}
   \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Technical details and scripts of the WordPress Timthumb.php
+  hack}}
+  \verb{url}
+  \verb http://markmaunder.com/2011/08/02/technical-details-and-scripts-of-the-
+  \verb wordpress-timthumb-php-hack/
+  \endverb
+\endentry
+
+\entry{Purifier2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{MeWebStudio}}{M.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{M2}
+  \strng{fullhash}{M2}
+  \field{sortinit}{M}
+  \field{note}{Fetched the 19 October 2013.}
   \field{title}{{HTML Purifier}}
   \verb{url}
   \verb http://htmlpurifier.org/
+  \endverb
+\endentry
+
+\entry{oWasp2013t10}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{oWasp}}{o.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{o1}
+  \strng{fullhash}{o1}
+  \field{sortinit}{O}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Top 10 2013-Top 10}}
+  \verb{url}
+  \verb https://www.owasp.org/index.php/Top_10_2013-Top_10
+  \endverb
+\endentry
+
+\entry{PSR}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{PHP Framework Interoperability Group}}{P.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{P1}
+  \strng{fullhash}{P1}
+  \field{sortinit}{P}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{PHP FIG-standards accepted}}
+  \verb{url}
+  \verb https://github.com/php-fig/fig-standards/tree/master/accepted
+  \endverb
+\endentry
+
+\entry{XKCDBobbyTables}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Randall Munroe}}{R.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{R1}
+  \strng{fullhash}{R1}
+  \field{sortinit}{R}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Exploits of a mom}}
+  \verb{url}
+  \verb http://xkcd.com/327/
   \endverb
 \endentry
 
@@ -125,6 +256,43 @@
   \endverb
 \endentry
 
+\entry{Laravel4}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Taylor Otwell}}{T.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{T1}
+  \strng{fullhash}{T1}
+  \field{sortinit}{T}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Laravel PHP Framework}}
+  \verb{url}
+  \verb http://laravel.com/
+  \endverb
+\endentry
+
+\entry{Typeplate2013}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Typeplate contributors}}{T.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{T2}
+  \strng{fullhash}{T2}
+  \field{sortinit}{T}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Typeplate » A typographic starter kit encouraging great type
+  on the Web}}
+  \verb{url}
+  \verb http://typeplate.com
+  \endverb
+\endentry
+
 \entry{Wikipedia2013ma}{misc}{}
   \name{author}{1}{}{%
     {{}%
@@ -140,6 +308,42 @@
   \field{title}{{H.264/MPEG-4 AVC}}
   \verb{url}
   \verb http://en.wikipedia.org/wiki/Multitier_architecture
+  \endverb
+\endentry
+
+\entry{Wikipedia2013pms}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Wikipedia}}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Package Management System}}
+  \verb{url}
+  \verb http://en.wikipedia.org/wiki/Package_management_system
+  \endverb
+\endentry
+
+\entry{Wikipedia2013rc}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Wikipedia}}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{note}{Fetched the 19 October 2013.}
+  \field{title}{{Revision Control}}
+  \verb{url}
+  \verb http://en.wikipedia.org/wiki/Revision_control
   \endverb
 \endentry
 

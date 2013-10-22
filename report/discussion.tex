@@ -1,44 +1,17 @@
 % $Id: discussion.tex 142 2012-12-22 10:41:32Z danbos $
-\chapter{Diskussion}
+\chapter{Discussion}
 \label{ch:discussion}
 \noindent
-Efter de objektiva resultaten följer kapitlet Diskussion\footnote{%
-	Alternativa rubriker är Slutsatser eller Analys.
-}, där du presenter dina egna slutsatser, din subjektiva uppfattning, samt 
-kritiskt analyserar resultatens tillförlitlighet och generaliserbarhet.
+This was an interesting project to work on. Many of the vulnerabilities are ones I've been aware of for a long time, though others were new. In particular A10 never even occured to me, as its' base assumption (that I want to redirect to an external site through a page on my own) is almost alien to me.
 
-Om denna del är omfattande kan den delas in i flera kapitel eller 
-under-kapitel, exempelvis ett analys- eller diskussionskapitel med förklaringar 
-till och kritisk granskning av resultaten, ett slutsatskapitel där de 
-viktigaste resultaten och slutsatserna presenteras, samt ett avsnitt med 
-förslag på fortsatt arbete inom området.
+The vulnerability that always surprises me the most is A1, as its' one I've personally been aware of for many years and have been migating in my code since at least 2006.
 
-Att återknyta till undersökningens syftes- och målformulering hör till det 
-viktigaste i detta kapitel.
+The largest change from how I've written code in earlier years comes from using Yeoman, Bower, Composer and Grunt, starting the project with not an empty file -- or even a couple of empty files with a Plan --, but with a project of several files to be merged and implemented as I worked. It's also the first project I've been using code sniffers as extensively as I have been here, enforcing PSR-2 coding style on all but a few (in particular the generated classes for database migrations) subsets of classes.
 
-Ge gärna utrymme åt svaren på följande frågor:
-\begin{itemize}
-	\item Vad är projektets nyhetsvärde och viktigaste bidrag till forskningen 
-		eller teknikutvecklingen?
-	\item Har projektets mål uppnåtts? Har uppdraget utförts?
-	\item Vad är svaret på den inledande problemformuleringen?
-	\item Har resultatet blivit det väntade?
-	\item Är slutsatserna generella, eller gäller de bara under vissa 
-		förutsättningar?
-	\item Vilken betydelse har metod- och modellvalet för resultaten?
-	\item Har nya frågor väckts på grund av resultatet?
-\end{itemize}
+\section{Frameworks}
+\label{ch:frameworks}
+\noindent
+I chose to implement it in Laravel, as re-writing the wheel is more likely to introduce bugs due to misunderstandings about basic demands. That said, when using a framework as the basis for a project, it is very important that one a) understands the code behind it and b) use it as it is intended to be used. If a framework stifles your workflow and you find yourself fighting against it more than it helps, it is not the framework to use.
 
-Den sista frågan inbjuder till möjligheten att ge förslag till andra, 
-anknytande undersökningar, det vill säga förslag dels till åtgärder och 
-rekommendationer, dels till fortsatt forskning eller utveckling för den som 
-vill bygga vidare på ditt arbete.
+I have personal experience with both CodeIgniter, Kohana and Laravel, where CI is too compatible with older installations, and breaks the promises of the query string in a way I am not comfortable with. Kohana is nice with a broad range of functions, but in working with it I've often had to work despite it, rather than with it. Laravel is a more comfortable fit as it encourages modularisation (as evidenced by encouraging the use of Composer), doesn't break the promise of the query string functioning despite its' pretty URLs, and the syntactic sugar is pretty.
 
-I tekniska rapporter på uppdrag av företag presenterar du här den 
-rekommenderade lösningen på ett problem.
-Du kan då göra en konsekvensanalys av lösningen ur tekniskt såväl som 
-lekmannaperspektiv, till exempel i fråga om ekonomi, miljö och förändrade 
-arbetsrutiner.
-Kapitlet innehåller då rekommenderade åtgärder samt förslag på vidare 
-utveckling eller forskning, och utgör således beslutsunderlag för 
-uppdragsgivaren.

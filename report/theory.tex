@@ -5,6 +5,28 @@
 When developing in a modern context, in particular for the Internet, one needs to
 understand how to develop securely, efficiently and without repeating oneself. Though not as much is needed to understand the pertinent areas that this course covers, they are still important to understand the broader strokes.
 
+\section{Revision Control}
+\label{sec:revisioncontrol}
+\noindent
+Revision control -- also known as version control or source control -- is per \citep{Wikipedia2013rc} the concept of managing different versions of files, in the context of computer science most often a program of some kind.
+
+In its' simplest form, it's backing up a file to another location before you do possible breaking changes on it, but in the more advanced forms it also allows for easy portability and encourages cooperation between developers.
+
+\subsection{Distributed vs Centralized Version Control Systems (VCS)}
+\noindent
+When it comes to software for version control, there are quite a few. Git \citep{Git} is the one I've used the most, which is a distributed VCS.
+
+In both kinds, the developer works on local files that are then ``checked into'' the production repository. The main difference is that a distributed system takes a peer-to-peer approach (allowing the repository to be cloned from any other repository) whereas the centralized has one repository that all others answer to.
+
+\section{Dependency/Package Manager}
+\label{sec:packagemanager}
+\noindent
+``In software, a package management system, also called package manager, is a collection of software tools to automate the process of installing, upgrading, configuring, and removing software packages''\citep{Wikipedia2013pms}
+
+Though the Wikipedia article mainly discusses package managers for operating systems, the same principles apply in web development. By stating packages that your project depends on -- also known as dependencies -- in an agreed-upon matter, the package manager can fetch them from where they are, rather than you needing to fetch them and put them in the right folder.
+
+Ruby uses the gem Bundler, Frontend can use Bower, NodeJS uses Node Package Manager, Python uses pip (and/or easy\_install), PHP has Composer and Pear, etc.
+
 \section{Separation of Concerns}
 \label{sec:architecture}
 \noindent
@@ -61,7 +83,7 @@ To quote oWASP:
 A direct object reference occurs when a developer exposes a reference to an internal implementation object, such as a file, directory, or database key.
 \end{quote}
 
-Generally, this is a failure in the middle and backend. The server shouldn't allow for directories to be browsed (at the very least, ensure that there is an index.html file in each directory), and configuration should not be accessible publicly. Several very common systems -- PHPBB, MediaWiki, to name two -- by default stores their config file in the root of the \texttt{public_html} folder, that is: the same folder that can be accessed through any browser. Of course, assuming that the config files does not echo anything out, it isn't necessarily that big a risk, unless a misconfiguration of the server leaves the site not recognizing the format, and thus prompting a download.
+Generally, this is a failure in the middle and backend. The server shouldn't allow for directories to be browsed (at the very least, ensure that there is an index.html file in each directory), and configuration should not be accessible publicly. Several very common systems -- PHPBB, MediaWiki, to name two -- by default stores their config file in the root of the \texttt{public\_html} folder, that is: the same folder that can be accessed through any browser. Of course, assuming that the config files does not echo anything out, it isn't necessarily that big a risk, unless a misconfiguration of the server leaves the site not recognizing the format, and thus prompting a download.
 
 \subsection{A5-Security Misconfiguration}
 \noindent
@@ -95,7 +117,7 @@ The most common -- and quite easy to implement -- is to use a so-called CSRF-tok
 
 \subsection{A9-Using Components with Known Vulnerabilities}
 \noindent
-A good example of a component with known vulnerabilities -- and a good case on why you should know what you're using! -- is the plugin Timthumb for WordPress (the vulnerability is fixed in the latest versions, but it's important to be aware of this). Back in late 2011, Mark Maunder \citep{MarMaunder2011} had his blog hacked. The short of it is that `Timthumb.php` allows site visitors to load images, and a caching mechanism to not need to re-process images. It will fetch a remote file and put it in a publicly accessible directory, where it was supposed to limit which domains one could fetch images from, but that was part of what was broken.
+A good example of a component with known vulnerabilities -- and a good case on why you should know what you're using! -- is the plugin Timthumb for WordPress (the vulnerability is fixed in the latest versions, but it's important to be aware of this). Back in late 2011, Mark Maunder \citep{MarkMaunder2011} had his blog hacked. The short of it is that `Timthumb.php` allows site visitors to load images, and a caching mechanism to not need to re-process images. It will fetch a remote file and put it in a publicly accessible directory, where it was supposed to limit which domains one could fetch images from, but that was part of what was broken.
 
 So, this was 2011. I've already mentioned that it's been fixed, why mention it more? Because there are still themes -- free and paid for -- that includes `timthumb.php` and have not been update. I have personally dealt with a site that was hacked using an inactive theme \emph{with that particular file}.
 

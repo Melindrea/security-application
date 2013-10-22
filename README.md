@@ -1,4 +1,4 @@
-security application
+esecurity application
 =============
 
 This is a project to showcase implementation of security measures in web applications

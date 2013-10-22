@@ -38,13 +38,38 @@ Bower is a package manager written in NodeJS, fetching components for the fronte
 
 \subsection{Middle and backend}
 \noindent
-The site is written in Laravel, a \enquote{PHP Framework for Web Artisans}\citep{Laravel4}, using a MySQL database.
+The site is written in Laravel, a \enquote{PHP Framework for Web Artisans}\citep{Laravel4}, using a MySQL database. Laravel is a MVC framework, using Blade templating language per default. It is fully PSR-0\citep{PSR} compatible for class loading, and uses Composer as a dependency manager. In fact, cloning the ``Laravel'' project gives a starting point for a project, where you need to install the dependencies using Composer.
 
+The relevant files for the backend are stored in \texttt{/app}. The directory \texttt{/app/src} contains the entirety of the frontend codebase, and any CSS-, image and JavaScript files used by Laravel are compiled into \texttt{/public\_html/assets}. The directory \texttt{/app/storage} needs to be writable by the server, as that is where the cache, logs and views are written to. Sessions are stored in the database.
+
+\subsubsection{Controllers}
+\noindent
+There are five controllers currently, where only three of them are connected to routes. \texttt{Base} and \texttt{Authorized} are both used as parents, where Base sets up the CSRF-filter to be ran before all \texttt{post}-actions, and Authorized inherits Base, and also sets up actions that should have the \texttt{Auth::check()}-filter ran before them, IE when a user either \emph{must be} or \emph{must not be} logged into the application.
+
+\texttt{Home} is the index page and also the page of policies. It will be further generalized to serve any kind of more ``static'' content, such as what would be referred to as ``pages'' in other contexts.
+
+\texttt{Users} deals with all user actions. Users are seen as a resource in this system, with the login/logout routes added on top of that.
+
+\texttt{Messages} is also a resource, though it only handles listing of messages and storing new messages currently.
+
+\subsubsection{Models}
+\noindent
+There are two different models used: \texttt{User} and \text{Message}. A third model, \texttt{Base}, sets up validation when an attempt to save the model occurs. The \texttt{User} model has a skeleton of a \texttt{boot} function that will perform actions after a User is created, such as sending an e-mail with login information, and logging the creation.
+
+Every \texttt{User} can have several \texttt{Messages}, which is made easy using Eloquent, the default ORM in Laravel. An expansion on the system will use messages inheriting the base message model to set different types.
+
+\subsubsection{Config}
+\noindent
+All the configuration options of Laravel are stored as arrays in the \texttt{/app/config} directory. They can be fetched using the syntax \texttt{Config::('filename.keyname')}, and a similar syntax allows you to temporarly set a config option. Another large advantage of Laravel is that by adding new directories under the config directory, one can define different environments, such as testing (pre-defined), production, staging or similar.
+
+\subsection{Server}
+\noindent
+The current deployment server is a virtual host setup using Vagrant. It has Ubuntu 12.04LTS 32-bits, with MySQL 5.5 and PHP 5.4 under an Apache2 server. Laravel requires Mcrypt as part of its' core encryption functionalities, as well as PHP 5.4+.
 
 \section{Vulnerabilities}
 \subsection{A1-Injection}
 \noindent
-The Database layer uses Eloquent, the default ORM in Laravel. One of the large advantages to how Laravel is built is that it allows to change what kind of database is used. This system uses MySQL, but it is easy to change it to using SQLite or other drivers. This is doable because it uses PDO and prepared statements. Because it uses those, it is by default more secure against SQL Injection, since the prepared statements will only accept the proper arguments.
+The Database layer uses Eloquent. One of the large advantages to how Laravel is built is that it allows to change what kind of database is used. This system uses MySQL, but it is easy to change it to using SQLite or other drivers. This is doable because it uses PDO and prepared statements. Because it uses those, it is by default more secure against SQL Injection, since the prepared statements will only accept the proper arguments.
 
 For instance, if the \texttt{username} column in a table is a string, and the data supplied from the user is ``test); DROP TABLE users'', that is exactly what the username column will recieve. It will not be interpreted as a command.
 

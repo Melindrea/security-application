@@ -1,7 +1,7 @@
 <?php
-namespace Test;
+namespace Test\Controller;
 
-class ExampleTest extends TestCase
+class HomeTest extends \Test\TestCase
 {
 
     /**
@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $crawler = $this->client->request('GET', '/');
+        $crawler = $this->get('/');
 
         $this->assertTrue($this->client->getResponse()->isOk());
     }

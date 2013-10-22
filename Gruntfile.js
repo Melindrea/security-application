@@ -96,7 +96,7 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test'),
+                            mountFolder(connect, 'test/mocha'),
                             mountFolder(connect, yeomanConfig.app)
                         ];
                     }
@@ -375,7 +375,7 @@ module.exports = function (grunt) {
         },
         phpunit: {
             classes: {
-                dir: 'test'
+                dir: 'test/phpunit/tests'
             },
             options: {
                 bin: 'composer_components/bin/phpunit',
@@ -448,8 +448,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('commit', [
-        'lint'//,
-        //'test'
+        'lint',
+        'test'
     ]);
 
     grunt.registerTask('report', [
@@ -460,7 +460,7 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'lint',
         'php',
-        //'test',
+        'test',
         'build'
     ]);
 };

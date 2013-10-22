@@ -17,7 +17,8 @@
         "squizlabs/php_codesniffer": "1.*",
         "sensiolabs/security-checker": "dev-master",
         "way/generators": "dev-master",
-        "phpdocumentor/phpdocumentor": "*"
+        "phpdocumentor/phpdocumentor": "*",
+        "mockery/mockery": "dev-master"
     },
     "config": {
         "vendor-dir": "composer_components",
@@ -37,7 +38,7 @@
             "app/models",
             "app/database/migrations",
             "app/database/seeds",
-            "test/TestCase.php"
+            "test/phpunit/TestCase.php"
         ]
     },
     "scripts": {

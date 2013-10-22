@@ -2,6 +2,7 @@
 namespace Test\Model;
 
 use Zizaco\FactoryMuff\Facade\FactoryMuff;
+
 class MessageTest extends \Test\TestCase
 {
     protected $useDatabase = true;

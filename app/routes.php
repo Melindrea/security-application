@@ -58,4 +58,4 @@ Route::group(
 Route::resource('users', 'Controller\Users');
 
 
-Route::resource('messages', 'Controller\Messages',  array('only' => array('index', 'store')));
+Route::resource('messages', 'Controller\Messages', array('only' => array('index', 'store')));

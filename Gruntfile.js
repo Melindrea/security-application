@@ -366,6 +366,9 @@ module.exports = function (grunt) {
             application: {
                 dir: '<%= yeoman.php %>'
             },
+            tests: {
+                dir: 'test/phpunit'
+            },
             options: {
                 bin: 'composer_components/bin/phpcs',
                 standard: 'PSR2',

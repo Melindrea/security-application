@@ -68,17 +68,33 @@ HTML::macro(
 
 /*
 |--------------------------------------------------------------------------
-| Stylesheet macro
+| Asset macro
 |--------------------------------------------------------------------------
 |
 | Overrides the ugly style function from the HTML class
 |
 */
 HTML::macro(
-    'stylesheet',
-    function ($url, $attributes = array('type' => null, 'media' => null)) {
-        $url = Config::get('app.assets.style').$url;
-        return HTML::style($url, $attributes);
+    'asset',
+    function ($section) {
+        $assets = Config::get('asset');
+
+        $markup = '';
+        if (isset($assets[$section])) {
+            foreach ($assets[$section] as $key => $attributes) {
+                if (ends_with($key, '.css')) {
+                    $default = [
+                        'type' => null,
+                        'media' => null,
+                    ];
+                    $attributes = array_merge($default, $attributes);
+                    $markup .= HTML::style($key, $attributes);
+                } elseif (ends_with($key, '.js')) {
+                    $markup .= HTML::script($key, $attributes);
+                }
+            }
+        }
+        return $markup;
     }
 );
 

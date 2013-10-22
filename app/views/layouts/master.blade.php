@@ -11,12 +11,12 @@
         <meta name="viewport" content="width=device-width">
         <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Quattrocento+Sans:700,700italic' rel='stylesheet'>
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        {{ HTML::stylesheet('main.min.css') }}
+        {{ HTML::asset('header-css') }}
 
         {{ HTML::ga('UA-XXXXXX-X') }}
 
         @section('head')
-        {{ HTML::script(Config::get('app.assets.script').'head.min.js') }}
+        {{ HTML::asset('header-js') }}
         @show
     </head>
         <body class="{{ HTML::bodyClasses() }}">
@@ -24,7 +24,7 @@
 
         @yield('content')
 
-        {{ HTML::script(Config::get('app.assets.script').'main.min.js') }}
+        {{ HTML::asset('footer-js') }}
         {{ HTML::cookies() }}
     </body>
 </html>

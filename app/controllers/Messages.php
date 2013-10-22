@@ -24,6 +24,13 @@ class Messages extends Authorized
         'index',
     );
 
+    protected $message;
+
+    public function __construct(\Model\Message $message)
+    {
+        $this->message = $message;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +38,7 @@ class Messages extends Authorized
      */
     public function index()
     {
-        $messages = \Model\Message::all();
+        $messages = $this->message->all();
         return \View::make('messages.index')
         ->with('messages', $messages);
     }

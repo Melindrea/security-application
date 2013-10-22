@@ -42,6 +42,16 @@ class User extends Base implements UserInterface, RemindableInterface
     );
 
     /**
+     * Array used by FactoryMuff to create Test objects
+     */
+    public static $factory = array(
+        'display_name' => 'string',
+        'username' => 'string',
+        'email' => 'string',
+        'password' => 'string',
+    );
+
+    /**
      * Sets up event listener for the model.
      *
      * @return void

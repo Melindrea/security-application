@@ -38,6 +38,12 @@ class Users extends Authorized
         'postLogin',
     );
 
+    protected $user;
+
+    public function __construct(\Model\User $user)
+    {
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +51,7 @@ class Users extends Authorized
      */
     public function index()
     {
-        $users = \Model\User::all();
+        $users = $this->user->all();
 
         return \View::make('users.index')
         ->with('users', $users);

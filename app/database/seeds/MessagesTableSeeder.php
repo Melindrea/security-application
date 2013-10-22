@@ -13,6 +13,8 @@ class MessagesTableSeeder extends Seeder {
                 'type_id' => 1,
                 'content' => 'Here\'s a message!',
                 'subject' => 'This is the subject',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ),
 		);
 

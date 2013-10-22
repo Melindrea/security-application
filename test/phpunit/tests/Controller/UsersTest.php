@@ -3,7 +3,7 @@ namespace Test\Controller;
 
 class UsersTest extends \Test\TestCase
 {
-
+    protected $useDatabase = true;
     public function __construct()
     {
         // We have no interest in testing Eloquent

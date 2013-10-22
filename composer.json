@@ -18,7 +18,8 @@
         "sensiolabs/security-checker": "dev-master",
         "way/generators": "dev-master",
         "phpdocumentor/phpdocumentor": "*",
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master",
+        "zizaco/factory-muff": "dev-master"
     },
     "config": {
         "vendor-dir": "composer_components",

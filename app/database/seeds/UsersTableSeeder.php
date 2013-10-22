@@ -13,12 +13,16 @@ class UsersTableSeeder extends Seeder {
                 'username' => 'marie',
                 'password' => Hash::make('my_pass'),
                 'email' => Crypt::encrypt('iam@mariehogebrandt.se'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ),
             array(
                 'display_name' => 'Test',
                 'username' => 'test',
                 'password' => Hash::make('my_pass'),
                 'email' => Crypt::encrypt('test@test.net'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ),
 		);
 

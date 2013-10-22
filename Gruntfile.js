@@ -128,8 +128,40 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
+            temporary: '.build/app/storage/{meta,cache,views,logs}/*',
             server: '.tmp',
-            report: 'build'
+            report: 'build',
+            deploy: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '.build',
+                        '*.zip'
+                    ]
+                }]
+            }
+        },
+        compress: {
+            deploy: {
+                options: {
+                    archive: 'deploy.zip',
+                    mode: 'zip'
+                },
+                files: [{
+                    expand: true,
+                    cwd: '.build',
+                    src: ['**'],
+                    dest: '/'
+                }, {
+                    expand: true,
+                    src: [
+                        'artisan',
+                        'bootstrap/**',
+                        'composer.json'
+                    ],
+                    dest: '/'
+                }]
+            }
         },
         jshint: {
             options: {
@@ -320,6 +352,24 @@ module.exports = function (grunt) {
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            deploy: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    dest: '.build',
+                    src: [
+                        'app/**',
+                        '!app/src/**'
+                    ]
+                }, {
+                    expand: true,
+                    dot: true,
+                    dest: '.build',
+                    src: [
+                        'public_html/**'
+                    ]
+                }]
             }
         },
         bumpup: {
@@ -415,18 +465,39 @@ module.exports = function (grunt) {
         'phpunit'
     ]);
 
-    grunt.registerTask('build', [
-        'assemble:pages',
-        'modernizr',
-        'clean:dist',
-        'useminPrepare',
-        'concurrent:dist',
-        'concat',
-        'cssmin',
-        'uglify',
-        'copy:dist',
-        'usemin'
-    ]);
+    grunt.registerTask('build', function (target) {
+        if (target === 'deploy') {
+            return grunt.task.run([
+                'assemble:pages',
+                'modernizr',
+                'clean:dist',
+                'useminPrepare',
+                'concurrent:dist',
+                'concat',
+                'cssmin',
+                'uglify',
+                'copy:dist',
+                'usemin',
+                'clean:deploy',
+                'copy:deploy',
+                'clean:temporary',
+                'compress:deploy'
+            ]);
+        }
+
+        grunt.task.run([
+            'assemble:pages',
+            'modernizr',
+            'clean:dist',
+            'useminPrepare',
+            'concurrent:dist',
+            'concat',
+            'cssmin',
+            'uglify',
+            'copy:dist',
+            'usemin'
+        ]);
+    });
 
     grunt.registerTask('js', [
         'newer:jsvalidate',

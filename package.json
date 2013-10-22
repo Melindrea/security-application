@@ -42,7 +42,8 @@
     "grunt-shell": "~0.3.1",
     "grunt-newer": "~0.5.2",
     "wrench": "~1.5.4",
-    "grunt-latex": "~0.1.1"
+    "grunt-latex": "~0.1.1",
+    "grunt-contrib-compress": "~0.5.2"
   },
   "engines": {
     "node": ">=0.8.0"

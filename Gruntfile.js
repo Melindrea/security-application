@@ -433,8 +433,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('php', [
         'newer:phplint',
-        'newer:phpcs',
-        'phpunit'
+        'newer:phpcs'
     ]);
 
     grunt.registerTask('phpdocs', [
@@ -459,7 +458,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'lint',
-        'php',
         'test',
         'build'
     ]);

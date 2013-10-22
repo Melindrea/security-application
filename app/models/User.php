@@ -47,8 +47,8 @@ class User extends Base implements UserInterface, RemindableInterface
     public static $factory = array(
         'display_name' => 'string',
         'username' => 'string',
-        'email' => 'string',
-        'password' => 'string',
+        'email' => 'email',
+        'password' => '123456',
     );
 
     /**

@@ -18,18 +18,20 @@ Route::get(
         'uses' => 'Controller\Home@getIndex',
     )
 );
+Route::get(
+    'docs/{file}',
+    array(
+        'as' => 'document',
+        'uses' => 'Controller\Home@getDocument',
+    )
+);
 
-Route::group(
-    array('prefix' => 'docs'),
-    function () {
-        Route::get(
-            'policies',
-            array(
-                'as' => 'policies',
-                'uses' => 'Controller\Home@getPolicies',
-            )
-        );
-    }
+Route::get(
+    'sitemap.{ext}',
+    array(
+        'as' => 'sitemap',
+        'uses' => 'Controller\Sitemap@getIndex',
+    )
 );
 
 Route::group(

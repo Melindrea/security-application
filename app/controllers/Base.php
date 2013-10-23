@@ -25,4 +25,28 @@ class Base extends \Controller
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
     }
+
+    protected function getFile($name, $type, $action = 'content')
+    {
+        $extensions = [
+            'markdown' => 'md',
+        ];
+
+        if (!isset($extensions[$type])) {
+            return '';
+        }
+
+        $path = __DIR__.'/../files/'.$name.'.'.$extensions[$type];
+
+        if ($action == 'content') {
+            return \File::get($path);
+        } elseif ($action == 'lastmodified') {
+            if (file_exists($path)) {
+                return filemtime($path);
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
 }

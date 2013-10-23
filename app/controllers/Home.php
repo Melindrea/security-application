@@ -26,32 +26,20 @@ class Home extends Base
     }
 
     /**
-     * Route: docs/policies
+     * Route: docs/{file}
      *
      * @return void
      */
-    public function getPolicies()
+    public function getDocument($file)
     {
-        $document = \HTML::markdown($this->getDocument('policies', 'markdown'));
-        return \View::make('document', ['document' => $document, 'title' => 'Policies']);
-    }
-    /**
-     * docs/*
-     *
-     * @return void
-     */
-    private function getDocument($name, $type)
-    {
-        $extensions = [
-            'markdown' => 'md',
-        ];
+        $config = \Config::get('files.'.$file);
 
-        if (!isset($extensions[$type])) {
-            return '';
+        if (!$config) {
+            \App::abort(404);
         }
-
-        $path = __DIR__.'/../files/'.$name.'.'.$extensions[$type];
-        $document = \File::get($path);
-        return $document;
+        $document = \HTML::markdown($this->getFile($file, $config['type']));
+        return \View::make('document')
+        ->with('document', $document)
+        ->with('title', $config['title']);
     }
 }

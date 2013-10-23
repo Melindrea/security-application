@@ -129,6 +129,7 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Mews\Purifier\PurifierServiceProvider',
+        'Roumen\Sitemap\SitemapServiceProvider',
 
     ),
 

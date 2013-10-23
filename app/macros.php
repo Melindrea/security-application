@@ -182,7 +182,8 @@ HTML::macro(
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create', '<?php echo $ua ?>');ga('send','pageview');
         </script>
-   <?php }
+   <?php
+    }
 );
 
 /*

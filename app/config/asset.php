@@ -10,21 +10,3 @@ return [
         '/assets/scripts/head.min.js' => [],
     ],
 ];
-
-/*
-    /*
-    |--------------------------------------------------------------------------
-    | Asset URLs
-    |--------------------------------------------------------------------------
-    |
-    | Used to decide on assets
-    |
-    * /
-
-    'assets' => array(
-        'style' => '/assets/styles/',
-        'script' => '/assets/scripts/',
-        'font' => '/assets/styles/fonts/',
-        'image' => '/assets/images/',
-    ),
- */

@@ -22,6 +22,8 @@
         <body class="{{ HTML::bodyClasses() }}">
         {{ HTML::flash() }}
 
+        {{ HTML::menu('main') }}
+
         @yield('content')
 
         {{ HTML::asset('footer-js') }}

@@ -68,10 +68,75 @@ HTML::macro(
 
 /*
 |--------------------------------------------------------------------------
+| Menu macro
+|--------------------------------------------------------------------------
+|
+| Returns the a menu based on label
+|
+*/
+HTML::macro(
+    'menu',
+    function ($label) {
+        $currentRouteName = \Route::currentRouteName();
+        $menu = Config::get('menu');
+        if (!isset($menu['labels'][$label])) {
+            return '';
+        }
+
+        $config = $menu['labels'][$label];
+        $items = $menu['items'];
+
+        if ($config['start'] == 1) {
+            if (!isset($items[$currentRouteName])) {
+                return '';
+            } elseif (!isset($items[$currentRoute]['items'])) {
+                return '';
+            }
+
+            $items = $items[$currentRouteName]['items'];
+        }
+
+        $itemsArr = [];
+        foreach ($items as $slug => $item) {
+            $condition = true;
+
+            if (isset($item['condition'])) {
+                $condition = call_user_func($item['condition']);
+            }
+
+            if ($condition) {
+                $temp = [];
+
+                if (starts_with($item['route'], 'http')) {
+                    $temp['url'] = $item['route'];
+                } else {
+                    $params = (isset($item['query']) && is_array($item['query'])) ? $item['query'] : [];
+                    $temp['url'] = URL::route($item['route'], $params);
+                }
+
+                $temp['label'] = trans('menu.'.$slug);
+                $temp['slug'] = $slug;
+
+                $temp['selected'] = ($slug == $currentRouteName) ? 'true' : 'false';
+
+                $itemsArr[] = View::make('partials.menu.item', $temp);
+            }
+        }
+
+        return View::make('partials.menu')
+        ->with('items', $itemsArr)
+        ->with('label', $label)
+        ->with('active', $currentRouteName.'-menuitem')
+        ->with('role', $config['role']);
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
 | Asset macro
 |--------------------------------------------------------------------------
 |
-| Overrides the ugly style function from the HTML class
+| Links to assets based on name rather than URL
 |
 */
 HTML::macro(

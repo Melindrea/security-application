@@ -42,6 +42,7 @@ class Users extends Authorized
 
     public function __construct(\Model\User $user)
     {
+        parent::__construct();
         $this->user = $user;
     }
     /**

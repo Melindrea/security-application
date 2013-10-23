@@ -28,6 +28,7 @@ class Messages extends Authorized
 
     public function __construct(\Model\Message $message)
     {
+        parent::__construct();
         $this->message = $message;
     }
 

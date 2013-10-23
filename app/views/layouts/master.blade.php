@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>security application</title>
-        <meta name="description" content="">
+        <title>{{ HTML::title() }}</title>
+        {{ HTML::meta() }}
         <meta name="viewport" content="width=device-width">
         <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Quattrocento+Sans:700,700italic' rel='stylesheet'>
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->

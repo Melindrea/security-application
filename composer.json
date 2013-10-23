@@ -41,7 +41,10 @@
             "app/database/migrations",
             "app/database/seeds",
             "test/phpunit/TestCase.php"
-        ]
+        ],
+        "psr-0": {
+            "Hogebrandt": "app/libraries"
+        }
     },
     "scripts": {
         "post-install-cmd": [

@@ -26,7 +26,7 @@ class Base extends \Controller
         $this->beforeFilter('csrf', array('on' => 'post'));
     }
 
-    protected function getFile($name, $type, $action = 'content')
+    protected function loadFile($name, $type, $action = 'content')
     {
         $extensions = [
             'markdown' => 'md',
@@ -36,7 +36,7 @@ class Base extends \Controller
             return '';
         }
 
-        $path = __DIR__.'/../files/'.$name.'.'.$extensions[$type];
+        $path = __DIR__.'/../data/files/'.$name.'.'.$extensions[$type];
 
         if ($action == 'content') {
             return \File::get($path);

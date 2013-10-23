@@ -32,9 +32,9 @@ class Sitemap extends Base
         $urls = [];
 
         // Static documents
-        $documents = \Config::get('files');
+        $documents = \Config::get('sitemap.documents');
         foreach ($documents as $file => $config) {
-            $lastmodified = $this->getFile($file, $config['type'], 'lastmodified');
+            $lastmodified = \Data::loadDocument($file, $config['type'], 'lastmodified');
 
             if ($lastmodified && !isset($config['no-index'])) {
                 $temp = [];

@@ -68,6 +68,66 @@ HTML::macro(
 
 /*
 |--------------------------------------------------------------------------
+| Title macro
+|--------------------------------------------------------------------------
+|
+| Returns the site title
+|
+*/
+HTML::macro(
+    'title',
+    function () {
+        $currentRoute = Route::currentRouteName();
+        $data = Data::get($currentRoute);
+
+        if ($data && $data['sitetitle']) {
+            $title = sprintf(
+                Config::get('site.title.pattern'),
+                $data['sitetitle'],
+                Config::get('site.title.title'),
+                Config::get('site.title.divider')
+            );
+        } else {
+            $title = Config::get('site.title.title');
+        }
+
+        return $title;
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Meta macro
+|--------------------------------------------------------------------------
+|
+| Returns the description
+|
+*/
+HTML::macro(
+    'meta',
+    function () {
+        $currentRoute = Route::currentRouteName();
+        $data = Data::get($currentRoute);
+
+        $meta = '';
+        $metaArray = Config::get('site.meta');
+        if ($data) {
+            $metaArray = array_merge($metaArray, $data['meta']);
+        }
+
+        foreach ($metaArray as $name => $content) {
+            if (is_array($content)) {
+                $content = join(', ', $content);
+            }
+            $meta .= sprintf('<meta name="%1$s" content="%2$s">'.PHP_EOL, $name, $content);
+        }
+
+        return $meta;
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
 | Menu macro
 |--------------------------------------------------------------------------
 |

@@ -32,12 +32,13 @@ class Home extends Base
      */
     public function getDocument($file)
     {
-        $config = \Config::get('files.'.$file);
+        $config = \Config::get('sitemap.documents.'.$file);
 
         if (!$config) {
             \App::abort(404);
         }
-        $document = \HTML::markdown($this->getFile($file, $config['type']));
+        // $document = \HTML::markdown($this->loadFile($file, $config['type']));
+        $document = \HTML::markdown(\Data::loadDocument($file, $config['type']));
         return \View::make('document')
         ->with('document', $document)
         ->with('title', $config['title']);

@@ -42,7 +42,7 @@ return array(
 
     'url' => 'http://security-application.dev',
 
-    /*
+     /*
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
@@ -198,5 +198,6 @@ return array(
         'Markdown'        => 'Michelf\MarkdownExtra',
         'Typography'      => 'PHPTypography\PHPTypography',
         'Purifier'        => 'Mews\Purifier\Facades\Purifier',
+        'Data'            => 'Hogebrandt\Data',
     ),
 );

@@ -5,7 +5,7 @@ namespace Controller;
 /**
  * Messages Controller.
  *
- * A REST-ful resource, alongside routes with the base of users.
+ * A REST-ful resource.
  *
  * @author Marie Hogebrandt <iam@mariehogebrandt.se>
  * @copyright Copyright (c) 2013, Marie Hogebrandt

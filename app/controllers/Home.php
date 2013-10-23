@@ -32,6 +32,17 @@ class Home extends Base
      */
     public function getPolicies()
     {
-        return \View::make('documents.policies');
+        $document = $this->getDocument('policies');
+        return \View::make('document', ['document' => $document]);
+    }
+    /**
+     * docs/*
+     *
+     * @return void
+     */
+    public function getDocument()
+    {
+        $document = 'fluff';
+        return $document;
     }
 }

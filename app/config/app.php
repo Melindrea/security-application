@@ -194,7 +194,7 @@ return array(
         'URL'             => 'Illuminate\Support\Facades\URL',
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
-        'Markdown'        => 'Michelf\Markdown',
+        'Markdown'        => 'Michelf\MarkdownExtra',
         'Typography'      => 'PHPTypography\PHPTypography',
         'Purifier'        => 'Mews\Purifier\Facades\Purifier',
     ),

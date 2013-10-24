@@ -1,10 +1,11 @@
 <?php
 return [
-    'documents' => [
-        'policies' => [
-            'type' => 'markdown',
-            'title' => 'Policies',
-            'site-title' => 'Policies',
+    'virtual' => [
+        'document' => [
+            'policies' => [
+                'type' => 'markdown',
+                'title' => 'Policies',
+            ],
         ],
     ],
 ];

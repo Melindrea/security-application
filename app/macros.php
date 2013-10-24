@@ -58,11 +58,24 @@ HTML::macro(
 
         $bodyClasses[] = \Route::currentRouteName();
 
+        if ($virtualRoute = Config::get('virtual.route')) {
+            $bodyClasses[] = $virtualRoute;
+        }
+
+
         if (\Auth::check()) {
             $bodyClasses[] = 'logged-in';
         }
 
-        return join(' ', $bodyClasses);
+        return join(
+            ' ',
+            array_map(
+                function ($item) {
+                    return str_replace('.', '-', $item);
+                },
+                $bodyClasses
+            )
+        );
     }
 );
 
@@ -78,6 +91,10 @@ HTML::macro(
     'title',
     function () {
         $currentRoute = Route::currentRouteName();
+
+        if ($virtualRoute = Config::get('virtual.route')) {
+            $currentRoute .= '/'.$virtualRoute;
+        }
         $data = Data::get($currentRoute);
 
         if ($data && $data['site-title']) {
@@ -107,6 +124,10 @@ HTML::macro(
     'meta',
     function () {
         $currentRoute = Route::currentRouteName();
+        if ($virtualRoute = Config::get('virtual.route')) {
+            $currentRoute .= '/'.$virtualRoute;
+        }
+
         $data = Data::get($currentRoute);
 
         $meta = '';
@@ -117,7 +138,6 @@ HTML::macro(
 
         foreach ($metaArray as $name => $content) {
             if (is_array($content)) {
-                // $content = join(', ', trans($content));
                 $content = join(
                     ', ',
                     array_map(

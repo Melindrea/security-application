@@ -32,15 +32,18 @@ class Home extends Base
      */
     public function getDocument($file)
     {
-        $config = \Config::get('sitemap.documents.'.$file);
+        $config = \Config::get('sitemap.virtual.document.'.$file);
 
         if (!$config) {
             \App::abort(404);
         }
-        // $document = \HTML::markdown($this->loadFile($file, $config['type']));
+        \Config::set('virtual.route', $file);
         $document = \HTML::markdown(\Data::loadDocument($file, $config['type']));
+        $data = \Data::get('document/'.$file);
+
+        $title = ($data && isset($data['page-title'])) ? trans($data['page-title']) : false;
         return \View::make('document')
         ->with('document', $document)
-        ->with('title', $config['title']);
+        ->with('title', $title);
     }
 }

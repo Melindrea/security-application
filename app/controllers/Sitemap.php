@@ -32,7 +32,7 @@ class Sitemap extends Base
         $urls = [];
 
         // Static documents
-        $documents = \Config::get('sitemap.documents');
+        $documents = \Config::get('sitemap.virtual.document');
         foreach ($documents as $file => $config) {
             $lastmodified = \Data::loadDocument($file, $config['type'], 'lastmodified');
 

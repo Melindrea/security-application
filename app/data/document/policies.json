@@ -1,0 +1,14 @@
+{
+    "site-title": "site.policies.site-title",
+    "page-title": "site.policies.page-title",
+    "meta": {
+        "description": "site.policies.description",
+        "keywords": [
+            "site.meta.keywords.security",
+            "site.meta.keywords.seo",
+            "site.meta.keywords.laravel",
+            "site.meta.keywords.cookies",
+            "site.meta.keywords.privacy"
+        ]
+    }
+}

@@ -1,7 +1,11 @@
 {
-    "sitetitle": false,
+    "site-title": false,
     "meta": {
-        "description": "Main page of the security application",
-        "keywords": ["security", "seo", "laravel"]
+        "description": "site.home.description",
+        "keywords": [
+            "site.meta.keywords.security",
+            "site.meta.keywords.seo",
+            "site.meta.keywords.laravel"
+        ]
     }
 }

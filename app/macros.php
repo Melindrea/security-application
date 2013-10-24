@@ -80,15 +80,15 @@ HTML::macro(
         $currentRoute = Route::currentRouteName();
         $data = Data::get($currentRoute);
 
-        if ($data && $data['sitetitle']) {
+        if ($data && $data['site-title']) {
             $title = sprintf(
                 Config::get('site.title.pattern'),
-                $data['sitetitle'],
-                Config::get('site.title.title'),
+                trans($data['site-title']),
+                trans('site.meta.title'),
                 Config::get('site.title.divider')
             );
         } else {
-            $title = Config::get('site.title.title');
+            $title = trans('site.meta.title');
         }
 
         return $title;
@@ -117,7 +117,18 @@ HTML::macro(
 
         foreach ($metaArray as $name => $content) {
             if (is_array($content)) {
-                $content = join(', ', $content);
+                // $content = join(', ', trans($content));
+                $content = join(
+                    ', ',
+                    array_map(
+                        function ($item) {
+                            return trans($item);
+                        },
+                        $content
+                    )
+                );
+            } else {
+                $content = trans($content);
             }
             $meta .= sprintf('<meta name="%1$s" content="%2$s">'.PHP_EOL, $name, $content);
         }
@@ -174,7 +185,7 @@ HTML::macro(
                     $temp['url'] = URL::route($item['route'], $params);
                 }
 
-                $temp['label'] = trans('menu.'.$slug);
+                $temp['label'] = trans('site.'.$slug.'.menu');
                 $temp['slug'] = $slug;
 
                 $temp['selected'] = ($slug == $currentRouteName) ? 'true' : 'false';

@@ -39,8 +39,14 @@ class Data
         return null;
     }
 
-    public static function get($name)
+    public static function get($name = null)
     {
+        if (!$name) {
+            $name = \Route::currentRouteName();
+            if ($virtualRoute = \Config::get('virtual.route')) {
+                $name .= '/'.$virtualRoute;
+            }
+        }
         $path = __DIR__.'/../../data/'.$name.'.json';
 
         if (!file_exists($path)) {

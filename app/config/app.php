@@ -199,5 +199,6 @@ return array(
         'Typography'      => 'PHPTypography\PHPTypography',
         'Purifier'        => 'Mews\Purifier\Facades\Purifier',
         'Data'            => 'Hogebrandt\Data',
+        'Site'            => 'Hogebrandt\Site',
     ),
 );

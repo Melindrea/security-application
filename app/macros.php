@@ -71,44 +71,11 @@ HTML::macro(
             ' ',
             array_map(
                 function ($item) {
-                    return str_replace('.', '-', $item);
+                    return Site::slugify($item);
                 },
                 $bodyClasses
             )
         );
-    }
-);
-
-/*
-|--------------------------------------------------------------------------
-| Title macro
-|--------------------------------------------------------------------------
-|
-| Returns the site title
-|
-*/
-HTML::macro(
-    'title',
-    function () {
-        $currentRoute = Route::currentRouteName();
-
-        if ($virtualRoute = Config::get('virtual.route')) {
-            $currentRoute .= '/'.$virtualRoute;
-        }
-        $data = Data::get($currentRoute);
-
-        if ($data && $data['site-title']) {
-            $title = sprintf(
-                Config::get('site.title.pattern'),
-                trans($data['site-title']),
-                trans('site.meta.title'),
-                Config::get('site.title.divider')
-            );
-        } else {
-            $title = trans('site.meta.title');
-        }
-
-        return $title;
     }
 );
 
@@ -123,12 +90,7 @@ HTML::macro(
 HTML::macro(
     'meta',
     function () {
-        $currentRoute = Route::currentRouteName();
-        if ($virtualRoute = Config::get('virtual.route')) {
-            $currentRoute .= '/'.$virtualRoute;
-        }
-
-        $data = Data::get($currentRoute);
+        $data = Data::get();
 
         $meta = '';
         $metaArray = Config::get('site.meta');

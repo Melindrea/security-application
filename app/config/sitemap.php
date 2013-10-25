@@ -4,8 +4,8 @@ return [
         'document' => [
             'policies' => [
                 'type' => 'markdown',
-                'title' => 'Policies',
             ],
         ],
     ],
+    'home' => [],
 ];

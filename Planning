@@ -62,3 +62,7 @@ ga('send', {
 
 Footer links to move through next section if a "linear" flow!
 
+Mobile Detect:
+https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples
+
+All examples instead use: MobileDetect::function(), so $detect->isMobile() is MobileDetect::isMobile()

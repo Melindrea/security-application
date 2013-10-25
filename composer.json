@@ -32,7 +32,8 @@
         "michelf/php-markdown": "1.3.*@dev",
         "phptypography/phptypography": "dev-master",
         "mews/purifier": "dev-master",
-        "roumen/sitemap": "dev-master"
+        "roumen/sitemap": "dev-master",
+        "mobiledetect/mobiledetectlib": "dev-master"
     },
     "autoload": {
         "classmap": [

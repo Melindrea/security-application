@@ -15,14 +15,14 @@ Route::get(
     '/',
     array(
         'as' => 'home',
-        'uses' => 'Controller\Home@getIndex',
+        'uses' => 'Controller\Documents@getIndex',
     )
 );
 Route::get(
     'docs/{file}',
     array(
         'as' => 'document',
-        'uses' => 'Controller\Home@getDocument',
+        'uses' => 'Controller\Documents@getDocument',
     )
 );
 

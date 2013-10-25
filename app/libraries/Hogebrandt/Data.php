@@ -25,7 +25,7 @@ class Data
             return null;
         }
 
-        $path = __DIR__.'/../../data/files/'.$name.'.'.self::$extensions[$type];
+        $path = __DIR__.'/../../data/texts/'.$name.'.'.self::$extensions[$type];
 
         if ($action == 'content') {
             return \File::get($path);

@@ -2,17 +2,16 @@
 namespace Controller;
 
 /**
- * Home Controller.
+ * Documents Controller.
  *
- * Controller that deals with various routes that have a route starting from
- * root.
+ * Controller that deals with various routes that are mainly documents
  *
  * @package  SecurityApplication
  * @author Marie Hogebrandt <iam@mariehogebrandt.se>
  * @copyright Copyright (c) 2013, Marie Hogebrandt
  * @license http://opensource.org/licenses/MIT MIT
  */
-class Home extends Base
+class Documents extends Base
 {
 
      /**

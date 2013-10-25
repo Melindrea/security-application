@@ -200,5 +200,6 @@ return array(
         'Purifier'        => 'Mews\Purifier\Facades\Purifier',
         'Data'            => 'Hogebrandt\Data',
         'Site'            => 'Hogebrandt\Site',
+        'MobileDetect'    => 'Hogebrandt\MobileDetect',
     ),
 );

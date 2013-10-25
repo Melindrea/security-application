@@ -33,3 +33,36 @@ Output: Purifier, Markdown, SmartyPants
 8. CSRF: Using CSRF-filter on post actions
 9. Using components with known vulnerabilities: Using a security-check on composer, not found anything on frontend components
 10. Unvalidated Redirects and Forwards: If it is relevant, will check
+
+
+window['ga-disable-UA-XXXX-Y'] = true; // Before script to opt out of GA
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','_gaTracker'));
+    _gaTracker('create', 'UA-XXXX-Y');
+    _gaTracker('send','pageview', {
+        'anonymizeIp': true
+    });
+</script>
+
+https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced
+
+Event to check if they logged onto the chat
+
+ga('send', {
+  'hitType': 'event',          // Required.
+  'eventCategory': 'button',   // Required.
+  'eventAction': 'click',      // Required.
+  'eventLabel': 'nav buttons',
+  'eventValue': 4
+});
+
+Footer links to move through next section if a "linear" flow!
+
+Mobile Detect:
+https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples
+
+All examples instead use: MobileDetect::function(), so $detect->isMobile() is MobileDetect::isMobile()

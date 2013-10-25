@@ -37,7 +37,12 @@ class Documents extends Base
             \App::abort(404);
         }
         \Config::set('virtual.route', $file);
-        $document = \HTML::markdown(\Data::loadDocument($file, $config['type']));
+        $document = \View::make(
+            'partials.markdown',
+            array(
+                'content' => \Data::loadDocument($file, $config['type'])
+            )
+        );
         $data = \Data::get('document/'.$file);
 
         $title = ($data && isset($data['page-title'])) ? trans($data['page-title']) : false;

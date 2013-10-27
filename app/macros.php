@@ -124,7 +124,7 @@ HTML::macro(
 | Menu macro
 |--------------------------------------------------------------------------
 |
-| Returns the a menu based on label
+| Returns a menu based on label
 |
 */
 HTML::macro(
@@ -160,17 +160,37 @@ HTML::macro(
             if ($condition) {
                 $temp = [];
 
-                if (isset($item['route'])) {
-                    $temp['url'] = $item['route'];
+                if (isset($item['url'])) {
+                    $temp['url'] = $item['url'];
+                    $attributes[] = 'rel="external"';
                 } else {
                     $params = (isset($item['query']) && is_array($item['query'])) ? $item['query'] : [];
-                    $temp['url'] = URL::route($routeName, $params);
+
+                    if (isset($item['virtual'])) {
+                        $params['file'] = $routeName;
+                        $temp['url'] = Site::route($item['virtual'], $params);
+                    } else {
+                        $temp['url'] = Site::route($routeName, $params);
+                    }
                 }
 
                 $temp['label'] = trans('site.'.$routeName.'.menu');
                 $temp['slug'] = \Site::slugify($routeName);
 
                 $temp['selected'] = ($routeName == $currentRouteName) ? 'true' : 'false';
+
+                if (isset($item['attributes'])) {
+                    $attributes = array_map(
+                            function ($item, $key) {
+                                return $key.'="'.$item.'"';
+                            },
+                            $item['attributes'],
+                            array_keys($item['attributes'])
+                        );
+                    $temp['attributes'] = join(' ', $attributes);
+                } else {
+                    $temp['attributes'] = '';
+                }
 
                 $itemsArr[] = View::make('partials.menu.item', $temp);
             }

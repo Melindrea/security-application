@@ -33,7 +33,13 @@ return [
             ],
         ],
         'external' => [
-            'route' => 'http://example.com',
-        ]
+            'url' => 'http://example.com',
+            'attributes' => [
+                'rel' => 'external',
+            ],
+        ],
+        'policies' => [
+            'virtual' => 'document',
+        ],
     ],
 ];

@@ -55,4 +55,9 @@ class Site
         }
         return true;
     }
+
+    public static function route($routename, $param = [], $absolute = false)
+    {
+        return \URL::route($routename, $param, $absolute);
+    }
 }

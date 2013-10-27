@@ -13,11 +13,11 @@
 
     <ul>
         @if (Auth::guest())
-            <li><a href="{{URL::route('login')}}">Login</a></li>
-            <li><a href="{{URL::route('users.create')}}">Register</a></li>
+            <li><a href="{{Site::route('login')}}">Login</a></li>
+            <li><a href="{{Site::route('users.create')}}">Register</a></li>
         @else
-            <li><a href="{{URL::route('logout')}}?s={{ csrf_token() }}">Logout</a></li>
+            <li><a href="{{Site::route('logout')}}?s={{ csrf_token() }}">Logout</a></li>
         @endif
-        <li><a href="{{URL::route('messages.index')}}">Messages</a></li>
+        <li><a href="{{Site::route('messages.index')}}">Messages</a></li>
     </ul>
 @stop

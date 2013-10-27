@@ -18,7 +18,7 @@ return array(
     ),
 
     'policies' => array(
-        'menu' => 'Home',
+        'menu' => 'Policies',
         'page-title' => 'Policies',
         'site-title' => 'Policies',
         'description' => 'We will not share your information with third part withouth your explicit permission',

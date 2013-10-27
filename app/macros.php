@@ -142,7 +142,7 @@ HTML::macro(
         if ($config['start'] == 1) {
             if (!isset($items[$currentRouteName])) {
                 return '';
-            } elseif (!isset($items[$currentRoute]['items'])) {
+            } elseif (!isset($items[$currentRouteName]['items'])) {
                 return '';
             }
 
@@ -150,7 +150,7 @@ HTML::macro(
         }
 
         $itemsArr = [];
-        foreach ($items as $slug => $item) {
+        foreach ($items as $routeName => $item) {
             $condition = true;
 
             if (isset($item['condition'])) {
@@ -160,17 +160,17 @@ HTML::macro(
             if ($condition) {
                 $temp = [];
 
-                if (starts_with($item['route'], 'http')) {
+                if (isset($item['route'])) {
                     $temp['url'] = $item['route'];
                 } else {
                     $params = (isset($item['query']) && is_array($item['query'])) ? $item['query'] : [];
-                    $temp['url'] = URL::route($item['route'], $params);
+                    $temp['url'] = URL::route($routeName, $params);
                 }
 
-                $temp['label'] = trans('site.'.$slug.'.menu');
-                $temp['slug'] = $slug;
+                $temp['label'] = trans('site.'.$routeName.'.menu');
+                $temp['slug'] = \Site::slugify($routeName);
 
-                $temp['selected'] = ($slug == $currentRouteName) ? 'true' : 'false';
+                $temp['selected'] = ($routeName == $currentRouteName) ? 'true' : 'false';
 
                 $itemsArr[] = View::make('partials.menu.item', $temp);
             }
@@ -179,7 +179,7 @@ HTML::macro(
         return View::make('partials.menu')
         ->with('items', $itemsArr)
         ->with('label', $label)
-        ->with('active', $currentRouteName.'-menuitem')
+        ->with('active', \Site::slugify($currentRouteName.'-menuitem'))
         ->with('role', $config['role']);
     }
 );

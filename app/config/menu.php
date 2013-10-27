@@ -15,26 +15,20 @@ return [
     ],
 
     'items' => [
-        'home' => [
-            'route' => 'home',
-        ],
-        'users' => [
-            'route' => 'users.index',
+        'home' => [],
+        'users.index' => [
             'items' => [
                 'login' => [
                     'condition' => 'Auth::guest',
-                    'route' => 'login',
                 ],
                 'logout' => [
                     'condition' => 'Auth::check',
-                    'route' => 'logout',
                     'query' => [
                         's' => csrf_token(),
                     ],
                 ],
                 'users.create' => [
                     'condition' => 'Auth::guest',
-                    'route' => 'users.create',
                 ],
             ],
         ],

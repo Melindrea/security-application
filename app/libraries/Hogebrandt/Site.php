@@ -39,4 +39,20 @@ class Site
 
         return $title;
     }
+
+    public static function index($file)
+    {
+        $data = Data::get($file);
+        if ($data === null) {
+            return true;
+        }
+        if (!isset($data['meta']) || !isset($data['meta']['robots'])) {
+            return true;
+        }
+
+        if (in_array('noindex', $data['meta']['robots'])) {
+            return false;
+        }
+        return true;
+    }
 }

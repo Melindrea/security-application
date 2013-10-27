@@ -1,1 +1,1 @@
-{{ $content }}
+{{ HTML::markdown($content) }}

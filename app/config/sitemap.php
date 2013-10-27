@@ -8,4 +8,8 @@ return [
         ],
     ],
     'home' => [],
+    'users.index' => [],
+    'login' => [
+        'path' => 'users',
+    ],
 ];

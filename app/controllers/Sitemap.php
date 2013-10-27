@@ -32,17 +32,44 @@ class Sitemap extends Base
         $urls = [];
 
         // Static documents
-        $documents = \Config::get('sitemap.virtual.document');
-        foreach ($documents as $file => $config) {
-            $lastmodified = \Data::loadDocument($file, $config['type'], 'lastmodified');
+        $pages = \Config::get('sitemap');
+        foreach ($pages as $key => $items) {
 
-            if ($lastmodified && !isset($config['no-index'])) {
-                $temp = [];
-                $temp['loc'] = \URL::route('document', ['file' => $file]);
-                $temp['lastmod'] = date('c', $lastmodified);
-                $temp['priority'] = (isset($config['priority'])) ? $config['priority'] : 0.5;
-                $temp['changefreq'] = 'monthly';
-                $urls[] = $temp;
+            if ($key == 'virtual') {
+                foreach ($items as $type => $documents) {
+                    foreach ($documents as $file => $config) {
+                        $lastmodified = \Data::loadDocument($file, $config['type'], 'lastmodified');
+
+                        if ($lastmodified && \Site::index($type.'/'.$file)) {
+                            $temp = [];
+                            $temp['loc'] = \URL::route('document', ['file' => $file]);
+                            $temp['lastmod'] = date('c', $lastmodified);
+                            $temp['priority'] = (isset($config['priority'])) ? $config['priority'] : 0.5;
+                            $temp['changefreq'] = 'monthly';
+                            $urls[] = $temp;
+                        }
+                    }
+                }
+            } else {
+                $path = __DIR__.'/../views/';
+                $file = $key;
+                $config = $items;
+                if (isset($config['path'])) {
+                    $path .= $config['path'].'/'.$file;
+                } elseif (strpos($file,'.') !== false) {
+                    $path .= str_replace('.','/', $file);
+                } else {
+                    $path .= $file;
+                }
+                $path .= '.blade.php';
+                if (file_exists($path) && \Site::index($file)) {
+                    $temp = [];
+                    $temp['loc'] = \URL::route($file);
+                    $temp['lastmod'] = date('c', filemtime($path));
+                    $temp['priority'] = (isset($config['priority'])) ? $config['priority'] : 0.5;
+                    $temp['changefreq'] = 'monthly';
+                    $urls[] = $temp;
+                }
             }
         }
 
@@ -51,5 +78,9 @@ class Sitemap extends Base
         }
 
         return $sitemap->render($ext);
+    }
+
+    private function parseItem($file, $config) {
+
     }
 }

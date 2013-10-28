@@ -1,0 +1,20 @@
+%clearfix {
+    @include clearfix;
+}
+
+%hide-text {
+  @include hide-text;
+}
+
+%hidden
+{
+    @include hidden;
+}
+
+%visually-hidden {
+    @include visually-hidden
+}
+
+%invisible {
+    @include invisible;
+}

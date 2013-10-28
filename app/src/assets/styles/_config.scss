@@ -11,7 +11,31 @@
 
 // .||..||..||..||..||..||..||..||..||..||..||..||..||..||..||..||..||.
 
+// $Colors
+// -------------------------------------//
+$primary-1: #40C256;
+$primary-2: #489155;
+$primary-3: #157E27;
+$primary-4: #6FE083;
+$primary-5: #8DE09C;
 
+$secondary-a-1: #358E9B;
+$secondary-a-2: #3B6D74;
+$secondary-a-3: #115A65;
+$secondary-a-4: #68C1CD;
+$secondary-a-5: #83C4CD;
+
+$secondary-b-1: #FDA553;
+$secondary-b-2: #BE8C5E;
+$secondary-b-3: #A45D1B;
+$secondary-b-4: #FEBB7E;
+$secondary-b-5: #FECDA0;
+
+$complementary-1: #FD5F53;
+$complementary-2: #BE655E;
+$complementary-3: #A4251B;
+$complementary-4: #FE877E;
+$complementary-5: #FEA7A0;
 
 // $BaseType
 // -------------------------------------//
@@ -118,3 +142,6 @@ $dropcap-padding: inherit;
 $dropcap-color: inherit;
 $dropcap-line-height: 1;
 $dropcap-bg: transparent;
+
+$column: 100% / 18; //Important numbers for Golden Grid System
+$menu-breakpoint: 40em;

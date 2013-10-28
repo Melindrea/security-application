@@ -23,25 +23,19 @@
 
 // This where you start building your own styles.
 // -----------------------------------------------------------------------------
-// @import "typography";
+
+@import "base";
+@import "typography";
 // @import "forms";
 // @import "buttons";
-// @import "design";
-// @import "ui_patterns/**/*";    // glob manifest files
-// @import "modules/**/*";        // glob manifest files
-// @import "layouts/*";           // glob manifest files
+@import "themes/**/*";
+@import "ui-patterns/**/*";    // glob manifest files
+@import "modules/**/*";        // glob manifest files
+@import "layouts/*";           // glob manifest files
 
 
 // "Shameful" styles; for quick-and-dirty fixes
 // -----------------------------------------------------------------------------
 // @import "shame";
 
-body {
-    width: 100%;
-    max-width: 600px;
-    margin: 10px auto;
-}
 
-#{headers()} {
-    font-family: Quattrocento Sans, sans-serif;
-}

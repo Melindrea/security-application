@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <script src="bower_components/golden-grid-system/GGS.js"></script><!-- remove in production -->
         <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Quattrocento+Sans:700,700italic' rel='stylesheet'>
         <!-- build:css(.tmp) styles/main.min.css -->
         <link rel="stylesheet" href="assets/styles/main.css">
@@ -33,17 +34,30 @@
 
     </head>
     <body>
-        <ul>
-            {{#each pages}}
-                <li><a href="{{pagename}}">{{data.title}}</a></li>
-              {{/each}}
-        </ul>
-        {{> outdated-warning}}
+        <header role="banner">
+            <nav aria-label="main" role="navigation"><!-- role explicit for older browsers, using aria-label to differentiate from other navs -->
+                <ul role="menubar" aria-activedescendant="home-menuitem">
+                            <li role="presentation">
+                <a href="/" role="menuitem" aria-selected="true" id="home-menuitem">Home</a>
+            </li>
+            <li role="presentation">
+    <a href="/users" role="menuitem" aria-selected="false" id="users-index-menuitem">site.users.index.menu</a>
+    </li>
+            <li role="presentation">
+    <a href="http://example.com" role="menuitem" aria-selected="false" id="external-menuitem"rel="external">site.external.menu</a>
+    </li>
+            <li role="presentation">
+                <a href="/docs/policies" role="menuitem" aria-selected="false" id="policies-menuitem">Policies</a>
+            </li>
+                        </ul><!-- //menubar -->
+            </nav><!-- //navigation -->
+        </header>
 
-
-        {{> header}}
         {{> body}}
 
+        <footer role="contentinfo">
+
+        </footer>
 
         <!-- build:js scripts/main.min.js -->
         <script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>

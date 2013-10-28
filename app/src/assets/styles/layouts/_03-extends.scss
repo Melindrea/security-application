@@ -1,0 +1,7 @@
+%container {
+    @include container;
+}
+
+%inner-container {
+    @include inner-container;
+}

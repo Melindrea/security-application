@@ -1,0 +1,10 @@
+//-- Selection is a nice touch, the "mark" element should match the selection
+@mixin selection ( $color: #fff, $background: #000 )
+{
+    ::-moz-selection { background: $background; color: $color; text-shadow: none; }
+    ::selection { background: $background; color: $color; text-shadow: none; }
+    mark {
+        background: $background;
+        color: $color;
+    }
+}

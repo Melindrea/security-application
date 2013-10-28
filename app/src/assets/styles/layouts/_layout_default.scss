@@ -1,0 +1,29 @@
+[role="banner"],
+[role="document"],
+[role="contentinfo"] {
+    @extend %container;
+    @extend %clearfix;
+
+    background: #ddd;
+}
+
+[role="banner"] {
+    margin-bottom: 0;
+}
+
+[role="document"] {
+    margin-top: 0;
+}
+
+main,
+[aria-label="submenu"],
+[aria-label="main"] {
+    @extend %inner-container;
+    @extend %clearfix;
+}
+
+.inner {
+    padding-top: #{calc-gutter(2)}rem;
+    padding-top: #{calc-gutter(2)}em;
+}
+

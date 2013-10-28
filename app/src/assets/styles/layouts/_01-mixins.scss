@@ -1,0 +1,12 @@
+//-- Based on http://goldengridsystem.com/
+//-- Container for holding other elements
+@mixin container($sides: 1, $top: 2)
+{
+    margin: #{$top*calc-gutter()}rem $sides*$column;
+}
+
+//-- Simple elastic gutters
+//-- Note: box-sizing will not work in IE6-7
+@mixin inner-container {
+    padding: 0 #{calc-gutter()}em;
+}

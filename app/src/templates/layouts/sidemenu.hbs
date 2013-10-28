@@ -1,0 +1,26 @@
+---
+layout: master.hbs
+---
+
+<div class="sidemenu" role="document">
+    <nav aria-label="submenu" role="navigation"><!-- role explicit for older browsers, using aria-label to differentiate from other navs -->
+        <ul role="menu" aria-activedescendant="home-menuitem">
+            <li role="presentation">
+                <a href="/" role="menuitem" aria-selected="true" id="home-menuitem">Home</a>
+            </li>
+            <li role="presentation">
+                <a href="/users" role="menuitem" aria-selected="false" id="users-index-menuitem">site.users.index.menu</a>
+            </li>
+            <li role="presentation">
+                <a href="http://example.com" role="menuitem" aria-selected="false" id="external-menuitem"rel="external">site.external.menu</a>
+            </li>
+            <li role="presentation">
+                <a href="/docs/policies" role="menuitem" aria-selected="false" id="policies-menuitem">Policies</a>
+            </li>
+        </ul><!-- //menubar -->
+    </nav>
+    <main role="main" id="content"><!-- role explicit for older browsers -->
+        {{> header}}
+        {{> body}}
+    </main>
+</div>

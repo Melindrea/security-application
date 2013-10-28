@@ -1,0 +1,10 @@
+[role=menubar] {
+    > li {
+        //first-level lis
+        display: inline-block;
+    }
+}
+
+[aria-label=main] {
+    //this is the main nav, at least suggested
+}

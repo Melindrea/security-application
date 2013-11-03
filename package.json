@@ -35,15 +35,16 @@
     "gateway": "~0.1.1",
     "grunt-phplint": "~0.0.5",
     "grunt-phpunit": "~0.3.0",
+    "grunt-phpcs": "~0.2.0",
     "grunt-csscss": "~0.6.0",
     "assemble": "~0.4.4",
     "bas": "~0.0.20",
-    "grunt-phpcs": "~0.2.0",
     "grunt-shell": "~0.3.1",
     "grunt-newer": "~0.5.2",
     "wrench": "~1.5.4",
     "grunt-latex": "~0.1.1",
-    "grunt-contrib-compress": "~0.5.2"
+    "grunt-contrib-compress": "~0.5.2",
+    "grunt-jsonlint": "~1.0.2"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -51,14 +51,18 @@ module.exports = function (grunt) {
             },
             compass: {
                 files: ['<%= yeoman.app %>/assets/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server', 'modernizr']
+                tasks: ['compass:server']
             },
             styles: {
                 files: ['<%= yeoman.app %>/assets/styles/{,*/}*.css'],
                 tasks: ['copy:styles']
             },
             templates: {
-                files: ['<%= yeoman.app %>/templates/{,*/}*.hbs'],
+                files: ['<%= yeoman.app %>/templates/pages/{,*/}*.hbs'],
+                tasks: ['newer:assemble:pages']
+            },
+            layouts: {
+                files: ['<%= yeoman.app %>/templates/layouts/{,*/}*.hbs'],
                 tasks: ['assemble:pages']
             },
             livereload: {
@@ -181,6 +185,13 @@ module.exports = function (grunt) {
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
                 'test/spec/mocha/{,*/}*.js'
             ]
+        },
+        jsonlint: {
+            data: {
+                src: [
+                    '<%= yeoman.php %>/metadata/**/*.json'
+                ]
+            }
         },
         mocha: {
             all: {
@@ -501,8 +512,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', [
         'newer:jsvalidate',
-        'newer:jshint',
-        'modernizr'
+        'newer:jshint'//,
+        // 'modernizr'
     ]);
 
     grunt.registerTask('php', [
@@ -517,7 +528,8 @@ module.exports = function (grunt) {
     grunt.registerTask('lint', [
         'newer:jsvalidate',
         'newer:jshint',
-        'php'
+        'php',
+        'newer:jsonlint'
     ]);
 
     grunt.registerTask('commit', [

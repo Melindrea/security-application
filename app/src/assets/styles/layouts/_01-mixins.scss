@@ -1,8 +1,8 @@
 //-- Based on http://goldengridsystem.com/
 //-- Container for holding other elements
-@mixin container($sides: 1, $top: 2)
+@mixin container($sides: 1, $top: 2, $bottom: 2)
 {
-    margin: #{$top*calc-gutter()}rem $sides*$column;
+    margin: #{$top*calc-gutter()}rem $sides*$column #{$bottom*calc-gutter()}rem;
 }
 
 //-- Simple elastic gutters

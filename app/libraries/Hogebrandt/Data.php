@@ -25,7 +25,7 @@ class Data
             return null;
         }
 
-        $path = __DIR__.'/../../data/texts/'.$name.'.'.self::$extensions[$type];
+        $path = __DIR__.'/../../metadata/texts/'.$name.'.'.self::$extensions[$type];
 
         if ($action == 'content') {
             return \File::get($path);
@@ -47,7 +47,7 @@ class Data
                 $name .= '/'.$virtualRoute;
             }
         }
-        $path = __DIR__.'/../../data/'.$name.'.json';
+        $path = __DIR__.'/../../metadata/pages/'.$name.'.json';
 
         if (!file_exists($path)) {
             return null;
@@ -59,7 +59,7 @@ class Data
 
     public static function create($name, $values = array())
     {
-        $path = __DIR__.'/../../data/'.$name.'.json';
+        $path = __DIR__.'/../../metadata/pages/'.$name.'.json';
 
         if (file_exists($path)) {
             // Assume we're wanting to update it

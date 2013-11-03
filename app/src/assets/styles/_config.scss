@@ -13,34 +13,37 @@
 
 // $Colors
 // -------------------------------------//
-$primary-1: #40C256;
-$primary-2: #489155;
-$primary-3: #157E27;
-$primary-4: #6FE083;
-$primary-5: #8DE09C;
+$primary-color-1: #40C256;
+$primary-color-2: #489155;
+$primary-color-3: #157E27;
+$primary-color-4: #6FE083;
+$primary-color-5: #8DE09C;
 
-$secondary-a-1: #358E9B;
-$secondary-a-2: #3B6D74;
-$secondary-a-3: #115A65;
-$secondary-a-4: #68C1CD;
-$secondary-a-5: #83C4CD;
+$secondary-color-a-1: #358E9B;
+$secondary-color-a-2: #3B6D74;
+$secondary-color-a-3: #115A65;
+$secondary-color-a-4: #68C1CD;
+$secondary-color-a-5: #83C4CD;
 
-$secondary-b-1: #FDA553;
-$secondary-b-2: #BE8C5E;
-$secondary-b-3: #A45D1B;
-$secondary-b-4: #FEBB7E;
-$secondary-b-5: #FECDA0;
+$secondary-color-b-1: #FDA553;
+$secondary-color-b-2: #BE8C5E;
+$secondary-color-b-3: #A45D1B;
+$secondary-color-b-4: #FEBB7E;
+$secondary-color-b-5: #FECDA0;
 
-$complementary-1: #FD5F53;
-$complementary-2: #BE655E;
-$complementary-3: #A4251B;
-$complementary-4: #FE877E;
-$complementary-5: #FEA7A0;
+$complementary-color-1: #FD5F53;
+$complementary-color-2: #BE655E;
+$complementary-color-3: #A4251B;
+$complementary-color-4: #FE877E;
+$complementary-color-5: #FEA7A0;
 
 // $BaseType
 // -------------------------------------//
 
-$font-weight: normal;
+$bold: 700;
+$normal: 400;
+
+$font-weight: $normal;
 $line-height: 1.65;
 $font-size: 112.5; // percentage value (16 * 112.5% = 18px)
 $font-base: 16 * ($font-size/100); // converts our percentage to a pixel value

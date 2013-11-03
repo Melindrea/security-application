@@ -1,18 +1,22 @@
+// Default layout; does not have a submenu, is assumed to be mainly text
+// -----------------------------------------------------------------------------
+
 [role="banner"],
 [role="document"],
 [role="contentinfo"] {
-    @extend %container;
     @extend %clearfix;
-
-    background: #ddd;
 }
 
 [role="banner"] {
-    margin-bottom: 0;
+    @extend %top-container;
 }
 
 [role="document"] {
-    margin-top: 0;
+    @extend %bottom-container;
+}
+
+[role="contentinfo"] {
+    @extend %container;
 }
 
 main,
@@ -22,8 +26,41 @@ main,
     @extend %clearfix;
 }
 
-.inner {
-    padding-top: #{calc-gutter(2)}rem;
-    padding-top: #{calc-gutter(2)}em;
+// Media queries
+// -----------------------------------------------------------------------------
+[role="document"] {
+    @include breakpoint(45em) {
+        main {
+            padding: 2em;
+        }
+    }
+    @include breakpoint(55em) {
+        main {
+            padding: 2em 4em;
+        }
+    }
+    @include breakpoint(65em) {
+        @include container(3, 0);
+    }
+    @include breakpoint(85em) {
+        @include container(5, 0);
+    }
 }
 
+[role="banner"] {
+    @include breakpoint(65em) {
+        @include container(3, 2, 0);
+    }
+    @include breakpoint(85em) {
+        @include container(5, 2, 0);
+    }
+}
+
+[role="contentinfo"] {
+    @include breakpoint(65em) {
+        @include container(3);
+    }
+    @include breakpoint(85em) {
+        @include container(5);
+    }
+}

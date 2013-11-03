@@ -1,0 +1,8 @@
+[role="document"] {
+    background: rgba($primary-color-1, 0.5);
+    @include border-radius(10px);
+    border: 1px solid $primary-color-1;
+    .no-rgba & {
+        background: lighten($primary-color-1, 15);
+    }
+}

@@ -1,0 +1,19 @@
+[role="menubar"] {
+    a {
+        padding: 0.5em;
+        background: rgba($primary-color-1, 0.5);
+        @include border-top-radius(10px);
+        border: 1px solid $primary-color-1;
+        border-bottom: 0 none;
+
+        color: $heading-color;
+        .no-rgba & {
+            background: lighten($primary-color-1, 15);
+        }
+
+        &[aria-selected="true"] {
+            background: $primary-color-1;
+            font-weight: $bold;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+// Submenu layout
+// -----------------------------------------------------------------------------
+@include breakpoint(45em) {
+    [role="document"].sidemenu {
+        main {
+            width: calc-span(4, 6);
+            float: left;
+        }
+    }
+
+    [aria-label="submenu"] {
+        width: calc-span(2, 6);
+        float: left;
+        padding-top: 2em;
+    }
+}

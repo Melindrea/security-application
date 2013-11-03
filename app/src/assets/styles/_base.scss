@@ -1,14 +1,18 @@
 // Styles to set certain defaults
 // -----------------------------------------------------------------------------
-nav {
-    ul,
-    ol {
-        list-style: none;
-        padding-left: 0;
-        margin: 0;
+ul {
+    list-style-type: square;
+
+    ul {
+        list-style-type: circle;
+
+        ul {
+            list-style-type: disc;
+        }
     }
 }
 
 html * {
     @include box-sizing(border-box);
 }
+

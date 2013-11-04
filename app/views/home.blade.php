@@ -3,11 +3,13 @@
 @section('content')
     <h1>Home page</h1>
 
-    <p>This is the front page of the system. You do not need to be logged
-        in to view it.</p>
+    {{ HTML::markdown('This is the front page of the system. You do not need to be logged in to view it.
 
-    <p>This is obviously not the correct view for the actual project, but
-        one that is created to give easy access to the prototype system.</p>
+This is obviously not the correct view for the actual project, but one that is created to give easy access to the prototype system.
+
+{media[alt="test"|"something else"|"a third parameter"]}content.jpg{/media}/
+{media[alt="test"|"something else"|"a third parameter"]}/
+') }}
 
     <h2>Links</h2>
 

@@ -201,5 +201,6 @@ return array(
         'Data'            => 'Hogebrandt\Data',
         'Site'            => 'Hogebrandt\Site',
         'MobileDetect'    => 'Hogebrandt\MobileDetect',
+        'Shortcode'       => 'Hogebrandt\Shortcode',
     ),
 );

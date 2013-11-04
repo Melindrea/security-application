@@ -31,8 +31,10 @@ HTML::macro(
     function ($text) {
         $cleaned = \Purifier::clean($text);
         $markdown = \Markdown::defaultTransform($cleaned);
+        $shortcode = \Shortcode::parseText($markdown);
         $typo = new \Typography();
-        $typographed = $typo->process($markdown);
+        $typographed = $typo->process($shortcode);
+
         return $typographed;
     }
 );
@@ -181,12 +183,12 @@ HTML::macro(
 
                 if (isset($item['attributes'])) {
                     $attributes = array_map(
-                            function ($item, $key) {
-                                return $key.'="'.$item.'"';
-                            },
-                            $item['attributes'],
-                            array_keys($item['attributes'])
-                        );
+                        function ($item, $key) {
+                            return $key.'="'.$item.'"';
+                        },
+                        $item['attributes'],
+                        array_keys($item['attributes'])
+                    );
                     $temp['attributes'] = join(' ', $attributes);
                 } else {
                     $temp['attributes'] = '';
@@ -232,6 +234,25 @@ HTML::macro(
                 }
             }
         }
+        return $markup;
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Media macro
+|--------------------------------------------------------------------------
+|
+| Links to media based on name and viewport width
+|
+*/
+HTML::macro(
+    'media',
+    function ($item) {
+        // Should load metadata about an item in the media library
+        // and spit out a link based on what it is
+        $markup = '';
+
         return $markup;
     }
 );

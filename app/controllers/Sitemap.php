@@ -56,8 +56,8 @@ class Sitemap extends Base
                 $config = $items;
                 if (isset($config['path'])) {
                     $path .= $config['path'].'/'.$file;
-                } elseif (strpos($file,'.') !== false) {
-                    $path .= str_replace('.','/', $file);
+                } elseif (strpos($file, '.') !== false) {
+                    $path .= str_replace('.', '/', $file);
                 } else {
                     $path .= $file;
                 }
@@ -80,7 +80,8 @@ class Sitemap extends Base
         return $sitemap->render($ext);
     }
 
-    private function parseItem($file, $config) {
+    private function parseItem($file, $config)
+    {
 
     }
 }

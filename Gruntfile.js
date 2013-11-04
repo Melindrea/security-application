@@ -517,8 +517,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('php', [
-        'newer:phplint',
-        'newer:phpcs'
+        'phplint',
+        'phpcs'
     ]);
 
     grunt.registerTask('phpdocs', [

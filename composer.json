@@ -33,6 +33,7 @@
         "phptypography/phptypography": "dev-master",
         "mews/purifier": "dev-master",
         "roumen/sitemap": "dev-master",
+        "roumen/feed": "dev-master",
         "mobiledetect/mobiledetectlib": "dev-master"
     },
     "autoload": {

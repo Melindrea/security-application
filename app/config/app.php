@@ -130,6 +130,7 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Mews\Purifier\PurifierServiceProvider',
         'Roumen\Sitemap\SitemapServiceProvider',
+        'Roumen\Feed\FeedServiceProvider',
 
     ),
 
@@ -202,5 +203,6 @@ return array(
         'Site'            => 'Hogebrandt\Site',
         'MobileDetect'    => 'Hogebrandt\MobileDetect',
         'Shortcode'       => 'Hogebrandt\Shortcode',
+        'Feed'            => 'Roumen\Feed\Facades\Feed',
     ),
 );

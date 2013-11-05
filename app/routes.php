@@ -34,6 +34,22 @@ Route::get(
     )
 );
 
+Route::get(
+    'robots.txt',
+    array(
+        'as' => 'robots',
+        'uses' => 'Controller\Robots@getIndex',
+    )
+);
+
+Route::get(
+    'feed.{ext}',
+    array(
+        'as' => 'feed',
+        'uses' => 'Controller\Feed@getIndex',
+    )
+);
+
 Route::group(
     array('prefix' => 'users'),
     function () {

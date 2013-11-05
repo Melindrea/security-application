@@ -34,8 +34,9 @@ class Sitemap extends Base
         // Static documents
         $pages = \Config::get('sitemap');
         foreach ($pages as $key => $items) {
-
-            if ($key == 'virtual') {
+            if ($key == 'robots') {
+                continue;
+            } elseif ($key == 'virtual') {
                 foreach ($items as $type => $documents) {
                     foreach ($documents as $file => $config) {
                         $lastmodified = \Data::loadDocument($file, $config['type'], 'lastmodified');
@@ -78,10 +79,5 @@ class Sitemap extends Base
         }
 
         return $sitemap->render($ext);
-    }
-
-    private function parseItem($file, $config)
-    {
-
     }
 }

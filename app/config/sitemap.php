@@ -12,4 +12,12 @@ return [
     'login' => [
         'path' => 'users',
     ],
+    'robots' => [
+        [
+            'user-agent' => '*',
+            'disallow' => [
+                '/',
+            ],
+        ],
+    ],
 ];

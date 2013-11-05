@@ -5,4 +5,5 @@ return [
         'pattern' => '%1$s %3$s %2$s',
     ],
     'meta' => [],
+    'logo' => 'assets/images/logo.png',
 ];

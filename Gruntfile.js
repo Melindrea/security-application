@@ -1,10 +1,5 @@
 // Generated on 2013-09-06 using generator-melindrea 0.0.0
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-var mountFolder = function (connect, dir) {
-    return connect.static(require('path').resolve(dir));
-};
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -23,12 +18,19 @@ module.exports = function (grunt) {
     var yeomanConfig = {
         app: 'app/src',
         dist: 'public_html/assets',
+        html: 'dist',
         php: 'app'
 
     };
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        'gh-pages': {
+            options: {
+                base: '<%= yeoman.html %>'
+            },
+            src: '**/*'
+        },
         shell: {                                // Task
             phpdocs: {                      // Target
                 command: 'php composer_components/bin/phpdoc.php'
@@ -39,12 +41,6 @@ module.exports = function (grunt) {
                 },
                 command: 'php artisan serve --port=<%= connect.options.port %> --host=<%= connect.options.host %>'
             }
-        },
-        'gh-pages': {
-            options: {
-                base: '<%= yeoman.dist %>'
-            },
-            src: '**/*'
         },
         watch: {
             js: {
@@ -57,11 +53,11 @@ module.exports = function (grunt) {
             },
             compass: {
                 files: ['<%= yeoman.app %>/assets/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server']
+                tasks: ['compass:server', 'autoprefixer']
             },
             styles: {
                 files: ['<%= yeoman.app %>/assets/styles/{,*/}*.css'],
-                tasks: ['copy:styles']
+                tasks: ['copy:styles', 'autoprefixer']
             },
             templates: {
                 files: ['<%= yeoman.app %>/templates/pages/{,*/}*.hbs'],
@@ -73,7 +69,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    livereload: LIVERELOAD_PORT
+                    livereload: '<%= connect.options.livereload %>'
                 },
                 files: [
                     '<%= yeoman.app %>/*.html',
@@ -87,44 +83,33 @@ module.exports = function (grunt) {
         connect: {
             options: {
                 port: 9000,
+                livereload: 35729,
                 // change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
             },
             livereload: {
                 options: {
-                    middleware: function (connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, yeomanConfig.app)
-                        ];
-                    }
+                    open: true,
+                    base: [
+                        '.tmp',
+                        '<%= yeoman.app %>'
+                    ]
                 }
             },
             test: {
                 options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test/mocha'),
-                            mountFolder(connect, yeomanConfig.app)
-                        ];
-                    }
+                    base: [
+                        '.tmp',
+                        'test/mocha',
+                        '<%= yeoman.app %>'
+                    ]
                 }
             },
             dist: {
                 options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, yeomanConfig.dist)
-                        ];
-                    }
+                    open: true,
+                    base: '<%= yeoman.dist %>'
                 }
-            }
-        },
-        open: {
-            server: {
-                path: 'http://localhost:<%= connect.options.port %>'
             }
         },
         clean: {
@@ -203,7 +188,7 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
+                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
                 }
             }
         },
@@ -234,6 +219,19 @@ module.exports = function (grunt) {
                 options: {
                     debugInfo: true
                 }
+            }
+        },
+        autoprefixer: {
+            options: {
+                browsers: ['last 1 version']
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '.tmp/styles/',
+                    src: '{,*/}*.css',
+                    dest: '.tmp/styles/'
+                }]
             }
         },
         latex: {
@@ -343,7 +341,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: '<%= yeoman.app %>',
                     src: '*.html',
-                    dest: '<%= yeoman.dist %>'
+                    dest: '<%= yeoman.html %>'
                 }]
             }
         },
@@ -418,7 +416,8 @@ module.exports = function (grunt) {
                 'compass',
                 'copy:styles',
                 'imagemin',
-                'svgmin'
+                'svgmin',
+                'htmlmin'
             ]
         },
         phplint: {
@@ -459,7 +458,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+            return grunt.task.run(['build', 'connect:dist:keepalive']);
         } else if (target === 'php') {
             return grunt.task.run(['open', 'shell:artisan']);
         }
@@ -468,8 +467,8 @@ module.exports = function (grunt) {
             'assemble:pages',
             'clean:server',
             'concurrent:server',
+            'autoprefixer',
             'connect:livereload',
-            'open',
             'watch'
         ]);
     });
@@ -477,6 +476,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',
+        'autoprefixer',
         'connect:test',
         'mocha',
         'phpunit'
@@ -490,10 +490,12 @@ module.exports = function (grunt) {
                 'clean:dist',
                 'useminPrepare',
                 'concurrent:dist',
+                'autoprefixer',
                 'concat',
                 'cssmin',
                 'uglify',
                 'copy:dist',
+                // 'rev',
                 'usemin',
                 'clean:deploy',
                 'copy:deploy',
@@ -508,18 +510,20 @@ module.exports = function (grunt) {
             'clean:dist',
             'useminPrepare',
             'concurrent:dist',
+            'autoprefixer',
             'concat',
             'cssmin',
             'uglify',
             'copy:dist',
+            // 'rev',
             'usemin'
         ]);
     });
 
     grunt.registerTask('js', [
         'newer:jsvalidate',
-        'newer:jshint'//,
-        // 'modernizr'
+        'newer:jshint',
+        'modernizr'
     ]);
 
     grunt.registerTask('php', [

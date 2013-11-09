@@ -40,6 +40,12 @@ module.exports = function (grunt) {
                 command: 'php artisan serve --port=<%= connect.options.port %> --host=<%= connect.options.host %>'
             }
         },
+        'gh-pages': {
+            options: {
+                base: '<%= yeoman.dist %>'
+            },
+            src: '**/*'
+        },
         watch: {
             js: {
                 files: ['<%= yeoman.app %>/assets/scripts/{,*/}*.js'],

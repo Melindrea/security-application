@@ -44,7 +44,8 @@
     "wrench": "~1.5.4",
     "grunt-latex": "~0.1.1",
     "grunt-contrib-compress": "~0.5.2",
-    "grunt-jsonlint": "~1.0.2"
+    "grunt-jsonlint": "~1.0.2",
+    "grunt-gh-pages": "~0.8.1"
   },
   "engines": {
     "node": ">=0.8.0"

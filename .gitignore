@@ -8,6 +8,7 @@
 !.htaccess
 *~
 *.zip
+dist
 
 .DS_Store
 .AppleDouble
@@ -26,7 +27,6 @@ build/
 *.sass-cache
 # Windows image file caches
 Thumbs.db
-ehthumbs.db
 
 # Folder config file
 Desktop.ini

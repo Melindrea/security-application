@@ -17,8 +17,8 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app/src',
-        dist: 'public_html/assets',
-        html: 'dist',
+        // dist: 'public_html/assets',
+        dist: 'dist',
         php: 'app'
 
     };
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
         'gh-pages': {
             options: {
-                base: '<%= yeoman.html %>'
+                base: '<%= yeoman.dist %>'
             },
             src: '**/*'
         },
@@ -126,6 +126,7 @@ module.exports = function (grunt) {
             temporary: '.build/app/storage/{meta,cache,views,logs}/*',
             server: '.tmp',
             report: 'build',
+            assets: 'public_html/assets/**/*',
             deploy: {
                 files: [{
                     dot: true,
@@ -252,10 +253,10 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                        '<%= yeoman.dist %>/styles/fonts/{,*/}*.*'
+                        '<%= yeoman.dist %>/assets/scripts/{,*/}*.js',
+                        '<%= yeoman.dist %>/assets/styles/{,*/}*.css',
+                        '<%= yeoman.dist %>/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+                        '<%= yeoman.dist %>/assets/styles/fonts/{,*/}*.*'
                     ]
                 }
             }
@@ -341,7 +342,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: '<%= yeoman.app %>',
                     src: '*.html',
-                    dest: '<%= yeoman.html %>'
+                    dest: '<%= yeoman.dist %>'
                 }]
             }
         },
@@ -384,6 +385,15 @@ module.exports = function (grunt) {
                     src: [
                         'public_html/**'
                     ]
+                }]
+            },
+            assets: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.dist %>/assets',
+                    dest: 'public_html/assets/',
+                    src: '**/*'
                 }]
             }
         },
@@ -485,22 +495,18 @@ module.exports = function (grunt) {
     grunt.registerTask('build', function (target) {
         if (target === 'deploy') {
             return grunt.task.run([
-                'assemble:pages',
-                'modernizr',
-                'clean:dist',
-                'useminPrepare',
-                'concurrent:dist',
-                'autoprefixer',
-                'concat',
-                'cssmin',
-                'uglify',
-                'copy:dist',
-                // 'rev',
-                'usemin',
+                'build:assets',
+                // Add task to go through the assets to fix them
                 'clean:deploy',
                 'copy:deploy',
                 'clean:temporary',
                 'compress:deploy'
+            ]);
+        } else if (target === 'assets') {
+            return grunt.task.run([
+                'build',
+                'clean:assets',
+                'copy:assets'
             ]);
         }
 
@@ -515,10 +521,15 @@ module.exports = function (grunt) {
             'cssmin',
             'uglify',
             'copy:dist',
-            // 'rev',
+            'rev',
             'usemin'
         ]);
     });
+
+    grunt.registerTask('deploy', [
+        'build',
+        'gh-pages'
+    ]);
 
     grunt.registerTask('js', [
         'newer:jsvalidate',

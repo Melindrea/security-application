@@ -83,6 +83,38 @@ HTML::macro(
 
 /*
 |--------------------------------------------------------------------------
+| Documentclass macro
+|--------------------------------------------------------------------------
+|
+| Returns the classes for the document wrapper
+|
+*/
+HTML::macro(
+    'documentClasses',
+    function ($customClasses = array()) {
+        $documentClasses = array();
+
+        if (!is_array($customClasses)) {
+            $customClasses = explode(' ', $customClasses);
+        }
+
+        $documentClasses = array_merge($documentClasses, $customClasses);
+
+        if (HTML::menu('submenu')) {
+            $documentClasses[] = 'submenu';
+        }
+
+        if (count($documentClasses) > 0) {
+            $classes = join(' ', $documentClasses);
+            return ' class="'.$classes.'"';
+        }
+
+        return false;
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
 | Meta macro
 |--------------------------------------------------------------------------
 |
@@ -135,7 +167,7 @@ HTML::macro(
         $currentRouteName = \Route::currentRouteName();
         $menu = Config::get('menu');
         if (!isset($menu['labels'][$label])) {
-            return '';
+            return false;
         }
 
         $config = $menu['labels'][$label];
@@ -143,9 +175,9 @@ HTML::macro(
 
         if ($config['start'] == 1) {
             if (!isset($items[$currentRouteName])) {
-                return '';
+                return false;
             } elseif (!isset($items[$currentRouteName]['items'])) {
-                return '';
+                return false;
             }
 
             $items = $items[$currentRouteName]['items'];

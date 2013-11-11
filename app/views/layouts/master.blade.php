@@ -26,13 +26,21 @@
         <body class="{{ HTML::bodyClasses() }}">
         {{ HTML::flash() }}
 
-        <header>
+        <header role="banner">
         @section('header')
         {{ HTML::menu('main') }}
         @show
         </header>
 
-        @yield('content')
+        <div role="document"{{ HTML::documentClasses() }}>
+            {{ $submenu = HTML::menu('submenu') }}
+            @if ($submenu)
+            {{ $submenu }}
+            @endif
+            <main role="main" id="content"><!-- role explicit for older browsers -->
+            @yield('content')
+            </main>
+        </div>
         <footer>
         @section('footer')
         @show

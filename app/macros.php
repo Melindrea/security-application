@@ -217,20 +217,27 @@ HTML::macro(
 HTML::macro(
     'asset',
     function ($section) {
+        $paths = require __DIR__.'/../bootstrap/paths.php';
         $assets = Config::get('asset');
 
         $markup = '';
         if (isset($assets[$section])) {
             foreach ($assets[$section] as $key => $attributes) {
-                if (ends_with($key, '.css')) {
-                    $default = [
-                        'type' => null,
-                        'media' => null,
-                    ];
-                    $attributes = array_merge($default, $attributes);
-                    $markup .= HTML::style($key, $attributes);
-                } elseif (ends_with($key, '.js')) {
-                    $markup .= HTML::script($key, $attributes);
+                $file = $paths['public'].$key;
+                $files = glob($file);
+                if (count($files) > 0) {
+                    $parts = explode('.', basename($files[0]));
+                    $key = str_replace('*', $parts[0], $key);
+                    if (ends_with($key, '.css')) {
+                        $default = [
+                            'type' => null,
+                            'media' => null,
+                        ];
+                        $attributes = array_merge($default, $attributes);
+                        $markup .= HTML::style($key, $attributes);
+                    } elseif (ends_with($key, '.js')) {
+                        $markup .= HTML::script($key, $attributes);
+                    }
                 }
             }
         }

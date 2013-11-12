@@ -1,5 +1,5 @@
 <figure id="{{ $slug }}-figure" class="js-thumbnail">
-    <a href="{{ asset($large) }}">
+    <a href="{{ asset($large) }}"{{ $linkAttributes }}>
         {{ HTML::image($thumbnail, $alt, $attributes) }}
     </a>
     @if ($caption)

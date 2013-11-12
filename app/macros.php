@@ -387,6 +387,22 @@ HTML::macro(
 
 /*
 |--------------------------------------------------------------------------
+| Thumbnail macro
+|--------------------------------------------------------------------------
+|
+| Creates a figure element for a thumbnail, which is a media element with a
+| link and optionally caption
+|
+*/
+HTML::macro(
+    'thumbnail',
+    function ($url, $title = null, $attributes = array(), $secure = null) {
+
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
 | Require Directory Function
 |--------------------------------------------------------------------------
 |

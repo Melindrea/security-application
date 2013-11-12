@@ -7,7 +7,7 @@
     "jquery": "~2.0",
     "selectivizr": "~1.0.2",
     "typeplate": "latest",
-    "magnific-popup": "~0.9.5",
+    "magnific-popup": "~0.9.8",
     "showdown": "~0.3.1",
     "zeroclipboard": "~1.2.2"
   },

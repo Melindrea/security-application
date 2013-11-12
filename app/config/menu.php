@@ -38,8 +38,8 @@ return [
                 'rel' => 'external',
             ],
         ],
-        'policies' => [
-            'virtual' => 'document',
+        'document.policies' => [
+            'virtual' => true,
         ],
     ],
 ];

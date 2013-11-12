@@ -42,10 +42,7 @@ class Data
     public static function get($name = null)
     {
         if (!$name) {
-            $name = \Route::currentRouteName();
-            if ($virtualRoute = \Config::get('virtual.route')) {
-                $name .= '/'.$virtualRoute;
-            }
+            $name = str_replace('.', '/', \Site::currentRouteName());
         }
         $path = __DIR__.'/../../metadata/pages/'.$name.'.json';
 

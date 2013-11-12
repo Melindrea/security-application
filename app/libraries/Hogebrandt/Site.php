@@ -60,4 +60,13 @@ class Site
     {
         return \URL::route($routename, $param, $absolute);
     }
+
+    public static function currentRouteName()
+    {
+        $name = \Route::currentRouteName();
+        if ($virtual = \Config::get('virtual.route')) {
+            $name .= '.'.$virtual;
+        }
+        return $name;
+    }
 }

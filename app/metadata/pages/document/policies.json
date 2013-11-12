@@ -1,6 +1,6 @@
 {
-    "site-title": "site.policies.site-title",
-    "page-title": "site.policies.page-title",
+    "site-title": "site.document.policies.site-title",
+    "page-title": "site.document.policies.page-title",
     "meta": {
         "description": "site.policies.description",
         "keywords": [

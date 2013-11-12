@@ -60,8 +60,8 @@ HTML::macro(
 
         $bodyClasses[] = \Route::currentRouteName();
 
-        if ($virtualRoute = Config::get('virtual.route')) {
-            $bodyClasses[] = $virtualRoute;
+        if (\Config::get('virtual.route')) {
+            $bodyClasses[] = \Site::currentRouteName();
         }
 
 
@@ -164,7 +164,7 @@ HTML::macro(
 HTML::macro(
     'menu',
     function ($label) {
-        $currentRouteName = \Route::currentRouteName();
+        $currentRouteName = \Site::currentRouteName();
         $menu = Config::get('menu');
         if (!isset($menu['labels'][$label])) {
             return false;
@@ -200,9 +200,10 @@ HTML::macro(
                 } else {
                     $params = (isset($item['query']) && is_array($item['query'])) ? $item['query'] : [];
 
-                    if (isset($item['virtual'])) {
-                        $params['file'] = $routeName;
-                        $temp['url'] = Site::route($item['virtual'], $params);
+                    if (isset($item['virtual']) && $item['virtual']) {
+                        $parts = explode('.', $routeName);
+                        $params['file'] = $parts[1];
+                        $temp['url'] = Site::route($parts[0], $params);
                     } else {
                         $temp['url'] = Site::route($routeName, $params);
                     }

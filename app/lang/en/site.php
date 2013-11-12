@@ -17,11 +17,13 @@ return array(
         'description' => 'Main page of the security application',
     ),
 
-    'policies' => array(
-        'menu' => 'Policies',
-        'page-title' => 'Policies',
-        'site-title' => 'Policies',
-        'description' => 'We will not share your information with third part withouth your explicit permission',
+    'document' => array(
+        'policies' => array(
+            'menu' => 'Policies',
+            'page-title' => 'Policies',
+            'site-title' => 'Policies',
+            'description' => 'We will not share your information with third part withouth your explicit permission',
+        ),
     ),
 
     'meta' => array(

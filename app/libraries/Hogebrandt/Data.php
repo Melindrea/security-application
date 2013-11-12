@@ -63,4 +63,40 @@ class Data
             $file = self::get($name);
         }
     }
+
+    public static function loadMedia($slug)
+    {
+        $path = __DIR__.'/../../metadata/media/library.json';
+
+        if (!file_exists($path)) {
+            // TODO: Throw exception
+            return null;
+        }
+
+        $content = \File::get($path);
+        $library = json_decode($content, true);
+
+        if (!isset($library[$slug])) {
+            return null;
+        }
+        return $library[$slug];
+    }
+
+    public static function loadGallery($slug)
+    {
+        $path = __DIR__.'/../../metadata/media/galleries.json';
+
+        if (!file_exists($path)) {
+            // TODO: Throw exception
+            return null;
+        }
+
+        $content = \File::get($path);
+        $gallery = json_decode($content, true);
+
+        if (!isset($gallery[$slug])) {
+            return null;
+        }
+        return $gallery[$slug];
+    }
 }

@@ -1,0 +1,11 @@
+{
+    "placekitten": {
+        "type": "image",
+        "extension": "jpg",
+        "original-size": "large",
+        "sizes": ["thumbnail", "medium", "large"],
+        "caption": "Adorable kitties!",
+        "description": "Don't you love how cute the kitties are?",
+        "alt": "A picture from placekitten"
+    }
+}

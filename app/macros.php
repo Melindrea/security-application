@@ -396,8 +396,40 @@ HTML::macro(
 */
 HTML::macro(
     'thumbnail',
-    function ($url, $title = null, $attributes = array(), $secure = null) {
+    function ($slug) {
+        $fileData = Data::loadMedia(strtolower($slug));
 
+        $data['slug'] = $slug;
+        $data['alt'] = $fileData['alt'];
+        $data['caption'] = (isset($fileData['caption'])) ? $fileData['caption'] : false;
+        $path = Config::get('media.directories.'.$fileData['type']);
+        $data['large'] = $path.'/'.$slug.'-'.$fileData['original-size'].'.'.$fileData['extension'];
+        $data['thumbnail'] = $path.'/'.$slug.'-thumbnail.'.$fileData['extension'];
+        $data['attributes'] = [
+            'width' => Config::get('media.sizes.thumbnail.width'),
+            'height' => Config::get('media.sizes.thumbnail.height'),
+        ];
+        return View::make('partials.thumbnail', $data);
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Gallery macro
+|--------------------------------------------------------------------------
+|
+| Creates a gallery based on a slug
+|
+*/
+HTML::macro(
+    'gallery',
+    function ($slug) {
+        $items = Data::loadGallery(strtolower($slug));
+
+        $data['slug'] = $slug;
+        $data['items'] = $items;
+
+        return View::make('partials.gallery', $data);
     }
 );
 

@@ -13,8 +13,8 @@ sudo apt-get install graphviz php5-xsl
 
 TODO: Fix phpDocumentator so it doesn't have a seizure on lack of vendor-directory...
 
-Input: Purifier to clean
-Output: Purifier, Markdown, SmartyPants
+Input:
+Output: Purifier, Markdown, Typographer, shortcodes
 
 * Never connect to the database as a superuser or as the database owner. Use always customized users with very limited privileges
 * If the application waits for numerical input, consider verifying data with ctype_digit(), or silently change its type using settype(), or use its numeric representation by sprintf().
@@ -66,3 +66,5 @@ Mobile Detect:
 https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples
 
 All examples instead use: MobileDetect::function(), so $detect->isMobile() is MobileDetect::isMobile()
+
+Sizes - set in some way?

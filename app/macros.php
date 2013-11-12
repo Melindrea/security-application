@@ -403,6 +403,7 @@ HTML::macro(
         $data['alt'] = $fileData['alt'];
         $data['caption'] = (isset($fileData['caption'])) ? $fileData['caption'] : false;
         $path = Config::get('media.directories.'.$fileData['type']);
+        // if (isset($fileData['url']))
         $data['large'] = $path.'/'.$slug.'-'.$fileData['original-size'].'.'.$fileData['extension'];
         $data['thumbnail'] = $path.'/'.$slug.'-thumbnail.'.$fileData['extension'];
         $data['attributes'] = [

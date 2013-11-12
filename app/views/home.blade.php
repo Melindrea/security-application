@@ -22,6 +22,4 @@ This is obviously not the correct view for the actual project, but one that is c
         @endif
         <li><a href="{{Site::route('messages.index')}}">Messages</a></li>
     </ul>
-    Test?
-    {{ HTML::gallery('gallery-1') }}
 @stop

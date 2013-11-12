@@ -186,6 +186,7 @@ HTML::macro(
         $itemsArr = [];
         foreach ($items as $routeName => $item) {
             $condition = true;
+            $attributes = [];
 
             if (isset($item['condition'])) {
                 $condition = call_user_func($item['condition']);
@@ -196,7 +197,6 @@ HTML::macro(
 
                 if (isset($item['url'])) {
                     $temp['url'] = $item['url'];
-                    $attributes[] = 'rel="external"';
                 } else {
                     $params = (isset($item['query']) && is_array($item['query'])) ? $item['query'] : [];
 
@@ -210,22 +210,15 @@ HTML::macro(
                 }
 
                 $temp['label'] = trans('site.'.$routeName.'.menu');
-                $temp['slug'] = \Site::slugify($routeName);
+                $attributes['id'] = \Site::slugify($routeName).'-menuitem';
+                $attributes['role'] = 'menuitem';
 
-                $temp['selected'] = ($routeName == $currentRouteName) ? 'true' : 'false';
+                $attributes['aria-selected'] = ($routeName == $currentRouteName) ? 'true' : 'false';
 
                 if (isset($item['attributes'])) {
-                    $attributes = array_map(
-                        function ($item, $key) {
-                            return $key.'="'.$item.'"';
-                        },
-                        $item['attributes'],
-                        array_keys($item['attributes'])
-                    );
-                    $temp['attributes'] = join(' ', $attributes);
-                } else {
-                    $temp['attributes'] = '';
+                    $attributes = array_merge($attributes, $item['attributes']);
                 }
+                $temp['attributes'] = $attributes;
 
                 $itemsArr[] = View::make('partials.menu.item', $temp);
             }
@@ -318,7 +311,8 @@ HTML::macro(
 | Flash macro
 |--------------------------------------------------------------------------
 |
-| Creates a message that will fade once it's been up for a few moments
+| Creates a message that will fade once it's been up for a few moments,
+| using JavaScript
 |
 */
 HTML::macro(
@@ -341,7 +335,7 @@ HTML::macro(
 | Cookie macro
 |--------------------------------------------------------------------------
 |
-| Creates a cookie message that needs to be clicked away
+| Creates a cookie message that needs to be clicked away, using JavaScript
 |
 */
 HTML::macro(
@@ -366,6 +360,28 @@ HTML::macro(
     function ($content, $save = false) {
         return View::make('partials.notification')
         ->with('content', View::make('partials.notifications.'.$content));
+    }
+);
+
+/*
+|--------------------------------------------------------------------------
+| Link macro
+|--------------------------------------------------------------------------
+|
+| Makes a better link
+|
+*/
+HTML::macro(
+    'alink',
+    function ($url, $title = null, $attributes = array(), $secure = null) {
+        if (starts_with($url, 'http')) {
+            if (isset($attributes['rel'])) {
+                $attributes['rel'] = $attributes['rel'] . ' external';
+            } else {
+                $attributes['rel'] = 'external';
+            }
+        }
+        return HTML::link($url, $title, $attributes, $secure);
     }
 );
 

@@ -22,4 +22,6 @@ This is obviously not the correct view for the actual project, but one that is c
         @endif
         <li><a href="{{Site::route('messages.index')}}">Messages</a></li>
     </ul>
+
+    {{ HTML::alink('http://example.com/img/photo.jpg') }}
 @stop

@@ -34,9 +34,6 @@ return [
         ],
         'external' => [
             'url' => 'http://example.com',
-            'attributes' => [
-                'rel' => 'external',
-            ],
         ],
         'document.policies' => [
             'virtual' => true,

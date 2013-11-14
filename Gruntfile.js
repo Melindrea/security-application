@@ -167,7 +167,8 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
-                'test/spec/mocha/{,*/}*.js'
+                'test/spec/mocha/{,*/}*.js',
+                'hooks/{,*/}*.js'
             ]
         },
         jsvalidate: {
@@ -175,7 +176,8 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
-                'test/spec/mocha/{,*/}*.js'
+                'test/spec/mocha/{,*/}*.js',
+                'hooks/{,*/}*.js'
             ]
         },
         jsonlint: {
@@ -462,6 +464,14 @@ module.exports = function (grunt) {
                 staticBackup: false,
                 colors: true,
                 noGlobalsBackup: false
+            }
+        },
+        githooks: {
+            all: {
+                options: {
+                    template: 'hooks/pre-commit.js'
+                },
+                'pre-commit': 'commit'
             }
         }
     });

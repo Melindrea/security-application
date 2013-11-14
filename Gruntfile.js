@@ -40,6 +40,19 @@ module.exports = function (grunt) {
                     stdout: true
                 },
                 command: 'php artisan serve --port=<%= connect.options.port %> --host=<%= connect.options.host %>'
+            },
+            update: {
+                command: [
+                    'npm install',
+                    'bower install',
+                    'php composer.phar dump-autoload',
+                    'php composer.phar install',
+                    'bundle install',
+                    'grunt githooks'
+                ].join('&&'),
+                options: {
+                    stdout: true
+                }
             }
         },
         watch: {
@@ -566,6 +579,10 @@ module.exports = function (grunt) {
     grunt.registerTask('commit', [
         'lint',
         'test'
+    ]);
+
+    grunt.registerTask('update', [
+        'shell:update'
     ]);
 
     grunt.registerTask('report', [

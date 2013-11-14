@@ -86,7 +86,7 @@ class Users extends Authorized
         if (!$honeypot->passes()) {
             // Most likely bot
             return \Redirect::route('home')
-            ->with('flash_warning', trans('messages.register.failed'));
+            ->with('alert_error', trans('messages.register.failed'));
         }
 
         $post = \Input::all();
@@ -98,7 +98,7 @@ class Users extends Authorized
 
         if ($user->save()) {
             return \Redirect::route('home')
-            ->with('flash_notice', trans('messages.register.successful'));
+            ->with('alert_success', trans('messages.register.successful'));
         } else {
             \Event::fire('user.register.failed', array($user));
             return \Redirect::back()->withInput()->withErrors($user->errors);
@@ -187,14 +187,14 @@ class Users extends Authorized
             if (\Auth::attempt($credentials)) {
                 // TODO: Reroute to profile
                 return \Redirect::intended('/')
-                    ->with('flash_notice', trans('messages.login.successful'));
+                    ->with('alert_success', trans('messages.login.successful'));
             }
         }
 
         $data['username'] = \Input::get('username');
         return \Redirect::route('login')
           ->withInput($data)
-          ->with('flash_warning', trans('messages.login.failed'));
+          ->with('alert_error', trans('messages.login.failed'));
     }
 
     /**
@@ -208,14 +208,12 @@ class Users extends Authorized
 
         if ($sid == csrf_token()) {
             \Auth::logout();
-            // \Session::flush();
-            // session_destroy();
 
             return \Redirect::route('home')
-            ->with('flash_notice', trans('messages.logout.successful'));
+            ->with('alert_success', trans('messages.logout.successful'));
         } else {
             return \Redirect::route('home')
-            ->with('flash_warning', trans('messages.logout.failed'));
+            ->with('alert_error', trans('messages.logout.failed'));
         }
     }
 }

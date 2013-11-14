@@ -1,0 +1,15 @@
+%button-reset {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    border-radius: 0;
+    font: inherit; // It has its' own font-size and font-family
+    padding: 0;
+    margin: 0;
+
+    &:hover,
+    &:focus {
+        outline: none; // Please, make sure to implement something else for focus!
+    }
+}

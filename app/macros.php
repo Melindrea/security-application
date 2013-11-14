@@ -69,6 +69,10 @@ HTML::macro(
             $bodyClasses[] = 'logged-in';
         }
 
+        if (\Notification::has('alert')) {
+            $bodyClasses[] = 'has-alert';
+        }
+
         return join(
             ' ',
             array_map(
@@ -316,17 +320,18 @@ HTML::macro(
 |
 */
 HTML::macro(
-    'flash',
+    'alert',
     function () {
-        $flashTypes = array('notice', 'error');
+        // $alertTypes = array('notice', 'error', 'warning');
 
-        foreach ($flashTypes as $flashType) {
-            if (Session::has('flash_'.$flashType)) {
-                return View::make('partials.flash')
-                ->with('classes', 'flash flash-'.$flashType)
-                ->with('content', Session::get('flash_'.$flashType));
-            }
+        // foreach ($alertTypes as $alertType) {
+        // if (Session::has('alert_'.$alertType)) {
+        if ($alertType = \Notification::has('alert')) {
+            return View::make('partials.alert')
+            ->with('type', $alertType)
+            ->with('content', Session::get('alert_'.$alertType));
         }
+        // }
     }
 );
 
@@ -359,6 +364,7 @@ HTML::macro(
     'notification',
     function ($content, $save = false) {
         return View::make('partials.notification')
+        ->with('type', $content)
         ->with('content', View::make('partials.notifications.'.$content));
     }
 );

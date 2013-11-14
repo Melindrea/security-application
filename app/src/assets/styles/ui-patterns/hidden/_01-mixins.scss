@@ -33,7 +33,7 @@
     visibility: hidden;
 }
 
-@mixin visually-hidden {
+@mixin visually-hidden($focusable: false) {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -43,14 +43,16 @@
     position: absolute;
     width: 1px;
 
-    &.focusable:active,
-    &.focusable:focus {
-        clip: auto;
-        height: auto;
-        margin: 0;
-        overflow: visible;
-        position: static;
-        width: auto;
+    @if $focusable {
+        &:active,
+        &:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
     }
 }
 

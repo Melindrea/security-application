@@ -9,7 +9,8 @@
         <title>{{ Site::title() }}</title>
         {{ HTML::meta() }}
         <meta name="viewport" content="width=device-width">
-        <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Quattrocento+Sans:700,700italic' rel='stylesheet'>
+        <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Quattrocento+Sans:700,700italic" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css" rel="stylesheet">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         @section('head-css')
         {{ HTML::asset('header-css') }}
@@ -24,7 +25,7 @@
         @show
     </head>
         <body class="{{ HTML::bodyClasses() }}">
-        {{ HTML::flash() }}
+        {{ HTML::alert() }}
 
         <header role="banner">
         @section('header')

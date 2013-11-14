@@ -203,6 +203,7 @@ return array(
         'Site'            => 'Hogebrandt\Site',
         'MobileDetect'    => 'Hogebrandt\MobileDetect',
         'Shortcode'       => 'Hogebrandt\Shortcode',
+        'Notification'    => 'Hogebrandt\Notification',
         'Feed'            => 'Roumen\Feed\Facades\Feed',
     ),
 );

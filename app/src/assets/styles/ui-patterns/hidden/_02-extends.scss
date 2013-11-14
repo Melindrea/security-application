@@ -2,19 +2,28 @@
     @include clearfix;
 }
 
+// As part of CSS image replacement
 %hide-text {
   @include hide-text;
 }
 
+// Hidden from all, both AT and not
 %hidden
 {
     @include hidden;
 }
 
+// Invisible and unfocusable
 %visually-hidden {
     @include visually-hidden
 }
 
+// Invisible but focusable
+%visually-hidden-focusable {
+    @include visually-hidden(true);
+}
+
+// Not visible to sighted users, can be focused on
 %invisible {
     @include invisible;
 }

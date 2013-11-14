@@ -27,11 +27,26 @@
 @import "base";
 @import "typography";
 // @import "forms";
-// @import "buttons";
+@import "buttons";
+@import "layouts/*";           // glob manifest files
 @import "themes/**/*";
 @import "ui-patterns/**/*";    // glob manifest files
 @import "modules/**/*";        // glob manifest files
-@import "layouts/*";           // glob manifest files
+
+[role="alert"] {
+    @extend %container;
+    width: 100%;
+    padding: #{calc-gutter()}em;
+    border: 1px solid;
+    position: absolute;
+    top: 0;
+
+    @include breakpoint(32em) {
+        left: 50%;
+        max-width: 500px;
+        margin-left: -250px;
+    }
+}
 
 
 // "Shameful" styles; for quick-and-dirty fixes

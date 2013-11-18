@@ -8,7 +8,11 @@
         "command": "bower update"
     },
     {
-        "file": "requirements.txt",
-        "command": "pip install -r requirements.txt"
+        "file": "Gemfile.lock",
+        "command": "bundle update"
+    },
+    {
+        "file": "composer.lock",
+        "command": "php composer.phar dump-autoload; php composer.phar update"
     }
 ]

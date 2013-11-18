@@ -481,11 +481,18 @@ module.exports = function (grunt) {
             }
         },
         githooks: {
-            all: {
+            stage: {
                 options: {
-                    template: 'hooks/pre-commit.js'
+                    template: 'hooks/stage.js'
                 },
                 'pre-commit': 'commit'
+            },
+            update: {
+                options: {
+                    template: 'hooks/update.js'
+                },
+                'post-merge': '',
+                'post-checkout': ''
             }
         }
     });

@@ -2,7 +2,7 @@ var exec = require('child_process').exec;
 // https://npmjs.org/package/execSync
 // Executes shell commands synchronously
 var sh = require('execSync').run;
-var branchName = require('execSync').exec('git branch | grep \'*\' | sed \'s/* //\'');
+var branchName = require('execSync').exec('git branch | grep \'*\' | sed \'s/* //\'').stdout;
 
 // Don't run on rebase
 if (branchName !== '(no branch)') {

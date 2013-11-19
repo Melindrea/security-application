@@ -14,5 +14,9 @@
     {
         "file": "composer.lock",
         "command": "php composer.phar dump-autoload; php composer.phar update"
+    },
+    {
+        "file": "Gruntfile.js",
+        "command": "grunt githooks"
     }
 ]

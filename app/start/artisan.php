@@ -11,3 +11,4 @@
 |
 */
 Artisan::add(new SensioLabs\Security\Command\SecurityCheckerCommand(new SensioLabs\Security\SecurityChecker));
+Artisan::add(new Command\GenerateSitemapCommand());

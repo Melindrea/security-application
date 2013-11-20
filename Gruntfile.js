@@ -53,6 +53,12 @@ module.exports = function (grunt) {
                 options: {
                     stdout: true
                 }
+            },
+            sitemap: {
+                options: {
+                    stdout: true
+                },
+                command: 'php artisan sitemap:generate'
             }
         },
         watch: {

@@ -205,5 +205,7 @@ return array(
         'Shortcode'       => 'Hogebrandt\Shortcode',
         'Notification'    => 'Hogebrandt\Notification',
         'Feed'            => 'Roumen\Feed\Facades\Feed',
+        'Curl'            => 'jyggen\Curl',
+        'RemoteRequest'     => 'jyggen\Curl\Request',
     ),
 );

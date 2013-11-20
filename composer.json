@@ -34,11 +34,13 @@
         "mews/purifier": "dev-master",
         "roumen/sitemap": "dev-master",
         "roumen/feed": "dev-master",
-        "mobiledetect/mobiledetectlib": "dev-master"
+        "mobiledetect/mobiledetectlib": "dev-master",
+        "jyggen/curl": "3.1.*@dev"
     },
     "autoload": {
         "classmap": [
             "app/controllers",
+            "app/commands",
             "app/models",
             "app/database/migrations",
             "app/database/seeds",

@@ -19,6 +19,13 @@ class Data
         'json' => 'json',
     ];
 
+    public static function path()
+    {
+        $paths = require __DIR__.'/../../../bootstrap/paths.php';
+        $dataPath = $paths['metadata'];
+        return $dataPath;
+    }
+
     public static function loadDocument($name, $type, $action = 'content')
     {
         if (!isset(self::$extensions[$type])) {
@@ -54,14 +61,14 @@ class Data
 
     }
 
-    public static function create($name, $values = array())
+    public static function create($name, $values = array(), $path = '/pages')
     {
-        $path = __DIR__.'/../../metadata/pages/'.$name.'.json';
+        $path = self::path() .$path.'/'.$name.'.json';
 
-        if (file_exists($path)) {
-            // Assume we're wanting to update it
-            $file = self::get($name);
-        }
+        $handle = fopen($path, 'w') or die('Cannot open file:  '.$path);
+        $data = json_encode($values, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        fwrite($handle, $data);
+        fclose($handle);
     }
 
     public static function loadMedia($slug)

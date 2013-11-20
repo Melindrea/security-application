@@ -43,7 +43,7 @@ class Site
     public static function index($file)
     {
         $data = Data::get($file);
-        if ($data === null) {
+        if (null === $data) {
             return true;
         }
         if (!isset($data['meta']) || !isset($data['meta']['robots'])) {
@@ -68,5 +68,29 @@ class Site
             $name .= '.'.$virtual;
         }
         return $name;
+    }
+
+    public static function sitemap()
+    {
+        $sitemapUrl = \Config::get('app.url').'/sitemap.xml';
+
+        $request = new \RemoteRequest($sitemapUrl);
+
+        $request->setOption(CURLOPT_SSL_VERIFYPEER, false);
+        $request->setOption(CURLOPT_SSL_VERIFYHOST, false);
+        $request->setOption(CURLOPT_FOLLOWLOCATION, true);
+        $request->execute();
+
+        if ($request->isSuccessful() && $response = $request->getResponse()) {
+            $doc = new \DOMDocument();
+            if ($doc->loadXML($response->getContent())) {
+                return $doc;
+            }
+
+            throw new \Exception('Sitemap did not load properly');
+        } else {
+            throw new \Exception($request->getErrorMessage());
+        }
+
     }
 }

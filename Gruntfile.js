@@ -13,6 +13,7 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
     grunt.loadNpmTasks('assemble');
+    grunt.loadTasks('tasks');
 
     // configurable paths
     var yeomanConfig = {
@@ -97,6 +98,14 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/assets/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/assets/media/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
+            }
+        },
+        pa11ySitemap: {
+            options: {
+                reporter: 'json'
+            },
+            all: {
+                urls: '../app/metadata/sitemap'
             }
         },
         connect: {

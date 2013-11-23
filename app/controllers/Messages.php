@@ -1,4 +1,15 @@
 <?php
+/**
+ * Messages Controller File.
+ *
+ * A REST-ful resource.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
 
 namespace Controller;
 
@@ -7,9 +18,11 @@ namespace Controller;
  *
  * A REST-ful resource.
  *
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 class Messages extends Authorized
 {
@@ -20,9 +33,7 @@ class Messages extends Authorized
      * @access   protected
      * @var      array
      */
-    protected $whitelist = array(
-        'index',
-    );
+    protected $whitelist = array('index');
 
     protected $message;
 
@@ -54,12 +65,12 @@ class Messages extends Authorized
         $honeypot = \Validator::make(
             \Input::all(),
             array(
-                'username' => 'honeypot',
-                'username_time' => 'honeytime:5',
+            'username_time'  => 'honeytime:5',
+            'username'       => 'honeypot',
             )
         );
 
-        if (!$honeypot->passes()) {
+        if ($honeypot->passes() === false) {
             // Most likely bot
             return \Redirect::route('messages.index')
             ->with('flash_warning', trans('messages.post.failed'));
@@ -67,12 +78,13 @@ class Messages extends Authorized
 
         $post['subject'] = htmlspecialchars(\Input::get('subject'));
         $post['content'] = \Input::get('content');
-        $post['type_id'] = 1; //TODO: Make message types matter
+        // TODO: Make message types matter
+        $post['type_id'] = 1;
         $post['user_id'] = \Auth::user()->id;
 
         $message = new \Model\Message($post);
 
-        if ($message->save()) {
+        if ($message->save() === true) {
             return \Redirect::route('messages.index')
             ->with('flash_notice', trans('messages.message.successful'));
         } else {

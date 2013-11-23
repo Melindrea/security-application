@@ -1,4 +1,16 @@
 <?php
+/**
+ * Robots Controller File.
+ *
+ * Creates a robots.txt based on config
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Controller;
 
 /**
@@ -6,15 +18,16 @@ namespace Controller;
  *
  * Creates a robots.txt based on config
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 class Robots extends Base
 {
 
-     /**
+    /**
      * Route: /robots.txt
      *
      * @return void
@@ -25,9 +38,9 @@ class Robots extends Base
 
         $content = '';
         foreach ($rules as $rule) {
-            $content .= 'User-agent: '.$rule['user-agent'].PHP_EOL;
+            $content .= 'User-agent: ' . $rule['user-agent'] . PHP_EOL;
             foreach ($rule['disallow'] as $disallow) {
-                $content .= 'Disallow: '.$disallow.PHP_EOL;
+                $content .= 'Disallow: ' . $disallow . PHP_EOL;
             }
             $content .= PHP_EOL;
         }

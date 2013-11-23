@@ -1,4 +1,16 @@
 <?php
+/**
+ * Base Controller File.
+ *
+ * The base for all the controllers, no direct routes.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Controller;
 
 /**
@@ -6,10 +18,11 @@ namespace Controller;
  *
  * The base for all the controllers, no direct routes.
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 class Base extends \Controller
 {
@@ -36,7 +49,7 @@ class Base extends \Controller
             return '';
         }
 
-        $path = __DIR__.'/../data/files/'.$name.'.'.$extensions[$type];
+        $path = __DIR__ . '/../data/files/' . $name . '.' . $extensions[$type];
 
         if ($action == 'content') {
             return \File::get($path);

@@ -36,6 +36,16 @@ $logFile = 'log-'.php_sapi_name().'.txt';
 
 Log::useDailyFiles(storage_path().'/logs/'.$logFile, 0, Config::get('app.log_level'));
 
+// Testing logging of login
+// Log::info(
+//     'User login',
+//     array(
+//      'ip' => \Request::getClientIP(),
+//      'user' => 'Marie',
+//      'successful' => true,
+//      )
+// );
+
 /*
 |--------------------------------------------------------------------------
 | Application Error Handler

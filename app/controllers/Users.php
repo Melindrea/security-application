@@ -1,4 +1,16 @@
 <?php
+/**
+ * Users Controller File.
+ *
+ * A REST-ful resource, alongside routes with the base of users.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Controller;
 
 /**
@@ -6,9 +18,11 @@ namespace Controller;
  *
  * A REST-ful resource, alongside routes with the base of users.
  *
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 class Users extends Authorized
 {
@@ -78,8 +92,8 @@ class Users extends Authorized
         $honeypot = \Validator::make(
             \Input::all(),
             array(
-                'username' => 'honeypot',
-                'username_time' => 'honeytime:5',
+            'username'       => 'honeypot',
+            'username_time'  => 'honeytime:5',
             )
         );
 
@@ -113,7 +127,7 @@ class Users extends Authorized
      */
     public function show($id)
     {
-        return \View::make('users.show');
+        return \View::make('users.show', ['id' => $id]);
     }
 
     /**
@@ -124,7 +138,7 @@ class Users extends Authorized
      */
     public function edit($id)
     {
-        return \View::make('users.edit');
+        return \View::make('users.edit', ['id' => $id]);
     }
 
     /**
@@ -135,7 +149,7 @@ class Users extends Authorized
      */
     public function update($id)
     {
-        //No view
+        // No view
     }
 
     /**
@@ -146,7 +160,7 @@ class Users extends Authorized
      */
     public function destroy($id)
     {
-        //No view
+        // No view
     }
 
     /**
@@ -156,9 +170,6 @@ class Users extends Authorized
      */
     public function getLogin()
     {
-        // http://forums.laravel.io/viewtopic.php?id=1652
-        // http://www.karlvalentin.de/1903/write-your-own-auth-driver-for-laravel-4.html
-        // http://firmanw.com/writing-a-custom-authentication-driver-for-laravel/
         return \View::make('users.login');
     }
 
@@ -172,15 +183,15 @@ class Users extends Authorized
         $validator = \Validator::make(
             \Input::all(),
             array(
-                'username' => 'required',
-                'password' => 'required',
+            'username'  => 'required',
+            'password'  => 'required',
             )
         );
 
         if ($validator->passes()) {
             $credentials = [
-                'username' => strtolower(\Input::get('username')),
-                'password' => \Input::get('password')
+            'username' => strtolower(\Input::get('username')),
+            'password' => \Input::get('password')
             ];
 
             $rememberMe = (\Input::get('remember-me') == 'yes') ? true : false;
@@ -189,6 +200,7 @@ class Users extends Authorized
                 return \Redirect::intended('/')
                     ->with('alert_success', trans('messages.login.successful'));
             }
+            \Event::fire('auth.failed', array($credentials['username']));
         }
 
         $data['username'] = \Input::get('username');

@@ -1,4 +1,16 @@
 <?php
+/**
+ * Authorized Controller File.
+ *
+ * Base for protected controllers, inherits Base, no direct routes.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Controller;
 
 /**
@@ -6,10 +18,11 @@ namespace Controller;
  *
  * Base for protected controllers, inherits Base, no direct routes.
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 class Authorized extends Base
 {
@@ -19,7 +32,7 @@ class Authorized extends Base
      * @access   protected
      * @var      array
      */
-    protected $whitelist = array(); // Actions for guests
+    protected $whitelist = array();
 
     /**
      * List the methods that _require_ a user to be guest

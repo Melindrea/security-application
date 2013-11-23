@@ -1,4 +1,16 @@
 <?php
+/**
+ * Sitemap Controller.
+ *
+ * Controller setting up the sitemap, using https://github.com/RoumenDamianoff/laravel4-sitemap
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Controller;
 
 /**
@@ -6,17 +18,24 @@ namespace Controller;
  *
  * Controller setting up the sitemap, using https://github.com/RoumenDamianoff/laravel4-sitemap
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 class Sitemap extends Base
 {
 
-     protected $extensions = ['xml', 'html', 'txt', 'ror-rss', 'ror-rdf'];
+     protected $extensions = [
+     'xml',
+     'html',
+     'txt',
+     'ror-rss',
+     'ror-rdf',
+     ];
 
-     /**
+    /**
      * Route: /sitemap
      *
      * @return void
@@ -34,14 +53,14 @@ class Sitemap extends Base
         // Static documents
         $pages = \Config::get('sitemap');
         foreach ($pages as $key => $items) {
-            if ($key == 'robots') {
+            if ($key === 'robots') {
                 continue;
-            } elseif ($key == 'virtual') {
+            } elseif ($key === 'virtual') {
                 foreach ($items as $type => $documents) {
                     foreach ($documents as $file => $config) {
                         $lastmodified = \Data::loadDocument($file, $config['type'], 'lastmodified');
 
-                        if ($lastmodified && \Site::index($type.'/'.$file)) {
+                        if ($lastmodified && \Site::index($type . '/' . $file)) {
                             $temp = [];
                             $temp['loc'] = \URL::route('document', ['file' => $file]);
                             $temp['lastmod'] = date('c', $lastmodified);
@@ -52,11 +71,11 @@ class Sitemap extends Base
                     }
                 }
             } else {
-                $path = __DIR__.'/../views/';
+                $path = __DIR__ . '/../views/';
                 $file = $key;
                 $config = $items;
                 if (isset($config['path'])) {
-                    $path .= $config['path'].'/'.$file;
+                    $path .= $config['path'] . '/' . $file;
                 } elseif (strpos($file, '.') !== false) {
                     $path .= str_replace('.', '/', $file);
                 } else {

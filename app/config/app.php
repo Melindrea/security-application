@@ -201,11 +201,12 @@ return array(
         'Purifier'        => 'Mews\Purifier\Facades\Purifier',
         'Data'            => 'Hogebrandt\Data',
         'Site'            => 'Hogebrandt\Site',
+        'Utilities'       => 'Hogebrandt\Utilities',
         'MobileDetect'    => 'Hogebrandt\MobileDetect',
         'Shortcode'       => 'Hogebrandt\Shortcode',
         'Notification'    => 'Hogebrandt\Notification',
         'Feed'            => 'Roumen\Feed\Facades\Feed',
         'Curl'            => 'jyggen\Curl',
-        'RemoteRequest'     => 'jyggen\Curl\Request',
+        'RemoteRequest'   => 'jyggen\Curl\Request',
     ),
 );

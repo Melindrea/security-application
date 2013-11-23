@@ -479,6 +479,7 @@ module.exports = function (grunt) {
             options: {
                 bin: 'composer_components/bin/phpcs',
                 standard: 'PSR2',
+                // standard: 'development-tools/PSR2Extended/ruleset.xml',
                 ignore: 'database',
                 extensions: 'php'
             }

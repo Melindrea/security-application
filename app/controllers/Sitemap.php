@@ -23,7 +23,7 @@ class Sitemap extends Base
      */
     public function getIndex($ext)
     {
-        if (!in_array($ext, $this->extensions)) {
+        if (in_array($ext, $this->extensions) === false) {
             return \Redirect::route('home')
             ->with('flash_warning', trans('messages.sitemap.error'));
         }

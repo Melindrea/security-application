@@ -22,4 +22,14 @@ This is obviously not the correct view for the actual project, but one that is c
         @endif
         <li><a href="{{Site::route('messages.index')}}">Messages</a></li>
     </ul>
+
+    @if (Auth::check())
+    {{ Auth::user()->makeAdmin() }}
+        <ul>
+        @foreach (Auth::user()->roles as $role)
+            <li>{{ $role }}</li>
+        @endforeach
+        </ul>
+    @endif
+
 @stop

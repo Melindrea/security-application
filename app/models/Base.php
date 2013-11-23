@@ -58,4 +58,11 @@ class Base extends \Eloquent
 
         return false;
     }
+
+    public static function idFromName($name)
+    {
+        $models = array_fetch(static::all()->toArray(), 'name');
+
+        return \Utilities::getIdInArray($models, $name)+1;
+    }
 }

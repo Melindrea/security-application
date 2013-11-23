@@ -120,4 +120,74 @@ class User extends Base implements UserInterface, RemindableInterface
     {
         return $this->hasMany('Model\Message');
     }
+
+    /**
+     * Get the roles a user has
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('Model\Role');
+    }
+
+    /**
+     * Find out if user has a specific role
+     *
+     * $return boolean
+     */
+    protected function isRole($name)
+    {
+        echo "is something! ".$name;
+        // return in_array($name, array_fetch($this->roles->toArray(), 'name'));
+    }
+
+    protected function makeRole($name)
+    {
+        if (!$this->isRole($name)) {
+            $assignedRole = Role::idFromName($name);
+
+            $this->roles()->attach($assignedRole);
+        }
+        echo "tihii ".$name;
+    }
+
+    protected function removeRole($name)
+    {
+        // if ($this->isRole($name)) {
+        //     $assignedRole = Role::idFromName($name);
+
+        //     $this->roles()->detach($assignedRole);
+        // }
+        echo "remove something! ".$name;
+    }
+
+    public function __call($method, $args)
+    {
+        $type = '';
+        $arg = '';
+        $roleMethods = ['make', 'is', 'removeAs'];
+
+        // foreach ($roleMethods as $roleMethod) {
+        //     $roleMethodLength = sizeof($roleMethod);
+        //     $methodBit = substr($method, 0, $roleMethodLength);
+        //     if ($methodBit == $roleMethod) {
+        //         $arg = strtolower(substr($method, $roleMethodLength));
+        //         $type = 'Role';
+        //         break;
+        //     }
+        // }
+        echo $method.'<br>';
+        if (($methodBit = substr($method, 0, 4)) == 'make') {
+            $arg = strtolower(substr($method, 4));
+            $type = 'Role';
+        } elseif (($methodBit = substr($method, 0, 2)) == 'is') {
+            $arg = strtolower(substr($method, 2));
+            $type = 'Role';
+        } elseif (($methodBit = substr($method, 0, 8)) == 'removeAs') {
+            $arg = strtolower(substr($method, 8));
+            $type = 'Role';
+        }
+        $methodToCall = $methodBit.$type;
+        $this->$methodToCall($arg);
+        return false;
+    }
 }

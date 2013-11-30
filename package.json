@@ -55,6 +55,7 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "postinstall": "grunt githooks"
+    "postinstall": "grunt githooks",
+    "test": "grunt test --verbose"
   }
 }

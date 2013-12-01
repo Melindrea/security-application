@@ -496,6 +496,14 @@ module.exports = function (grunt) {
                 noGlobalsBackup: false
             }
         },
+        phpdocumentor: {
+            dist: {
+                bin: 'composer_components/bin/phpdoc.php',
+                directory: 'app',
+                target: 'phpdocs',
+                ignore: 'app/database/*'
+            }
+        },
         githooks: {
             stage: {
                 options: {

@@ -13,13 +13,18 @@
     ],
     "license": "MIT",
     "require-dev": {
-        "phpunit/phpunit": "3.7.*",
-        "squizlabs/php_codesniffer": "1.*",
         "sensiolabs/security-checker": "dev-master",
         "way/generators": "dev-master",
-        "phpdocumentor/phpdocumentor": "*",
         "mockery/mockery": "dev-master",
-        "zizaco/factory-muff": "dev-master"
+        "zizaco/factory-muff": "dev-master",
+        "phpdocumentor/phpdocumentor": "*",
+        "phpunit/phpunit": "3.7.*",
+        "squizlabs/php_codesniffer": "1.*",
+        "pdepend/pdepend" : "1.1.*",
+        "phploc/phploc": "*",
+        "sebastian/phpcpd": "*",
+        "sebastian/phpdcd": "*",
+        "phpmd/phpmd" : "1.4.*"
     },
     "config": {
         "vendor-dir": "composer_components",

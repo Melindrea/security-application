@@ -23,9 +23,17 @@ module.exports = function (grunt) {
         php: 'app'
 
     };
+    var composer = require('./composer');
+    var directoriesConfig = {
+        composer: composer.config['vendor-dir'] || 'vendor',
+        composerBin: composer.config['bin-dir'] || 'vendor/bin'
+    };
 
     grunt.initConfig({
+        pkg: require('./package'),
+        composer: composer,
         yeoman: yeomanConfig,
+        directories: directoriesConfig,
         'gh-pages': {
             options: {
                 base: '<%= yeoman.dist %>'
@@ -34,7 +42,7 @@ module.exports = function (grunt) {
         },
         shell: {                                // Task
             phpdocs: {                      // Target
-                command: 'php composer_components/bin/phpdoc.php'
+                command: 'php <%= directories.composerBin %>/phpdoc.php'
             },
             artisan: {
                 options: {
@@ -197,7 +205,7 @@ module.exports = function (grunt) {
                 '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
                 'test/spec/mocha/{,*/}*.js',
-                'grunt/hooks/{,*/}*.js'
+                'grunt/{,*/}*.js'
             ]
         },
         jsvalidate: {
@@ -206,7 +214,7 @@ module.exports = function (grunt) {
                 '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
                 'test/spec/mocha/{,*/}*.js',
-                'grunt/hooks/{,*/}*.js'
+                'grunt/{,*/}*.js'
             ]
         },
         jsonlint: {
@@ -477,7 +485,7 @@ module.exports = function (grunt) {
                 dir: 'test/phpunit'
             },
             options: {
-                bin: 'composer_components/bin/phpcs',
+                bin: '<%= directories.composerBin %>/phpcs',
                 standard: 'PSR2',
                 // standard: 'development-tools/PSR2Extended/ruleset.xml',
                 ignore: 'database',
@@ -489,7 +497,7 @@ module.exports = function (grunt) {
                 dir: 'test/phpunit/tests'
             },
             options: {
-                bin: 'composer_components/bin/phpunit',
+                bin: '<%= directories.composerBin %>/phpunit',
                 bootstrap: 'bootstrap/autoload.php',
                 staticBackup: false,
                 colors: true,
@@ -499,13 +507,13 @@ module.exports = function (grunt) {
         githooks: {
             stage: {
                 options: {
-                    template: 'hooks/stage.js.hbs'
+                    template: 'grunt/hooks/stage.js.hbs'
                 },
                 'pre-commit': 'commit'
             },
             update: {
                 options: {
-                    template: 'hooks/update.js.hbs'
+                    template: 'grunt/hooks/update.js.hbs'
                 },
                 'post-merge': true,
                 'post-checkout': true

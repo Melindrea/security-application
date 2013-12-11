@@ -19,12 +19,12 @@ module.exports = function(grunt) {
             reporter: 'csv',
             standard: 'WCAG2AA',
             debug: false
-        }), urls = require(this.data.urls);
+        });//, urls = require(this.data.urls);
 
         options.url = 'example.com';
 
         // grunt.log.writeln(this.target + ': ' + this.data.files);
-        var urlLength = urls.length;
+        // var urlLength = urls.length;
         // for (var i = 0; i < urlLength; i++) {
         //     // grunt.log.writeln(urls[i]);
         //     var temp = options;
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         grunt.log.writeln(options.url);
         pa11y.sniff(options, function (err, results) {
             grunt.log.writeln(results);
-            grunt.log.writeln(options.url + " in sniff!");
+            grunt.log.writeln(options.url + ' in sniff!');
         });
     });
 };

@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
     grunt.loadNpmTasks('assemble');
-    grunt.loadTasks('tasks');
+    grunt.loadTasks('grunt/tasks');
 
     // configurable paths
     var yeomanConfig = {
@@ -197,7 +197,7 @@ module.exports = function (grunt) {
                 '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
                 'test/spec/mocha/{,*/}*.js',
-                'hooks/{,*/}*.js'
+                'grunt/hooks/{,*/}*.js'
             ]
         },
         jsvalidate: {
@@ -206,7 +206,7 @@ module.exports = function (grunt) {
                 '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/assets/scripts/vendor/*',
                 'test/spec/mocha/{,*/}*.js',
-                'hooks/{,*/}*.js'
+                'grunt/hooks/{,*/}*.js'
             ]
         },
         jsonlint: {

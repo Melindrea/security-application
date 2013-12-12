@@ -1,8 +1,6 @@
 <?php
-namespace Hogebrandt;
-
 /**
- * Shortcode class.
+ * Shortcode Class File.
  *
  * Allows for using shortcodes on the lines of
  * {media[alt="test"|"something else"|"a third parameter"]}content.jpg{/media}/
@@ -10,10 +8,29 @@ namespace Hogebrandt;
  * {media}temp{/media}/
  * {media}/
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
+namespace Hogebrandt;
+
+/**
+ * Shortcode Class File.
+ *
+ * Allows for using shortcodes on the lines of
+ * {media[alt="test"|"something else"|"a third parameter"]}content.jpg{/media}/
+ * {media[alt="test"|"something else"|"a third parameter"]}/
+ * {media}temp{/media}/
+ * {media}/
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 
 class Shortcode
@@ -22,10 +39,11 @@ class Shortcode
     {
         // Process any shortcodes
         $regexp = self::getRegex();
-        preg_match_all("/$regexp/siU", $text, $matches, PREG_SET_ORDER);
+        preg_match_all('/' . $regexp . '/siU', $text, $matches, PREG_SET_ORDER);
 
         if (count($matches) > 0) {
-            $originals = $shortcodes = [];
+            $originals = [];
+            $shortcodes = [];
             foreach ($matches as $match) {
                 $originals[] = $match[0];
                 $name = $match[1];
@@ -64,14 +82,15 @@ class Shortcode
 
     public static function exists($name)
     {
-        return (\Config::get('shortcodes.'.$name));
+        return (\Config::get('shortcodes.' . $name));
     }
 
     public static function make($name, $params = false)
     {
         // Check that the shortcode is registered, if not return false
         // return false;
-        if ($shortcode = \Config::get('shortcodes.'.$name)) {
+        $shortcode = \Config::get('shortcodes.' . $name);
+        if ($shortcode) {
             if (isset($shortcode['function']) && is_callable($shortcode['function'])) {
                 $function = $shortcode['function'];
 
@@ -88,7 +107,7 @@ class Shortcode
                 'default-parameters' => $default,
                 'function' => $function,
             ];
-            \Config::set('shortcodes.'.$name, $content);
+            \Config::set('shortcodes.' . $name, $content);
         }
     }
 
@@ -118,12 +137,12 @@ class Shortcode
     {
         $shortcodes = \Config::get('shortcodes');
         $tagnames = array_keys($shortcodes);
-        $tagregexp = join('|', array_map('preg_quote', $tagnames));
+        $tagregexp = implode('|', array_map('preg_quote', $tagnames));
 
         // WARNING! Do not change this regex without changing do_shortcode_tag() and strip_shortcode_tag()
         // Also, see shortcode_unautop() and shortcode.js.
-            return '{('.$tagregexp.')(\[.*\])?}(.*)?({\/('.$tagregexp.')})?\/';
-            // '{'                   // Starting /{
+            return '{(' . $tagregexp . ')(\[.*\])?}(.*)?({\/(' . $tagregexp . ')})?\/';
+            // Capital '{'                   // Starting /{
             // . "($tagregexp)"          // The specific tags
             // . '(\[.*\])?'             // Parameters are contained in []
             // . '}'                     // Ending } of the first tag

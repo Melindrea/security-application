@@ -1,27 +1,43 @@
 <?php
+/**
+ * Notification Class File.
+ *
+ * Deals with alerts and notifications.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Hogebrandt;
 
 /**
- * Notification.
+ * Notification Class.
  *
- * Deals with alerts and notifications
+ * Deals with alerts and notifications.
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
-
 class Notification
 {
     protected static $types = [
         'alert' => [
-            'critical', // Showstopper warning
+             // Showstopper warning
+            'critical',
             'debug',
-            'error', // Something went wrong
+            // Something went wrong
+            'error',
             'info',
-            'notice', // No issues, but you should be aware...
-            'warning', // Things didn't go fully according to plan
+            // No issues, but you should be aware...
+            'notice',
+            // Things didn't go fully according to plan
+            'warning',
             'success',
         ],
     ];
@@ -30,7 +46,7 @@ class Notification
     {
         if ($type == 'alert') {
             foreach (self::$types['alert'] as $alertType) {
-                if (\Session::has('alert_'.$alertType)) {
+                if (\Session::has('alert_' . $alertType)) {
                     return $alertType;
                 }
             }

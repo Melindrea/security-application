@@ -4,8 +4,21 @@ var sh = require('execSync').run;
 
 var shOutput = require('execSync').exec;
 var file, command, fileChanged;
+var fs = require('fs');
+
+fs.exists('../../composer.phar', function(exists) {
+    if (exists === false) {
+        // Obviously requires curl and PHP installed on the system
+        sh('curl -sS https://getcomposer.org/installer | php');
+    }
+});
 
 var object = require('../../hooks/data/update');
+
+if (shOutput('git diff HEAD@{1} --stat -- ' + file + ' | wc -l').stdout > 0) {
+
+}
+
 for (var i in object) {
     file = object[i].file;
     command = object[i].command;

@@ -26,7 +26,9 @@ module.exports = function (grunt) {
     var composer = require('./composer');
     var directoriesConfig = {
         composer: composer.config['vendor-dir'] || 'vendor',
-        composerBin: composer.config['bin-dir'] || 'vendor/bin'
+        composerBin: composer.config['bin-dir'] || 'vendor/bin',
+        docs: 'docs',
+        php: 'app'
     };
 
     grunt.initConfig({
@@ -34,6 +36,17 @@ module.exports = function (grunt) {
         composer: composer,
         yeoman: yeomanConfig,
         directories: directoriesConfig,
+        files: {
+            js: [
+                'Gruntfile.js',
+                'tasks/{,*/}*.js',
+                'grunt/{,*/}*.js'
+            ],
+            json: [
+                '{,*/}*.json',
+            ],
+            php: '<%= directories.php %>/**/*.php'
+        },
         'gh-pages': {
             options: {
                 base: '<%= yeoman.dist %>'
@@ -76,7 +89,7 @@ module.exports = function (grunt) {
                 tasks: ['js']
             },
             php: {
-                files: ['<%= yeoman.php %>/{,*/}*.php'],
+                files: ['<%= files.php %>/{,*/}*.php'],
                 tasks: ['php']
             },
             compass: {
@@ -220,7 +233,7 @@ module.exports = function (grunt) {
         jsonlint: {
             data: {
                 src: [
-                    '<%= yeoman.php %>/metadata/**/*.json'
+                    '<%= files.php %>/metadata/**/*.json'
                 ]
             }
         },
@@ -474,12 +487,12 @@ module.exports = function (grunt) {
                 swapPath: '/tmp'
             },
             all: [
-                '<%= yeoman.php %>/**/*.php'
+                '<%= files.php %>'
             ]
         },
         phpcs: {
             application: {
-                dir: '<%= yeoman.php %>'
+                dir: '<%= files.php %>'
             },
             tests: {
                 dir: 'test/phpunit'
@@ -491,7 +504,7 @@ module.exports = function (grunt) {
                 extensions: 'php'
             },
             newSniffer: {
-                dir: '<%= yeoman.php %>',
+                dir: '<%= files.php %>',
                 options: {
                     standard: '../development-tools/PSR2Extended/ruleset.xml',
                     warningSeverity: 10

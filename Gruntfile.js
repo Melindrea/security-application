@@ -13,7 +13,6 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
     grunt.loadNpmTasks('assemble');
-    grunt.loadTasks('grunt/tasks');
 
     // configurable paths
     var yeomanConfig = {
@@ -28,7 +27,8 @@ module.exports = function (grunt) {
         composer: composer.config['vendor-dir'] || 'vendor',
         composerBin: composer.config['bin-dir'] || 'vendor/bin',
         docs: 'docs',
-        php: 'app'
+        php: 'app',
+        tmp: '.tmp'
     };
 
     grunt.initConfig({
@@ -45,7 +45,8 @@ module.exports = function (grunt) {
             json: [
                 '{,*/}*.json',
             ],
-            php: '<%= directories.php %>/**/*.php'
+            php: '<%= directories.php %>/**/*.php',
+            assets: 'public_html/assets/**/*'
         },
         'gh-pages': {
             options: {
@@ -54,9 +55,9 @@ module.exports = function (grunt) {
             src: '**/*'
         },
         shell: {                                // Task
-            phpdocs: {                      // Target
-                command: 'php <%= directories.composerBin %>/phpdoc.php'
-            },
+            // phpdocs: {                      // Target
+            //     command: 'php <%= directories.composerBin %>/phpdoc.php'
+            // },
             artisan: {
                 options: {
                     stdout: true
@@ -159,31 +160,6 @@ module.exports = function (grunt) {
                     open: true,
                     base: '<%= yeoman.dist %>'
                 }
-            }
-        },
-        clean: {
-            dist: {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.tmp',
-                        '<%= yeoman.dist %>/*',
-                        '!<%= yeoman.dist %>/.git*'
-                    ]
-                }]
-            },
-            temporary: '.build/app/storage/{meta,cache,views,logs}/*',
-            server: '.tmp',
-            report: 'build',
-            assets: 'public_html/assets/**/*',
-            deploy: {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.build',
-                        '*.zip'
-                    ]
-                }]
             }
         },
         compress: {
@@ -319,6 +295,9 @@ module.exports = function (grunt) {
                 layout: 'default.hbs',
                 layoutdir: '<%= yeoman.app %>/templates/layouts',
                 partials: ['<%= yeoman.app %>/templates/partials/*.hbs'],
+                helpers: '<%= yeoman.app %>/templates/helpers/*.js',
+                pkg: '<%= pkg %>',
+                data: '<%= yeoman.app %>/data/*.json',
             },
             pages: {
                 files: {
@@ -482,14 +461,6 @@ module.exports = function (grunt) {
                 'htmlmin'
             ]
         },
-        phplint: {
-            options: {
-                swapPath: '/tmp'
-            },
-            all: [
-                '<%= files.php %>'
-            ]
-        },
         phpcs: {
             application: {
                 dir: '<%= files.php %>'
@@ -608,6 +579,7 @@ module.exports = function (grunt) {
         ]);
     });
 
+    grunt.loadTasks('grunt/tasks');
     grunt.registerTask('deploy', [
         'build',
         'gh-pages'
@@ -623,10 +595,6 @@ module.exports = function (grunt) {
         'phplint',
         'phpcs:application',
         'phpcs:tests'
-    ]);
-
-    grunt.registerTask('phpdocs', [
-        'shell:phpdocs'
     ]);
 
     grunt.registerTask('lint', [

@@ -9,7 +9,7 @@
 *~
 *.zip
 dist
-
+*testing*
 .DS_Store
 .AppleDouble
 .LSOverride

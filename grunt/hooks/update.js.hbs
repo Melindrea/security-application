@@ -13,7 +13,7 @@ fs.exists('../../composer.phar', function(exists) {
     }
 });
 
-var object = require('../../hooks/data/update');
+var object = require('../../grunt/hooks/data/update');
 
 if (shOutput('git diff HEAD@{1} --stat -- ' + file + ' | wc -l').stdout > 0) {
 

@@ -1,17 +1,29 @@
 <?php
+/**
+ * Site class File.
+ *
+ * Various help functions to render the site.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Hogebrandt;
 
 /**
  * Site class.
  *
- * Various help functions to render the site
+ * Various help functions to render the site.
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
-
 class Site
 {
     public static function slugify($item)
@@ -64,15 +76,16 @@ class Site
     public static function currentRouteName()
     {
         $name = \Route::currentRouteName();
-        if ($virtual = \Config::get('virtual.route')) {
-            $name .= '.'.$virtual;
+        $virtual = \Config::get('virtual.route');
+        if ($virtual) {
+            $name .= '.' . $virtual;
         }
         return $name;
     }
 
     public static function sitemap()
     {
-        $sitemapUrl = \Config::get('app.url').'/sitemap.xml';
+        $sitemapUrl = \Config::get('app.url') . '/sitemap.xml';
 
         $request = new \RemoteRequest($sitemapUrl);
 
@@ -81,7 +94,8 @@ class Site
         $request->setOption(CURLOPT_FOLLOWLOCATION, true);
         $request->execute();
 
-        if ($request->isSuccessful() && $response = $request->getResponse()) {
+        if ($request->isSuccessful() &&
+            $response = $request->getResponse()) {
             $doc = new \DOMDocument();
             if ($doc->loadXML($response->getContent())) {
                 return $doc;

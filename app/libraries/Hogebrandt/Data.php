@@ -1,27 +1,39 @@
 <?php
+/**
+ * Data loader File.
+ *
+ * Loads data for controllers.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Hogebrandt;
 
 /**
  * Data loader.
  *
- * Loads data for controllers
+ * Loads data for controllers.
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
-
 class Data
 {
     protected static $extensions = [
-        'markdown' => 'md',
-        'json' => 'json',
+     'markdown' => 'md',
+     'json'     => 'json',
     ];
 
     public static function path()
     {
-        $paths = require __DIR__.'/../../../bootstrap/paths.php';
+        $paths = require __DIR__ . '/../../../bootstrap/paths.php';
         $dataPath = $paths['metadata'];
         return $dataPath;
     }
@@ -32,7 +44,7 @@ class Data
             return null;
         }
 
-        $path = __DIR__.'/../../metadata/texts/'.$name.'.'.self::$extensions[$type];
+        $path = __DIR__ . '/../../metadata/texts/' . $name . '.' . self::$extensions[$type];
 
         if ($action == 'content') {
             return \File::get($path);
@@ -51,7 +63,7 @@ class Data
         if (!$name) {
             $name = str_replace('.', '/', \Site::currentRouteName());
         }
-        $path = __DIR__.'/../../metadata/pages/'.$name.'.json';
+        $path = __DIR__ . '/../../metadata/pages/' . $name . '.json';
 
         if (!file_exists($path)) {
             return null;
@@ -63,20 +75,21 @@ class Data
 
     public static function create($name, $values = array(), $path = '/pages')
     {
-        $path = self::path() .$path.'/'.$name.'.json';
+        $path = self::path() . $path . '/' . $name . '.json';
 
-        $handle = fopen($path, 'w') or die('Cannot open file:  '.$path);
-        $data = json_encode($values, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $handle = fopen($path, 'w') || die('Cannot open file:  ' . $path);
+        $json = (JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $data = json_encode($values, $json);
         fwrite($handle, $data);
         fclose($handle);
     }
 
     public static function loadMedia($slug)
     {
-        $path = __DIR__.'/../../metadata/media/library.json';
+        $path = __DIR__ . '/../../metadata/media/library.json';
 
         if (!file_exists($path)) {
-            // TODO: Throw exception
+            // Note [todo]: Throw exception
             return null;
         }
 
@@ -91,10 +104,10 @@ class Data
 
     public static function loadGallery($slug)
     {
-        $path = __DIR__.'/../../metadata/media/galleries.json';
+        $path = __DIR__ . '/../../metadata/media/galleries.json';
 
         if (!file_exists($path)) {
-            // TODO: Throw exception
+            // Note [todo]: Throw exception
             return null;
         }
 

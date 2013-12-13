@@ -1,15 +1,28 @@
 <?php
+/**
+ * Various Utilities File.
+ *
+ * A mixed bag of functions (for now).
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Hogebrandt;
 
 /**
- * Various utilities.
+ * Various Utilities File.
  *
- * A mixed back of functions (for now)
+ * A mixed bag of functions (for now).
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
 
 class Utilities
@@ -18,6 +31,7 @@ class Utilities
      * Get key in array with corresponding value
      *
      * @return int
+     * @throws UnexpectedValueException If $term does not exist in $array
      */
     public static function getIdInArray($array, $term)
     {

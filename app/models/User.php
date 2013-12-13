@@ -1,9 +1,32 @@
 <?php
+/**
+ * Model User File.
+ *
+ * Modelling a user.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Model;
 
 use \Illuminate\Auth\UserInterface;
 use \Illuminate\Auth\Reminders\RemindableInterface;
 
+/**
+ * Model User.
+ *
+ * Modelling a user.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
 class User extends Base implements UserInterface, RemindableInterface
 {
 
@@ -34,21 +57,21 @@ class User extends Base implements UserInterface, RemindableInterface
      * @var array
      */
     protected static $rules = array(
-        'username' => 'required|min:3|max:128|unique:users',
-        'display_name' => 'required|min:3|max:128',
-        'email'     => 'required|between:3,64|email|confirmed',
-        'password'  =>'required|min:10',
-        'agree_terms' => 'required',
+        'username'                            => 'required|min:3|max:128|unique:users',
+        'display_name'                        => 'required|min:3|max:128',
+        'email'                               => 'required|between:3,64|email|confirmed',
+        'password'                            =>'required|min:10',
+        'agree_terms'                         => 'required',
     );
 
     /**
      * Array used by FactoryMuff to create Test objects
      */
     public static $factory = array(
-        'display_name' => 'string',
-        'username' => 'string',
-        'email' => 'email',
-        'password' => '123456',
+        'display_name'                       => 'string',
+        'username'                           => 'string',
+        'email'                              => 'email',
+        'password'                           => '123456',
     );
 
     /**
@@ -136,8 +159,8 @@ class User extends Base implements UserInterface, RemindableInterface
      */
     protected function isRole($name)
     {
-        echo "is something! ".$name;
-        // return in_array($name, array_fetch($this->roles->toArray(), 'name'));
+        echo 'is something! ' . $name;
+        // Return in_array($name, array_fetch($this->roles->toArray(), 'name'));
     }
 
     protected function makeRole($name)
@@ -147,17 +170,20 @@ class User extends Base implements UserInterface, RemindableInterface
 
             $this->roles()->attach($assignedRole);
         }
-        echo "tihii ".$name;
+        echo 'tihii ' . $name;
     }
 
     protected function removeRole($name)
     {
-        // if ($this->isRole($name)) {
-        //     $assignedRole = Role::idFromName($name);
+        /*
+            If ($this->isRole($name)) {
+                $assignedRole = Role::idFromName($name);
 
-        //     $this->roles()->detach($assignedRole);
-        // }
-        echo "remove something! ".$name;
+                $this->roles()->detach($assignedRole);
+            }
+        */
+
+        echo 'remove something! ' . $name;
     }
 
     public function __call($method, $args)
@@ -166,27 +192,32 @@ class User extends Base implements UserInterface, RemindableInterface
         $arg = '';
         $roleMethods = ['make', 'is', 'removeAs'];
 
-        // foreach ($roleMethods as $roleMethod) {
-        //     $roleMethodLength = sizeof($roleMethod);
-        //     $methodBit = substr($method, 0, $roleMethodLength);
-        //     if ($methodBit == $roleMethod) {
-        //         $arg = strtolower(substr($method, $roleMethodLength));
-        //         $type = 'Role';
-        //         break;
-        //     }
-        // }
-        echo $method.'<br>';
-        if (($methodBit = substr($method, 0, 4)) == 'make') {
+        /*
+            Foreach ($roleMethods as $roleMethod) {
+                $roleMethodLength = sizeof($roleMethod);
+                $methodBit = substr($method, 0, $roleMethodLength);
+                if ($methodBit == $roleMethod) {
+                    $arg = strtolower(substr($method, $roleMethodLength));
+                    $type = 'Role';
+                    break;
+                }
+            }
+        */
+
+        echo $method . '<br>';
+        $type = 'Role';
+        $methodMake = (substr($method, 0, 4) == 'make');
+        $methodIs = (substr($method, 0, 2) == 'is');
+        $methodRemoveAs = (substr($method, 0, 8) == 'removeAs');
+
+        if ($methodMake) {
             $arg = strtolower(substr($method, 4));
-            $type = 'Role';
-        } elseif (($methodBit = substr($method, 0, 2)) == 'is') {
+        } elseif ($methodIs) {
             $arg = strtolower(substr($method, 2));
-            $type = 'Role';
-        } elseif (($methodBit = substr($method, 0, 8)) == 'removeAs') {
+        } elseif ($methodRemoveAs) {
             $arg = strtolower(substr($method, 8));
-            $type = 'Role';
         }
-        $methodToCall = $methodBit.$type;
+        $methodToCall = $methodBit . $type;
         $this->$methodToCall($arg);
         return false;
     }

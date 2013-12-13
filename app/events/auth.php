@@ -31,11 +31,11 @@ Event::listen(
         Log::info(
             'User login',
             array(
-             'ip' => \Request::getClientIP(),
-             'user' => 'Marie',
-             'successful' => true,
+             'ip'           => \Request::getClientIP(),
+             'user'         => 'Marie',
+             'successful'   => true,
              'userVariable' => $user,
-             'remember' => $remember,
+             'remember'     => $remember,
              )
         );
     }
@@ -44,16 +44,15 @@ Event::listen(
 Event::listen(
     'auth.failed',
     function ($username) {
-        // $count = \Model\User::where('username', '=', $username)->count();
-
-        // $exists = ($count > 0);
+        // Count: $count = \Model\User::where('username', '=', $username)->count();
+        // Exists: $exists = ($count > 0);
         Log::info(
             'User login',
             array(
-             'ip' => \Request::getClientIP(),
-             'user' => $username,
+             'ip'         => \Request::getClientIP(),
+             'user'       => $username,
              'successful' => false,
-             'exists' => false,
+             'exists'     => false,
              )
         );
     }

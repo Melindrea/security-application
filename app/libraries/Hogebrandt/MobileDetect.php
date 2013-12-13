@@ -1,18 +1,31 @@
 <?php
+/**
+ * Wrapper to Mobile Detect.
+ *
+ * Uses https://github.com/serbanghita/Mobile-Detect for RESS.
+ * https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples.
+ *
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
+ */
+
 namespace Hogebrandt;
 
 /**
  * Wrapper to Mobile Detect.
  *
- * Uses https://github.com/serbanghita/Mobile-Detect for RESS
- * https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples
+ * Uses https://github.com/serbanghita/Mobile-Detect for RESS.
+ * https://github.com/serbanghita/Mobile-Detect/wiki/Code-examples.
  *
- * @package  SecurityApplication
- * @author Marie Hogebrandt <iam@mariehogebrandt.se>
- * @copyright Copyright (c) 2013, Marie Hogebrandt
- * @license http://opensource.org/licenses/MIT MIT
+ * @package   SecurityApplication
+ * @author    Marie Hogebrandt <iam@mariehogebrandt.se>
+ * @copyright 2013-2014 Marie Hogebrandt
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/Melindrea/security-application
  */
-
 class MobileDetect
 {
     public static function __callStatic($name, $arguments)

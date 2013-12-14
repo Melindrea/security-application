@@ -27,8 +27,15 @@ module.exports = function (grunt) {
         composer: composer.config['vendor-dir'] || 'vendor',
         composerBin: composer.config['bin-dir'] || 'vendor/bin',
         docs: 'docs',
+        testsPHP: 'test/phpunit',
+        testsJS: 'test/mocha',
         php: 'app',
-        tmp: '.tmp'
+        tmp: '.tmp',
+        flatBuild: {
+            base: 'app/src',
+            js: 'app/src/assets/scripts'
+        },
+        assets: 'public_html/assets'
     };
 
     grunt.initConfig({
@@ -39,11 +46,15 @@ module.exports = function (grunt) {
         files: {
             js: [
                 'Gruntfile.js',
-                'tasks/{,*/}*.js',
-                'grunt/{,*/}*.js'
+                'grunt/{,*/}*.js',
+                '<%= directories.flatBuild.js %>/{,*/}*.js',
+                '!<%= directories.flatBuild.js %>/vendor/*',
+                '<%= directories.testsJS %>/{,*/}*.js',
+
             ],
             json: [
-                '{,*/}*.json',
+                '*.json',
+                'app/metadata/**/*.json'
             ],
             php: '<%= directories.php %>/**/*.php',
             assets: 'public_html/assets/**/*'
@@ -54,59 +65,29 @@ module.exports = function (grunt) {
             },
             src: '**/*'
         },
-        shell: {                                // Task
-            // phpdocs: {                      // Target
-            //     command: 'php <%= directories.composerBin %>/phpdoc.php'
-            // },
-            artisan: {
-                options: {
-                    stdout: true
-                },
-                command: 'php artisan serve --port=<%= connect.options.port %> --host=<%= connect.options.host %>'
-            },
-            update: {
-                command: [
-                    'npm install',
-                    'bower install',
-                    'php composer.phar dump-autoload',
-                    'php composer.phar install',
-                    'bundle install',
-                    'grunt githooks'
-                ].join('&&'),
-                options: {
-                    stdout: true
-                }
-            },
-            sitemap: {
-                options: {
-                    stdout: true
-                },
-                command: 'php artisan sitemap:generate'
-            }
-        },
         watch: {
             js: {
-                files: ['<%= yeoman.app %>/assets/scripts/{,*/}*.js'],
+                files: ['<%= directories.flatBuild.js %>/{,*/}*.js'],
                 tasks: ['js']
             },
             php: {
-                files: ['<%= files.php %>/{,*/}*.php'],
+                files: ['<%= files.php %>'],
                 tasks: ['php']
             },
             compass: {
-                files: ['<%= yeoman.app %>/assets/styles/{,*/}*.{scss,sass}'],
+                files: ['<%= directories.flatBuild.base %>/assets/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer']
             },
             styles: {
-                files: ['<%= yeoman.app %>/assets/styles/{,*/}*.css'],
+                files: ['<%= directories.flatBuild.base %>/assets/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
             },
             templates: {
-                files: ['<%= yeoman.app %>/templates/pages/{,*/}*.hbs'],
+                files: ['<%= directories.flatBuild.base %>/templates/pages/{,*/}*.hbs'],
                 tasks: ['newer:assemble:pages']
             },
             layouts: {
-                files: ['<%= yeoman.app %>/templates/layouts/{,*/}*.hbs'],
+                files: ['<%= directories.flatBuild.base %>/templates/layouts/{,*/}*.hbs'],
                 tasks: ['assemble:pages']
             },
             livereload: {
@@ -114,11 +95,11 @@ module.exports = function (grunt) {
                     livereload: '<%= connect.options.livereload %>'
                 },
                 files: [
-                    '<%= yeoman.app %>/*.html',
-                    '<%= yeoman.app %>/templates/{,*/}*.hbs',
+                    '<%= directories.flatBuild.base %>/*.html',
+                    '<%= directories.flatBuild.base %>/templates/{,*/}*.hbs',
                     '.tmp/assets/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/assets/scripts/{,*/}*.js',
-                    '<%= yeoman.app %>/assets/media/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    '{.tmp,<%= directories.flatBuild.base %>}/assets/scripts/{,*/}*.js',
+                    '<%= directories.flatBuild.base %>/assets/media/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
         },
@@ -142,7 +123,7 @@ module.exports = function (grunt) {
                     open: true,
                     base: [
                         '.tmp',
-                        '<%= yeoman.app %>'
+                        '<%= directories.flatBuild.base %>'
                     ]
                 }
             },
@@ -151,7 +132,7 @@ module.exports = function (grunt) {
                     base: [
                         '.tmp',
                         'test/mocha',
-                        '<%= yeoman.app %>'
+                        '<%= directories.flatBuild.base %>'
                     ]
                 }
             },
@@ -160,57 +141,6 @@ module.exports = function (grunt) {
                     open: true,
                     base: '<%= yeoman.dist %>'
                 }
-            }
-        },
-        compress: {
-            deploy: {
-                options: {
-                    archive: 'deploy.zip',
-                    mode: 'zip'
-                },
-                files: [{
-                    expand: true,
-                    cwd: '.build',
-                    src: ['**'],
-                    dest: '/'
-                }, {
-                    expand: true,
-                    src: [
-                        'artisan',
-                        'bootstrap/**',
-                        'composer.json'
-                    ],
-                    dest: '/'
-                }]
-            }
-        },
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/assets/scripts/vendor/*',
-                'test/spec/mocha/{,*/}*.js',
-                'grunt/{,*/}*.js'
-            ]
-        },
-        jsvalidate: {
-            files: [
-                'Gruntfile.js',
-                '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/assets/scripts/vendor/*',
-                'test/spec/mocha/{,*/}*.js',
-                'grunt/{,*/}*.js'
-            ]
-        },
-        jsonlint: {
-            data: {
-                src: [
-                    '<%= files.php %>/metadata/**/*.json'
-                ]
             }
         },
         mocha: {
@@ -223,13 +153,13 @@ module.exports = function (grunt) {
         },
         compass: {
             options: {
-                sassDir: '<%= yeoman.app %>/assets/styles',
+                sassDir: '<%= directories.flatBuild.base %>/assets/styles',
                 cssDir: '.tmp/assets/styles',
                 generatedImagesDir: '.tmp/assets/images/generated',
-                imagesDir: '<%= yeoman.app %>/assets/media/images',
-                javascriptsDir: '<%= yeoman.app %>/assets/scripts',
-                fontsDir: '<%= yeoman.app %>/assets/fonts',
-                importPath: '<%= yeoman.app %>/bower_components',
+                imagesDir: '<%= directories.flatBuild.base %>/assets/media/images',
+                javascriptsDir: '<%= directories.flatBuild.js %>',
+                fontsDir: '<%= directories.flatBuild.base %>/assets/fonts',
+                importPath: '<%= directories.flatBuild.base %>/bower_components',
                 httpImagesPath: '/assets/media/images',
                 httpGeneratedImagesPath: '/assets/images/generated',
                 httpFontsPath: '/assets/fonts',
@@ -293,16 +223,16 @@ module.exports = function (grunt) {
             options: {
                 flatten: true,
                 layout: 'default.hbs',
-                layoutdir: '<%= yeoman.app %>/templates/layouts',
-                partials: ['<%= yeoman.app %>/templates/partials/*.hbs'],
-                helpers: '<%= yeoman.app %>/templates/helpers/*.js',
+                layoutdir: '<%= directories.flatBuild.base %>/templates/layouts',
+                partials: ['<%= directories.flatBuild.base %>/templates/partials/*.hbs'],
+                helpers: '<%= directories.flatBuild.base %>/templates/helpers/*.js',
                 pkg: '<%= pkg %>',
-                data: '<%= yeoman.app %>/data/*.json',
+                data: '<%= directories.flatBuild.base %>/data/*.json',
             },
             pages: {
                 files: {
-                    '<%= yeoman.app %>/': [
-                        '<%= yeoman.app %>/templates/pages/*.hbs'
+                    '<%= directories.flatBuild.base %>/': [
+                        '<%= directories.flatBuild.base %>/templates/pages/*.hbs'
                     ]
                 }
             }
@@ -311,7 +241,7 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%= yeoman.dist %>'
             },
-            html: '<%= yeoman.app %>/index.html'
+            html: '<%= directories.flatBuild.base %>/index.html'
         },
         usemin: {
             options: {
@@ -324,7 +254,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/assets/media/images',
+                    cwd: '<%= directories.flatBuild.base %>/assets/media/images',
                     src: '{,*/}*.{png,jpg,jpeg}',
                     dest: '<%= yeoman.dist %>/assets/media/images'
                 }]
@@ -334,7 +264,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/assets/media/images',
+                    cwd: '<%= directories.flatBuild.base %>/assets/media/images',
                     src: '{,*/}*.svg',
                     dest: '<%= yeoman.dist %>/assets/media/images'
                 }]
@@ -351,7 +281,7 @@ module.exports = function (grunt) {
             //     files: {
             //         '<%= yeoman.dist %>/styles/main.css': [
             //             '.tmp/styles/{,*/}*.css',
-            //             '<%= yeoman.app %>/styles/{,*/}*.css'
+            //             '<%= directories.flatBuild.base %>/styles/{,*/}*.css'
             //         ]
             //     }
             // }
@@ -371,7 +301,7 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>',
+                    cwd: '<%= directories.flatBuild.base %>',
                     src: '*.html',
                     dest: '<%= yeoman.dist %>'
                 }]
@@ -383,7 +313,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= yeoman.app %>',
+                    cwd: '<%= directories.flatBuild.base %>',
                     dest: '<%= yeoman.dist %>',
                     src: [
                         '*.{ico,png,txt}',
@@ -396,7 +326,7 @@ module.exports = function (grunt) {
             styles: {
                 expand: true,
                 dot: true,
-                cwd: '<%= yeoman.app %>/assets/styles',
+                cwd: '<%= directories.flatBuild.base %>/assets/styles',
                 dest: '.tmp/assets/styles/',
                 src: '{,*/}*.css'
             },
@@ -429,15 +359,15 @@ module.exports = function (grunt) {
             }
         },
         bumpup: {
-            files: ['package.json', 'component.json', 'composer.json']
+            files: ['package.json', 'component.json', 'composer.json', 'bower.json']
         },
         modernizr: {
-            devFile: '<%= yeoman.app %>/bower_components/modernizr/modernizr.js',
-            outputFile: '<%= yeoman.app %>/bower_components/modernizr/modernizr.dev.js',
+            devFile: '<%= directories.flatBuild.base %>/bower_components/modernizr/modernizr.js',
+            outputFile: '<%= directories.flatBuild.base %>/bower_components/modernizr/modernizr.dev.js',
             files: [
-                '<%= yeoman.app %>/assets/scripts/{,*/}*.js',
+                '<%= directories.flatBuild.js %>/{,*/}*.js',
                 '.tmp/assets/styles/{,*/}*.css',
-                '!<%= yeoman.app %>/assets/scripts/vendor/*'
+                '!<%= directories.flatBuild.js %>/vendor/*'
             ],
             uglify: true
         },
@@ -460,62 +390,6 @@ module.exports = function (grunt) {
                 'svgmin',
                 'htmlmin'
             ]
-        },
-        phpcs: {
-            application: {
-                dir: '<%= files.php %>'
-            },
-            tests: {
-                dir: 'test/phpunit'
-            },
-            options: {
-                bin: '<%= directories.composerBin %>/phpcs',
-                standard: 'PSR2',
-                ignore: 'database',
-                extensions: 'php'
-            },
-            newSniffer: {
-                dir: '<%= files.php %>',
-                options: {
-                    standard: '../development-tools/PSR2Extended/ruleset.xml',
-                    warningSeverity: 10
-                }
-            }
-        },
-        phpunit: {
-            classes: {
-                dir: 'test/phpunit/tests'
-            },
-            options: {
-                bin: '<%= directories.composerBin %>/phpunit',
-                bootstrap: 'bootstrap/autoload.php',
-                staticBackup: false,
-                colors: true,
-                noGlobalsBackup: false
-            }
-        },
-        phpdocumentor: {
-            dist: {
-                bin: 'composer_components/bin/phpdoc.php',
-                directory: 'app',
-                target: 'phpdocs',
-                ignore: 'app/database/*'
-            }
-        },
-        githooks: {
-            stage: {
-                options: {
-                    template: 'grunt/hooks/stage.js.hbs'
-                },
-                'pre-commit': 'commit'
-            },
-            update: {
-                options: {
-                    template: 'grunt/hooks/update.js.hbs'
-                },
-                'post-merge': true,
-                'post-checkout': true
-            }
         }
     });
 
@@ -607,10 +481,6 @@ module.exports = function (grunt) {
     grunt.registerTask('commit', [
         'lint',
         'test'
-    ]);
-
-    grunt.registerTask('update', [
-        'shell:update'
     ]);
 
     grunt.registerTask('report', [

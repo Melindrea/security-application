@@ -20,6 +20,9 @@ GEM
     sass (3.2.12)
     sass-globbing (1.1.0)
       sass (>= 3.1)
+    watson (0.0.2)
+      yajl-ruby
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -29,3 +32,4 @@ DEPENDENCIES
   compass
   csscss
   sass-globbing
+  watson

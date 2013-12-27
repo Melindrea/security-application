@@ -415,8 +415,8 @@ module.exports = function (grunt) {
         'concurrent:test',
         'autoprefixer',
         'connect:test',
-        'mocha',
-        'phpunit'
+        'mocha'//,
+        // 'phpunit'
     ]);
 
     grunt.registerTask('build', function (target) {

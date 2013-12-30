@@ -35,7 +35,11 @@ module.exports = function (grunt) {
             base: 'app/src',
             js: 'app/src/assets/scripts'
         },
-        assets: 'public_html/assets'
+        assets: 'public_html/assets',
+        ember: {
+            templates: 'app/src/ember/templates',
+            scripts: 'app/src/ember/scripts'
+        }
     };
 
     grunt.initConfig({
@@ -57,7 +61,11 @@ module.exports = function (grunt) {
                 'app/metadata/**/*.json'
             ],
             php: '<%= directories.php %>/**/*.php',
-            assets: 'public_html/assets/**/*'
+            assets: 'public_html/assets/**/*',
+            ember: {
+                templates: '<%= directories.ember.templates %>/**/*.hbs',
+                scripts: '<%= directories.ember.scripts %>/{,*/}*.js'
+            }
         },
         'gh-pages': {
             options: {
@@ -66,6 +74,14 @@ module.exports = function (grunt) {
             src: '**/*'
         },
         watch: {
+            emberTemplates: {
+                files: ['<%= files.ember.templates %>'],
+                tasks: ['emberTemplates']
+            },
+            neuter: {
+                files: ['<%= files.ember.scripts %>'],
+                tasks: ['neuter']
+            },
             js: {
                 files: ['<%= directories.flatBuild.js %>/{,*/}*.js'],
                 tasks: ['js']
@@ -373,6 +389,7 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
+                'emberTemplates',
                 'compass',
                 'copy:styles'
             ],
@@ -381,15 +398,42 @@ module.exports = function (grunt) {
                 'watch'
             ],
             test: [
+                'emberTemplates',
+                'compass',
                 'copy:styles'
             ],
             dist: [
+                'emberTemplates',
                 'compass',
                 'copy:styles',
                 'imagemin',
                 'svgmin',
                 'htmlmin'
             ]
+        },
+        emberTemplates: {
+            options: {
+                templateName: function (sourceFile) {
+                    var templatePath = directoriesConfig.ember.templates + '/';
+                    return sourceFile.replace(templatePath, '');
+                }
+            },
+            dist: {
+                files: {
+                    '.tmp/scripts/compiled-templates.js': '<%= files.ember.templates %>'
+                }
+            }
+        },
+        neuter: {
+            app: {
+                options: {
+                    filepathTransform: function (filepath) {
+                        return 'app/' + filepath;
+                    }
+                },
+                src: '<%= directories.ember.scripts %>/app.js',
+                dest: '.tmp/scripts/combined-app.js'
+            }
         }
     });
 
@@ -405,6 +449,7 @@ module.exports = function (grunt) {
             'clean:server',
             'concurrent:server',
             'autoprefixer',
+            'neuter:app',
             'connect:livereload',
             'watch'
         ]);
@@ -415,6 +460,7 @@ module.exports = function (grunt) {
         'concurrent:test',
         'autoprefixer',
         'connect:test',
+        'neuter:app',
         'mocha'//,
         // 'phpunit'
     ]);
@@ -444,6 +490,7 @@ module.exports = function (grunt) {
             'useminPrepare',
             'concurrent:dist',
             'autoprefixer',
+            'neuter:app',
             'concat',
             'cssmin',
             'uglify',

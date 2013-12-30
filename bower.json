@@ -8,13 +8,17 @@
     "selectivizr": "~1.0.2",
     "typeplate": "latest",
     "magnific-popup": "~0.9.8",
-    "showdown": "~0.3.1"
+    "showdown": "~0.3.1",
+    "ember": "1.0.0",
+    "ember-data-shim": "1.0.0-beta.4",
+    "ember-localstorage-adapter": "*"
   },
   "devDependencies": {
     "golden-grid-system": "*",
     "chai": "~1.7.2",
     "mocha": "~1.12.0",
     "sinon-chai": "~2.4.0",
-    "sinon": "http://sinonjs.org/releases/sinon-1.7.3.js"
+    "sinon": "http://sinonjs.org/releases/sinon-1.7.3.js",
+    "ember-mocha-adapter": "0.1.2"
   }
 }

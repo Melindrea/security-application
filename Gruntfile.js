@@ -37,8 +37,8 @@ module.exports = function (grunt) {
         },
         assets: 'public_html/assets',
         ember: {
-            templates: 'app/src/ember/templates',
-            scripts: 'app/src/ember/scripts'
+            templates: 'app/src/templates/ember',
+            scripts: 'app/src/assets/scripts/ember-app'
         }
     };
 
@@ -53,7 +53,8 @@ module.exports = function (grunt) {
                 'grunt/{,*/}*.js',
                 '<%= directories.flatBuild.js %>/{,*/}*.js',
                 '!<%= directories.flatBuild.js %>/vendor/*',
-                '<%= directories.testsJS %>/{,*/}*.js',
+                '!<%= directories.ember.scripts %>/*',
+                '<%= directories.testsJS %>/{,*/}*.js'
 
             ],
             json: [
@@ -136,6 +137,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
+                    hostname: 'localhost',
                     open: true,
                     base: [
                         '.tmp',
@@ -428,7 +430,7 @@ module.exports = function (grunt) {
             app: {
                 options: {
                     filepathTransform: function (filepath) {
-                        return 'app/' + filepath;
+                        return directoriesConfig.ember.scripts + '/' + filepath;
                     }
                 },
                 src: '<%= directories.ember.scripts %>/app.js',

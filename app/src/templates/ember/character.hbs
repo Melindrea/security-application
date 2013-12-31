@@ -1,0 +1,25 @@
+<h2>{{ name }}</h2>
+<button {{action "edit"}}>Edit</button>
+<button {{action "delete"}}>Delete</button>
+{{#if deleteMode}}
+    <div class="confirm-box">
+      <h4>Really?</h4>
+      <button {{action "confirmDelete"}}> yes </button>
+      <button {{action "cancelDelete"}}> no </button>
+    </div>
+{{/if}}
+<dl>
+    <dt>Character type</dt>
+    <dd>{{ type }}</dd>
+    <dt>Subtype</dt>
+    <dd>{{ subtype }}</dd>
+    <dt>Concept</dt>
+    <dd>{{ concept }}</dd>
+    <dt>Created</dt>
+    <dd>{{since creationDate }}</dd>
+</dl>
+
+{{markdown backstory}}
+
+{{markdown-editor text=backstory}}
+{{ outlet }}

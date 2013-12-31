@@ -1,0 +1,11 @@
+<p>Count: {{ charactersCount }}</p>
+{{#link-to "characters.create" class="create-btn"}} Add character {{/link-to}}
+<ul class="characters-listing">
+  {{#each character in controller}}
+    <li>{{#link-to "character" character}}{{character.name}}{{/link-to}}</li>
+  {{else}}
+    <li>no characters… :-(</li>
+  {{/each}}
+</ul>
+
+{{ outlet }}

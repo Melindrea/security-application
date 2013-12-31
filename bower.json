@@ -11,7 +11,8 @@
     "showdown": "~0.3.1",
     "ember": "1.0.0",
     "ember-data-shim": "1.0.0-beta.4",
-    "ember-localstorage-adapter": "*"
+    "ember-localstorage-adapter": "*",
+    "momentjs": "~2.5.0"
   },
   "devDependencies": {
     "golden-grid-system": "*",

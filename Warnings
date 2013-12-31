@@ -1,0 +1,8 @@
+critical * (fire)
+debug * (bug)
+error (exclamation-in-triangle)
+info *
+notice * (info-in-circle)
+warning * (exlamation)
+github *
+html5/css3 *

@@ -1,0 +1,39 @@
+<div class="character-group-panel">
+<dl>
+    <dt>Name</dt>
+    <dd>{{input value=name}}</dd>
+    <dt>Character type</dt>
+    <dd>{{view Ember.Select
+        contentBinding="App.characterTypes"
+        valueBinding="characterType"
+        }}</dd>
+    <dt>{{ typeLabel }}</dt>
+    <dd>{{view Ember.Select
+        contentBinding="controller.types"
+        valueBinding="type"
+        }}</dd>
+    {{#if subtypeLabel}}
+    <dt>{{ subtypeLabel }}</dt>
+    <dd>{{ input value=subtype }}</dd>
+    {{/if}}
+    <dt>Age span</dt>
+    <dd>{{view Ember.Select
+        contentBinding="App.ageSpans"
+        valueBinding="age"
+        }}</dd>
+    <dt>Concept</dt>
+    <dd>{{ input value=concept }}</dd>
+    <dt>Motivation</dt>
+    <dd>{{ input value=motivation }}</dd>
+    <dt>Description <small>Consider height and build, eye colour, features, hair colour, clothing style and any visible weaponry, armour or other items.</small></dt>
+    <dd>{{markdown-editor text=description}}</dd>
+</dl>
+</div>
+
+<div class="toolbar">
+<button {{action "save"}}> ok </button>
+</div>
+
+Description: "Helptext: Height, eye colour, features, hair colour, clothing style, visible weaponry/armour/items"
+
+Intimacies

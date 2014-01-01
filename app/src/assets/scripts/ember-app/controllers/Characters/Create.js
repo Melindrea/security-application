@@ -11,5 +11,13 @@ App.CharactersCreateController = Ember.ObjectController.extend({
             // redirects to the character itself
             this.transitionToRoute('character', newUser);
         }
-    }
+    },
+    types: function () {
+        var characterType = this.get('model').get('characterType');
+        if (App.characterTypes.indexOf(characterType) === -1) {
+            return ['<choose type>'];
+        }
+
+        return App.types[characterType];
+    }.property('model.characterType')
 });

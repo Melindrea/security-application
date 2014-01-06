@@ -1,0 +1,8 @@
+{{#each btnValue in values}}
+{{traits-button value=btnValue trait=value}}
+{{/each}}
+{{view Ember.Select
+    contentBinding="values"
+    valueBinding="value"
+}}
+{{#if mayFavor }}{{input type="checkbox" checked=favored }}{{/if}}

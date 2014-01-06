@@ -4,9 +4,8 @@ App.Router = Ember.Router.extend({
 
 App.Router.map(function () {
     this.resource('characters', function () {
-        this.resource('character', { path:'/:character_id' }, function () {
-            this.route('edit');
-        });
+        this.resource('character', { path:'/:character_id' });
+        this.route('edit', {path: '/:character_id/edit'});
         this.route('create');
     });
 });

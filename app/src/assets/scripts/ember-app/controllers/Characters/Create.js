@@ -5,11 +5,18 @@ App.CharactersCreateController = Ember.ObjectController.extend({
             this.get('model').set('creationDate', new Date());
 
             // create a record and save it to the store
-            var newCharacter = this.store.createRecord('character', this.get('model'));
-            newCharacter.save();
+            // var newCharacter = this.store.createRecord('character', this.get('model'));
+            // newCharacter.save();
 
             // redirects to the character itself
-            this.transitionToRoute('character', newUser);
+            this.transitionToRoute('character', newCharacter);
+        },
+        addIntimacy: function () {
+            var newIntimacy = this.store.createRecord('intimacy', {});
+            this.get('model').get('intimacies').pushObject(newIntimacy);
+        },
+        removeIntimacy: function (intimacy) {
+            intimacy.deleteRecord();
         }
     },
     types: function () {

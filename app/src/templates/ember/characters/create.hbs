@@ -1,4 +1,4 @@
-<div class="character-group-panel">
+<div class="character-group-panel" id="panel-spirit">
 <dl>
     <dt>Name</dt>
     <dd>{{input value=name}}</dd>
@@ -28,12 +28,43 @@
     <dt>Description <small>Consider height and build, eye colour, features, hair colour, clothing style and any visible weaponry, armour or other items.</small></dt>
     <dd>{{markdown-editor text=description}}</dd>
 </dl>
+<h3>Intimacies <button {{action "addIntimacy"}}> + </button></h3>
+<ul>
+{{#each intimacy in intimacies}}
+    <li>{{input value=intimacy.name}} <button {{action "removeIntimacy" intimacy }}> - </button></li>
+{{/each}}
+</ul>
+</div> <!-- // Spirit -->
+
+<div class="character-group-panel" id="panel-history">
+<h2>History</h2>
+<p>Make it long enough to cover the important things. If you feel more comfortable writing it in bullet form, that is acceptable. Ensure it answers (at a minimum) the following questions:</p>
+
+<ul>
+    <li>Where is your character from?</li>
+    <li>How did they get anything important they have?</li>
+    <li>What hooks can be used by Storytellers?</li>
+</ul>
+
+{{markdown-editor text=backstory}}
+</div>
+
+<div class="character-group-panel" id="panel-attributes">
+
+{{traits-attributes character=this}}
 </div>
 
 <div class="toolbar">
 <button {{action "save"}}> ok </button>
 </div>
 
-Description: "Helptext: Height, eye colour, features, hair colour, clothing style, visible weaponry/armour/items"
 
-Intimacies
+<!-- Future panels
+Attributes
+Abilities
+Advantages
+magic
+Equipment
+Combat
+ST Hooks
+-->

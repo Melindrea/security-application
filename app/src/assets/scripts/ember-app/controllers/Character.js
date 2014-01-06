@@ -2,7 +2,7 @@ App.CharacterController = Ember.ObjectController.extend({
     deleteMode: false,
     actions: {
         edit: function () {
-            this.transitionToRoute('character.edit');
+            this.transitionToRoute('characters.edit', this.get('model'));
         },
         delete: function () {
             this.toggleProperty('deleteMode');

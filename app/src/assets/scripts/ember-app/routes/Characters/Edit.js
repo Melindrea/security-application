@@ -1,4 +1,4 @@
-App.CharacterEditController = Ember.ObjectController.extend({
+App.CharactersEditController = Ember.ObjectController.extend({
     actions: {
         save: function () {
             var character = this.get('model');

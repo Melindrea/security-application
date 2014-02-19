@@ -7,4 +7,5 @@ gem "breakpoint"
 gem "csscss"
 gem "sass-globbing"
 gem "watson"
+gem "ghi"
 end

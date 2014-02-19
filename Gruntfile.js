@@ -380,14 +380,18 @@ module.exports = function (grunt) {
             files: ['package.json', 'component.json', 'composer.json', 'bower.json']
         },
         modernizr: {
-            devFile: '<%= directories.flatBuild.base %>/bower_components/modernizr/modernizr.js',
-            outputFile: '<%= directories.flatBuild.base %>/bower_components/modernizr/modernizr.dev.js',
-            files: [
-                '<%= directories.flatBuild.js %>/{,*/}*.js',
-                '.tmp/assets/styles/{,*/}*.css',
-                '!<%= directories.flatBuild.js %>/vendor/*'
-            ],
-            uglify: true
+            dist: {
+                devFile: '<%= directories.flatBuild.base %>/bower_components/modernizr/modernizr.js',
+                outputFile: '<%= directories.flatBuild.base %>/bower_components/modernizr/modernizr.dev.js',
+                files: {
+                    src: [
+                        '<%= directories.flatBuild.js %>/{,*/}*.js',
+                        '.tmp/assets/styles/{,*/}*.css',
+                        '!<%= directories.flatBuild.js %>/vendor/*'
+                    ]
+                },
+                uglify: true
+            }
         },
         concurrent: {
             server: [

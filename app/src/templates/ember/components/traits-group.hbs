@@ -1,0 +1,7 @@
+<h3>{{ groupName }}</h3>
+<dl>
+{{#each trait in traits}}
+    <dt>{{ name }}</dt>
+    {{traits-single value=value favored=favored mayFavor=../mayFavor minValue=../minValue maxValue=../maxValue}}
+{{/each}}
+</dl>

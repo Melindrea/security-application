@@ -1,0 +1,30 @@
+Intimacy:
+* Takes <conviction> scenes to fully form
+* Once formed, takes <conviction> scenes to remove
+
+Intimacy
+* belongs to character
+* has status (formed/building)
+* has "strength", integer based on number of scenes
+
+Traits:
+
+Attributes  - Physical      - Dexterity     - 5 - Favoured      -
+Abilities   - Zenith        - Presence      - 4 - Unfavoured    -
+Advantages  - Virtues       - Compassion    - 4 - Primary       -
+Advantages  - Backgrounds   - Manse         - 3                 - Some note
+Advantages  -               - Essence       - 3                 -
+Advantages  -               - Willpower     - 5                 -
+Specialties - Dexterity     - Nimble        - 3                 -
+
+Character
+    have many attributes
+    have many abilities
+    have many advantages
+    have many specialties
+
+Model
+    AttributeGroup
+        have many attributes traits
+
+    Abilities

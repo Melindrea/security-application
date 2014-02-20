@@ -55,4 +55,4 @@ dist
 app/**/*.html
 documentation/*
 storage
-
+docs/*

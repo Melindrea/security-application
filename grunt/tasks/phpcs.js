@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         options: {
             bin: '<%= directories.composerBin %>/phpcs',
             standard: 'PSR2',
-            ignore: 'database',
+            ignore: 'database,src',
             extensions: 'php'
         },
         newSniffer: {

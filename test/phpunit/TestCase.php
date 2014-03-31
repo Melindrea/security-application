@@ -67,7 +67,9 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         parent::tearDown();
         // \Artisan::call('migrate:rollback');
-        $file = $this->database;
-        `rm $file`;
+        if ($this->useDatabase) {
+            $file = $this->database;
+            `rm $file`;
+        }
     }
 }

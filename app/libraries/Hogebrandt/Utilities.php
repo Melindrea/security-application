@@ -41,6 +41,6 @@ class Utilities
             }
         }
 
-        throw new UnexpectedValueException;
+        throw new \UnexpectedValueException;
     }
 }
